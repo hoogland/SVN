@@ -1,0 +1,62 @@
+body { padding-top: 70px; }
+
+body, td {
+  
+}
+
+a {
+}
+
+a:hover {
+}
+
+
+
+
+#competitieDetails{
+clear: both;
+width: 100%;
+padding-bottom: 5px;
+marging-bottom: 5px;
+}
+
+#rondes{
+padding-left: 0px;
+}
+
+#rondes li{
+    list-style-type: none;
+}
+
+#stand{
+}
+
+.sortingContainer ul{
+    padding-left: 0px;
+    min-height: 100px;
+}
+
+.sortingContainer ul li{
+    list-style: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border: 1px solid grey;
+    margin-bottom: 3px;
+}
+
+#ui-datepicker-div{
+    background-color: white;
+    border: 1px solid grey;
+    padding: 10px;
+}
+
+.select2-container{
+    border: none;
+    padding: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.table.tdMiddle td{
+    vertical-align: middle;
+}

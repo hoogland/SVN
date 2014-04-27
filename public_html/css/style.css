@@ -1,0 +1,59 @@
+body, td {
+        background    :    #FFFFFF;
+        font: 10pt Verdana, Arial, Helvetica, sans-serif; color: #000000;  
+}
+
+a {
+}
+
+a:hover {
+}
+
+
+
+
+#competitieDetails{
+clear: both;
+width: 100%;
+padding-bottom: 5px;
+marging-bottom: 5px;
+}
+
+#rondes{
+padding-left: 0px;
+}
+
+#rondes li{
+    list-style-type: none;
+}
+
+#rondes li.selectedRound{
+    font-weight: bold;
+}
+#rondes li.selectedRound a{
+        color: #FAA51A; 
+}
+
+#stand{
+}
+
+#kruistabel tr td{
+    text-align: center;
+}
+#kruistabel tr td:nth-child(2){
+    text-align: left;
+    white-space: nowrap;
+}
+#kruistabel tr th{
+    text-align: center;
+}
+#kruistabel tr th:nth-child(2){
+    text-align: left;
+}
+
+
+
+/***************************
+* PGN Tool
+*/
+

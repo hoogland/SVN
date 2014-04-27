@@ -1,0 +1,20 @@
+[Event "2008"]
+[Site "?"]
+[Date "????.??.??"]
+[Round "?"]
+[White "A.Sochnev"]
+[Black "?"]
+[Result "1/2-1/2"]
+[Annotator ""]
+[SetUp "1"]
+[FEN "3K4/6P1/2P1PnPP/4kbb1/8/8/8/8 w - - 0 1"]
+[PlyCount "23"]
+[SourceDate "2005.01.24"]
+
+1. e7 Kd6 2. c7 $1 (2. e8=N+ $2 Nxe8+ 3. Kxe8 Bxg6+ 4. Kf8 Bxh6 5. Kg8 Bg5 6.
+Kh8 Bf6 7. Kg8 Ke7 8. c7 Bf5 9. c8=Q Bxc8 10. Kh7 Bf5+ 11. Kh6 Kf7 $19) 2...
+Ng8 (2... Nd5 3. g8=Q Bxe7+ 4. Ke8 Nf6+ 5. Kf7 Be6+ 6. Kg7 Nxg8 7. c8=N+ Bxc8
+8. h7 Bf6+ 9. Kxg8 Be6+ 10. Kf8 Kd7 11. h8=Q Bxh8 12. g7 $11) 3. c8=N+ $1 Bxc8
+4. h7 Bd7 5. hxg8=N $1 Bh4 6. Nf6 Bxf6 7. g8=N $1 Bg5 8. g7 Bh4 9. Nf6 Bxf6 10.
+g8=N $1 Bh4 11. Nf6 Bf5 12. e8=N+ $1 $11 1/2-1/2
+

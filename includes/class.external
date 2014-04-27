@@ -1,0 +1,58 @@
+<?php
+    class externalCompetition
+    {
+        var $settings;
+        var $prefix;
+        
+        
+        /**
+        * put your comment there...
+        * 
+        * @param mixed $settings
+        * @return externalCompetition
+        */
+        public function __construct($settings)
+        {
+            $this->settings = $settings;
+            $this->prefix = $settings->prefix;   
+        }
+        
+        
+        public function getMatches($season = null, $team = null)
+        {
+            $sql = "SELECT * FROM ".$this->prefix."extern_wedstrijden WHERE 1 = 1";
+            if($season)
+                $sql .= " seizoen = ".$season;
+            if($team)
+                $sql .= " team = ".$team;
+            
+            $result = mysql_query($sql);
+            $data;
+            while($row = mysql_fetch_assoc($result))
+                $data[] = $row;
+            return $data;
+        }
+        
+        public function getSeasons()
+        {
+            $sql = "SELECT DISTINCT seizoen FROM ".$this->prefix."extern_wedstrijden";
+            $result = mysql_query($sql);
+            $data;
+            while($row = mysql_fetch_assoc($result))
+                $data[] = $row;
+            return $data;
+        }
+
+        public function getTeams()
+        {
+            $sql = "SELECT DISTINCT team FROM ".$this->prefix."extern_wedstrijden";
+            $result = mysql_query($sql);
+            $data;
+            while($row = mysql_fetch_assoc($result))
+                $data[] = $row;
+            return $data;
+        }
+
+
+    }
+?>

@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule FEN/([/a-zA-Z0-9]+)$ /archiefV2/toolFEN.php?fen=$1 [L]

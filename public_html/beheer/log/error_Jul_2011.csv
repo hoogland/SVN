@@ -1,0 +1,30 @@
+Datum + tijd;IP ADRES;USER ID;USER NAME;PAGINA;ERROR
+2011-07-31 13:54:22;82.168.98.1;;;/beheer/index.php;101;Array;Array
+(
+    [login] => 2
+    [user_name] => robhoogland
+    [user_password] => rainmaker
+)
+
+2011-07-31 13:54:29;82.168.98.1;;;/beheer/index.php;101;Array;Array
+(
+    [login] => 2
+    [user_name] => robhoogland
+    [user_password] => admin
+)
+
+2011-07-31 13:55:12;82.168.98.1;;;/beheer/index.php;101;Array;Array
+(
+    [login] => 2
+    [user_name] => robhoogland
+    [user_password] => rainmaker
+)
+
+2011-07-31 14:11:50;82.168.98.1;;;/beheer/leden/main.php;100;Array;Array
+(
+)
+
+2011-07-31 14:23:59;82.168.98.1;;;/beheer/seizoenen/main.php?menu=1;100;Array;Array
+(
+)
+

@@ -1,0 +1,36 @@
+Datum + tijd;IP ADRES;USER ID;USER NAME;PAGINA;ERROR
+2011-11-02 15:14:28;82.168.98.1;;;/beheer/leden/main.php?menu=0;100;Array;Array
+(
+)
+
+2011-11-07 21:19:55;82.168.98.1;;;/beheer/competitie/main.php?menu=3;100;Array;Array
+(
+)
+
+2011-11-09 13:10:30;82.168.98.1;;;/beheer/competitie/main.php?menu=3;100;Array;Array
+(
+)
+
+2011-11-13 14:22:45;82.168.98.1;;;/beheer/competitie/main.php?menu=3;100;Array;Array
+(
+)
+
+2011-11-16 14:22:51;82.168.98.1;;;/beheer/competitie/main.php?menu=3;100;Array;Array
+(
+)
+
+2011-11-19 10:26:42;83.82.198.19;;;/beheer/index.php;101;Array;Array
+(
+    [login] => 2
+    [user_name] => wedstrijdleider
+    [user_password] => leeenklein
+)
+
+2011-11-23 09:10:27;82.168.98.1;;;/beheer/competitie/main.php?menu=3;100;Array;Array
+(
+)
+
+2011-11-23 12:31:08;82.168.98.1;;;/beheer/competitie/main.php?menu=3;100;Array;Array
+(
+)
+

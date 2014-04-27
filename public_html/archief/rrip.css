@@ -1,0 +1,48 @@
+
+#info
+{
+	clear: both;
+	margin-bottom:	20px;
+}
+
+#menu_comp
+{
+	float: left;
+	width: 160px;
+	background-color: #FFFFFFs; 
+	margin-top:	20px;
+
+}
+
+#ranglijst
+{
+	margin-left:	160px;
+	margin-top:	20px;}
+#partijen
+{
+	margin-left:	160px;
+}
+
+table  {
+	color:			#2B2671;
+    font-family:	Verdana, Arial;
+    font-size:		10pt;
+	border-collapse: separate;
+		}
+.border_top
+{
+	border-top: 1px solid #2B2671;
+}
+
+.eerste_rij    
+{     
+    font:             10pt Arial, Helvetica, sans-serif; 
+    color:            #FFFFFF; 
+    background-color: #01305d; 
+}
+.oneven    
+{     
+    font:             10pt Verdana, Arial, Helvetica, sans-serif; 
+    color:            #FFFFFF; 
+    background-color: #6699cc; 
+}

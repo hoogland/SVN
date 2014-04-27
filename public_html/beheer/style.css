@@ -1,0 +1,245 @@
+
+
+html, body {height: 100%; margin:0px;}
+
+body, td {
+        background    :    #FFFFFF;
+        font: 10pt Verdana, Arial, Helvetica, sans-serif; color: #000000;
+}
+
+a{
+        font: 10pt Verdana, Arial, Helvetica, sans-serif; color: #000000;
+        text-decoration: underline;
+}
+
+a:hover {
+}
+
+/* TOP */
+#top{
+    margin-left: 10px; 
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+
+/* MENU */
+#menu{
+    border-top: #76c724 solid 5px;
+    border-bottom: #ed9903 solid 5px;
+    clear:both;
+    width:100%;
+    height: 30px;
+    margin-top: 5px;
+    padding-top:10px;      }
+#menu_buttons
+{
+    float: left;
+    font: 12pt Verdana, Arial, Helvetica, sans-serif; color: #000000;
+}
+#menu_buttons a{
+    margin-left: 10px;;
+    font: 12pt Verdana, Arial, Helvetica, sans-serif; color: #000000;
+    text-decoration: none; 
+}
+
+#menu_buttons a:hover
+{
+    text-decoration: underline;
+}
+
+#menu_language{
+    text-align:right;
+}
+
+/* ERROR */
+#error{
+    border-top: red solid 0px;
+    border-bottom: red solid 0px;
+    background-color: red;
+    clear:both;
+    width:100%;
+    height: 30px;
+    padding-top:10px;
+    font: 12pt Verdana, Arial, Helvetica, sans-serif; color: #FFFFFF; 
+    text-align: center;
+}
+
+/* WIDGETS */
+
+.widget{
+    width: 300px;
+    float: right;
+    margin-top: 10px;
+    margin-right: 15px;
+    clear:right;
+}
+.widget_top{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    /*background-color: #00b0ec;   */
+    background-image: url('http://schoolproject.jeugdschaken.nl/widget_top.gif');
+    color: silver;
+    font-weight:        bold;
+}
+.widget_text{
+    padding: 3px;
+    border-left: #00b0ec solid 2px;
+    border-right: #00b0ec solid 2px;
+    border-bottom: #00b0ec solid 2px;
+}
+
+/* TEXT */
+#text{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 380px;
+    width: 95%;
+}
+
+/* SUBMENU */
+#sub_menu{
+    border-bottom: #00b0ec solid 5px;
+    clear:both;
+    width:100%;
+    height: 30px;
+    padding-top:10px;
+}
+
+.sub_menu a{
+    display:block;
+    font: 12pt Verdana, Arial, Helvetica, sans-serif; color: #FFFFFF; 
+    padding: 0px;
+    padding-top: 8px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 2px; 
+    width: 120px;
+    height: 20px;
+    text-align: center; 
+    text-decoration: none; 
+    float: left;
+    
+}
+.sub_menu a:hover
+{
+    padding-top: 10px;
+    margin-top: -2px;   
+}
+
+/* FILES */
+
+#files{
+    border: #25367e solid 2px;  
+    clear: left;
+}
+
+.file{
+    background-color: #EEEEEE;
+    border: #AAAAAA dashed 2px;
+    margin: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.file:hover{
+        background-color: #DDDDDD;
+}
+.file_name{
+    padding: 2px;
+    padding-left: 10px;
+    font: 10pt Verdana, Arial, Helvetica, sans-serif; color: #FFFFFF;
+    text-align: left; 
+}
+.file_name_click{
+     float:right;
+     text-align: right;
+}
+.file_extended{
+    display: none;
+    margin: 10px;
+}
+.file_description{
+    padding-left: 10px;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+}                                                                         
+.file_old{
+    border: #cccccc solid 1px;
+    margin-top: 3px;
+    margin-left: 12px;
+    margin-right: 12px;
+    padding-left: 3px;
+    padding-right: 3px;    
+    font: 10pt Verdana, Arial, Helvetica, sans-serif; color: #7e7e7e; 
+    cursor: pointer;    
+}
+
+.file_old a:hover{
+    background-color: #aaaaaa;
+}
+
+.file_old_name{
+
+}
+
+.file_old_date{
+    float: right;
+    text-align: right;
+}
+
+table.files_table{
+    background-color:#FFF;
+    border: solid #000 0px;
+    table-layout: fixed;
+}
+
+table.files_table tr.files_table td{
+    border-bottom: dashed #cccccc 2px;
+    vertical-align: middle;
+    padding-left: 5px;
+}
+
+table.files_table td.datum{
+    border-right: dashed #cccccc 2px;
+    border-left: dashed #cccccc 2px;
+    background-color:#FFF;
+    width: 200px;    
+}
+
+table.files_table td.naam{
+    border-right: dashed #cccccc 0px;   
+    min-width: 300px;
+}
+
+/* PROJECTS */
+#projecten{ 
+    clear: left;
+    margin-top: 15px;
+}
+
+.project{
+    background-color: #EEEEEE;
+    border: #AAAAAA dashed 2px;
+    margin: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.project:hover{
+    background-color: #DDDDDD;
+    
+}
+
+.project_name{
+    padding: 2px;
+    padding-left: 10px;
+    font: 10pt Verdana, Arial, Helvetica, sans-serif; color: #FFFFFF;
+    text-align: left; 
+}
+.project_options{
+     float:right;
+     margin-right: 5px;;
+     text-align: right;
+}
