@@ -22,6 +22,9 @@
         $competitie->setOptions("TPRmethod", $init->repository->get_data("TPRmethod"));
         $competitie->setOptions("TPRdamped", $init->repository->get_data("TPRdamped"));
         $competitie->setOptions("compSystem", $init->repository->get_data("compSystem"));
+        $competitie->setOptions("keizerIteraties", $init->repository->get_data("keizerIteraties"));
+        $competitie->setOptions("keizerInitialSorting", $init->repository->get_data("keizerInitialSorting"));
+        $competitie->setOptions("keizerMaxValue", $init->repository->get_data("keizerMaxValue"));
         $competitie->getGeneralData();
     }
     include_once('../../includes/header.beheer.php');
@@ -46,7 +49,7 @@
     });
 </script>
 
-<body class="container">
+<body class="container" ng-app>
 
     <? 
         include("../../includes/menu.beheer.php");
@@ -66,7 +69,7 @@
                             <tr><td>Competitie</td><td><input class="form-control" type="text" name="compName" value="<?php echo $competitie->name;?>"></td><td>Wedstrijdleider</td><td><input class="form-control" type="text" name="arbiter" value="<?php echo $competitie->arbiter;?>"></td></tr>
                             <tr><td>Naam uitgebreid</td><td><input class="form-control" type="text" name="compNameExtended" value="<?php echo $competitie->nameExtended;?>"></td><td>E-mail wedstrijdleider</td><td><input class="form-control" type="text" name="arbiterMail" value="<?php echo $competitie->arbiterMail;?>"></td></tr>
                             <tr><td>Intern / Extern</td><td></td><td>Plaats</td><td><input class="form-control" type="text" name="place" value="<?php echo $competitie->place;?>"></td></tr>
-                            <tr><td>Type competitie</td><td><select class="form-control" name="compSystem"><option value="Zwitsers">Zwitsers/Round Robin</option><option value="Keizer" <?php echo ($competitie->options["compSystem"] == "Keizer" ? "selected" : "")?>>Keizer</option></select></td><td>Land</td><td><input class="form-control" type="text" name="country" value="<?php echo $competitie->country;?>"></td></tr>
+                            <tr><td>Type competitie</td><td><select class="form-control" name="compSystem"><option value="Zwitsers">Zwitsers/Round Robin</option><option value="Keizer" <?php echo ($competitie->options["compSystem"] == "Keizer" ? "selected" : "")?>>Keizer</option><option value="Combined" <?php echo ($competitie->options["compSystem"] == "Combined" ? "selected" : "")?>>Samengesteld</option></select></td><td>Land</td><td><input class="form-control" type="text" name="country" value="<?php echo $competitie->country;?>"></td></tr>
                             <tr><td>Tempo</td><td><select class="form-control" name="tempo"><?php
                                         foreach($data->tempi as $key => $tempo)
                                         {
@@ -82,6 +85,23 @@
                         </table>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Extra opties</h2>
+                        <h3>Keizer</h3>
+                        <table class="table">
+                            <tr><td>Aantal iteraties</td><td><input name="keizerIteraties" type="number" value="<?php echo $competitie->options["keizerIteraties"];?>"></td>
+                                <td>Initi&euml;le sortering</td><td><select name="keizerInitialSorting">
+                                                                                <option value="" <?php echo ($competitie->options["keizerInitialSorting"] == "" ? "selected" : "")?>>Volgorde deelnemers</option>
+                                                                                <option value="Percentage" <?php echo ($competitie->options["keizerInitialSorting"] == "Percentage" ? "selected" : "")?>>Percentage</option>
+                                                                                <option value="Score" <?php echo ($competitie->options["keizerInitialSorting"] == "Score" ? "selected" : "")?>>Score</option>
+                                </select>
+                                </td></tr>
+                                 <tr><td>Maximale waarde</td><td><input name="keizerMaxValue" type="number" value="<?php echo $competitie->options["keizerMaxValue"];?>"></td></tr>
+                        </table>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-md-6 hidden-print">
                         <input type="hidden" name="compSorting" value="<?php echo implode(",", $competitie->sorting);?>">
@@ -104,11 +124,11 @@
                             <b>Gebruikte criteria</b>
                             <ul id="compSorting" class="compSorting">
                                 <?php
-                                        foreach($competitie->sorting as $item)
-                                        {
-                                            $sort = $data->filter($compColumns, "name", $item);
-                                            echo "<li value = \"".$sort[0]["name"]."\">".$sort[0]["name_long"]."</li>";
-                                        }   
+                                    foreach($competitie->sorting as $item)
+                                    {
+                                        $sort = $data->filter($compColumns, "name", $item);
+                                        echo "<li value = \"".$sort[0]["name"]."\">".$sort[0]["name_long"]."</li>";
+                                    }   
                                 ?>
                             </ul>
                         </div>
@@ -136,7 +156,7 @@
                                         foreach(explode(",",$competitie->options["DisplayData"]) as $item)
                                         {
                                             $sort = $data->filter($compColumns, "name", $item);
-                                             echo "<li value = \"".$sort[0]["name"]."\">".$sort[0]["name_long"]."</li>";
+                                            echo "<li value = \"".$sort[0]["name"]."\">".$sort[0]["name_long"]."</li>";
                                         }   
                                     ?>
                                 </ul>

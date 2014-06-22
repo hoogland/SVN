@@ -241,7 +241,7 @@
                             <td><input class="form-control input-sm knsbSearch" name="opponentName<?php echo $a;?>" value="<?php echo $game["tegenstanderNaam"];?>"></td>
                             <td><input class="form-control input-sm" type="text" name="opponentKNSB<?php echo $a;?>" style="width: 100px;" maxlength="8" value="<?php echo $game["tegenstanderKNSB"];?>"></td>
                             <td><input class="form-control input-sm" type="text" name="opponentRating<?php echo $a;?>" placeholder="Rating" style="width: 70px;" maxlength="4" value="<?php echo $game["tegenstanderElo"];?>"></td>
-                            <td><select class="form-control input-sm" name="externalScore<?php echo $a;?>" style="width: 80px;"><option value=""></option><?php foreach($results as $value => $line){ echo '<option value="'.$value.'" '.($game["score"] == $value ? ' SELECTED' : '').'>'.$line.'</option>';};?></select></td>
+                            <td><select class="form-control input-sm" name="externalScore<?php echo $a;?>" style="width: 80px;"><option value=""></option><?php foreach($results as $value => $line){ echo '<option value="'.$value.'" '.($game["score"] != "" && $game["score"] == $value ? ' SELECTED' : '').'>'.$line.'</option>';};?></select></td>
                         </tr>
                         <?php }?>
                 </table>

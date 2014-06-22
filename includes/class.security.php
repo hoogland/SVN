@@ -63,6 +63,9 @@
             $post["TPRmethod"]                     = array("TPRmethod", "clean_string", 600);
             $post["TPRdamped"]                     = array("TPRdamped", "clean_integer", 600);
             $post["compSystem"]                    = array("compSystem", "clean_string", 600);
+            $post["keizerIteraties"]               = array("keizerIteraties", "clean_integer", 600);
+            $post["keizerInitialSorting"]          = array("keizerInitialSorting", "clean_string", 600);
+            $post["keizerMaxValue"]                = array("keizerMaxValue", "clean_integer", 600);
             $get["memberId"]                       = array("memberId", "clean_integer", 600);
             $post["memberId"]                      = array("memberId", "clean_integer", 600);
             $post["memberKNSB"]                    = array("memberKNSB", "clean_string", 600);
@@ -162,6 +165,10 @@
             $post["color"]                         = array("color", "clean_integer", 600);
             $get["opponent"]                       = array("opponent", "clean_integer", 600);
             $post["opponent"]                      = array("opponent", "clean_integer", 600);
+
+
+
+
 
                        
             //Special case contactType

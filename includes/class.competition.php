@@ -85,6 +85,9 @@
                 {
                     require_once("class.keizer.php");
                     $this->indeling = new keizer();
+                    $this->indeling->iteraties = $this->options["keizerIteraties"];
+                    $this->indeling->initialSorting = $this->options["keizerInitialSorting"];
+                    $this->indeling->maxValue = $this->options["keizerMaxValue"];
                 }
                 else
                 {
@@ -350,6 +353,7 @@
 
         private function offsetTPR()
         {
+            
             if($this->options["TPRdamped"])
             {
                 $this->dampedTPR();
@@ -357,8 +361,9 @@
             }
             foreach($this->standings as $id => $player)
             {
+                $score = $this->multiArraySum($this->filter($player["PlayerMatches"],"ratingOpponent",0,true),"score");
                 if(count($player["RatedOpponents"]) > 0)
-                    $percentage = $player["Score"] / count($player["RatedOpponents"]);
+                    $percentage = $score / count($this->filter($player["PlayerMatches"],"ratingOpponent",0,true));
                 else
                     $percentage = 0;
                 if($percentage == 1)
@@ -366,7 +371,7 @@
                 if($percentage == 0)
                     $percentage = 0.001;
                 if(count($player["RatedOpponents"]) > 0)
-                    $this->standings[$id]["TPR"] = round(array_sum($player["RatedOpponents"])/ count($player["RatedOpponents"]) - 400 * log10(1 / $percentage - 1));
+                    $this->standings[$id]["TPR"] = round(array_sum($player["RatedOpponents"])/ count($this->filter($player["PlayerMatches"],"ratingOpponent",0,true)) - 400 * log10(1 / $percentage - 1));
             }  
         } 
 
@@ -481,6 +486,39 @@
             return $array;
         }     
 
+         /**
+        * Filter arrays
+        * 
+        * @param mixed $array
+        * @param mixed $key
+        * @param mixed $value
+        * @param mixed $reverse --> filter out a key
+        */
+        public function filter($array, $key, $value, $reverse = false) {
+            $temp = false;
+            foreach($array as $i => $element){
+                if((!$reverse && $element[$key] == $value) || ($reverse && $element[$key] != $value)){
+                    $temp[] = $element;
+                    unset($array[$i]);
+                }      
+            }
+            return $temp;
+        } 
+        
+        /**
+        * put your comment there...
+        * 
+        * @param mixed $array
+        * @param mixed $key
+        */
+        public function multiArraySum($array, $key)
+        {
+            $sum = 0;
+            foreach($array as $num => $values) {
+                $sum += $values[ $key ];
+            }  
+            return $sum;          
+        }
 
 
     }

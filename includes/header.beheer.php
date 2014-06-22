@@ -27,4 +27,5 @@
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css" />
         <link rel="stylesheet" type="text/css" href="../css/styleBeheer.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>
     </head>

@@ -1,6 +1,9 @@
 <?php
     class keizer //extends competition
     {
+        var $iteraties = 5;
+        var $maxValue = 70;
+        var $initialSorting = false;
 
         /**
         * Function to retreive the players with their scores (Scores / WP / SB)
@@ -11,7 +14,7 @@
         public function getScores($players, $matches)
         {
             $stand;
-            $value = 70;
+            $value = $this->maxValue;
 
             //Retreiving scores / AVG opponent / nrOpponents
             foreach($matches as $match)
@@ -39,21 +42,26 @@
                     //Nr Opponents
                     $stand[$match["speler_wit"]]["Matches"]++;
                     $stand[$match["speler_zwart"]]["Matches"]++; 
+                    
+                    //Percentage
+                    $stand[$match["speler_wit"]]["Percentage"] = $stand[$match["speler_wit"]]["Score"] / $stand[$match["speler_wit"]]["Matches"];
+                    $stand[$match["speler_zwart"]]["Percentage"] = $stand[$match["speler_zwart"]]["Score"] / $stand[$match["speler_zwart"]]["Matches"];
                 }
             }
 
-
+            //Initiele sortering
+            if($this->initialSorting)   
+                $standTmp = array_reverse($this->multisort($stand,array($this->initialSorting)));      
 
             foreach($players as $player)
             {
-
                 $stand[$player->id]["value"] = $value;
                 $value--;
             }
 
 
             //Calculate Keizer scores
-            for($a = 0; $a < 5; $a++)
+            for($a = 0; $a < $this->iteraties; $a++)
             {
                 foreach($stand as $id => $player)
                     $stand[$id]["KeizerTotaal"] = 0;
@@ -70,7 +78,7 @@
                 foreach($stand as $id => $player)
                 {
                     if($stand[$id]["Matches"] > 0)
-                        $stand[$id]["KeizerGemiddelde"] = round($stand[$id]["KeizerTotaal"] / $stand[$id]["Matches"],1);
+                        $stand[$id]["KeizerGemiddelde"] = $stand[$id]["KeizerTotaal"] / $stand[$id]["Matches"];
                     else
                         $stand[$id]["KeizerGemiddelde"] = 0;
                 }
@@ -82,10 +90,11 @@
                     $stand[$id]["player"] = $id;         
 
                 $standTmp = array_reverse($this->multisort($stand,array("KeizerGemiddelde")));
-                $value = 70;
+                $value = $this->maxValue;
                 foreach($standTmp as $id => $player)
                 {
                     $stand[$player["player"]]["value"] = $value;
+                    $stand[$player["player"]]["KeizerGemiddelde"] = round($stand[$player["player"]]["KeizerGemiddelde"],1);
                     $value--;   
                 }        
             }
