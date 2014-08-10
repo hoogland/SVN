@@ -1,4 +1,4 @@
-<?
+<?php
     //WEBSITE STARTUP
     include_once('../../includes/class.init.php');
     include_once('../../includes/class.player.php');
@@ -15,18 +15,18 @@
 
 <body class="container">
 
-    <? 
+    <?php 
         include("../../includes/menu.archief.php");
     ?>   
     <div class="row">
         <div class="col-md-12">
             <form action="externUitslagen.php" method="get" class="form-inline" role="form">
-                <input type="hidden" name="seizoen" value="<? echo $init->repository->get_data("seizoen");?>">
+                <input type="hidden" name="seizoen" value="<?php echo $init->repository->get_data("seizoen");?>">
 
                 <div class="form-group">
                     Team: <select name="team" class="form-control" onchange="this.form.submit()">
                         <option value="">Selecteer een team</option>
-                        <? 
+                        <?php 
                             foreach($external->getTeams() as $team)
                             {
                                 $selected = "";
@@ -67,7 +67,7 @@
                         echo '<div id="collapse'.$match["id"].'" class="panel-collapse collapse">';
                         echo '<div class="panel-body">';
                         echo '<table class="table table-striped">';
-                        echo '<thead><tr><th>Witspeler</th><th>Rating</th><th></th><th>Zwartspeler</th><th>Rating</th><th style="text-align:center">Uitslag</th></tr>';
+                        echo '<thead><tr><th>Thuisspeler</th><th>Rating</th><th></th><th>Uitspeler</th><th>Rating</th><th style="text-align:center">Uitslag</th></tr>';
                         foreach($external->getIndividualMatches($match["id"]) as $individualMatch)
                         {
                             $player = new player($settings, $individualMatch["spelerId"]);

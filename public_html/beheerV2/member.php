@@ -1,4 +1,4 @@
-<?
+<?php
     //WEBSITE STARTUP
     include_once('../../includes/class.init.php');
     include_once('../../includes/class.player.php');
@@ -14,7 +14,7 @@
 ?>
 <body class="container">
 
-    <? 
+    <?php
         include("../../includes/menu.beheer.php");
     ?>       
 

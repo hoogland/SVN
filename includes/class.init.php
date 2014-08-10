@@ -50,7 +50,7 @@
             
             require_once('class.login.php');
             $this->login = new login($demand_login, $error, $this->repository, $this->errorClass, $this->notificationClass);  
-            $this->errorClass->execute_errors(); 
+            $this->errorClass->execute_errors();       
         }
     }
 ?>

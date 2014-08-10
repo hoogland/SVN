@@ -1,4 +1,4 @@
-<?
+<?php
     //WEBSITE STARTUP
     include_once('../../includes/class.init.php');
     include_once('../../includes/class.competition.php');
@@ -39,7 +39,7 @@
 
 <body class="container">
 
-    <? 
+    <?php 
         include("../../includes/menu.archief.php");
     ?>       
 
@@ -61,7 +61,7 @@
                 <div class="col-md-2 hidden-print visible-md visible-lg">
                     <h2>Rondes</h2>
                     <ul id="rondes">
-                        <?
+                        <?php
                             foreach($competitie->rounds as $round)
                             {
                                 echo "<li class='".($round["ronde"] == $init->repository->get_data("round") ? "selectedRound" : "")."'><a href=\"standen.php?seizoen=".$competitie->season."&competitie=".$competitie->id."&ronde=".$round["ronde"]."\">".$round["ronde"]." - ".date("d-m-Y",strtotime($round["datum"]))."</a></li>";
@@ -78,7 +78,7 @@
                     <div class="tab-content">
                         <div id="stand" class="tab-pane active table-responsive">
                             <table class="table table-striped table-condensed">
-                                <?
+                                <?php
                                     $compColumns = $data->getCompetitionColums($competitie->options["compSystem"]);
                                     echo "<tr><thead>";
                                     foreach(explode(",",$competitie->options["DisplayData"]) as $field)

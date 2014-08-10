@@ -27,7 +27,7 @@
                 {
                     //Add error to display
 
-                    $errData = $this->get_error($error);
+                   /* $errData = $this->get_error($error);
                     if($errData["force_redirect"] == 1)
                         $this->redirect = 0;
                     //Perform action
@@ -35,7 +35,7 @@
                     {
                         case 0: $this->perform_redirect();break;
                         case 2: $this->perform_json_error();break;
-                    }
+                    }*/
                 }
             }
         }

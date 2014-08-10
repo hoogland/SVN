@@ -1,4 +1,4 @@
-<?
+<?php
     //WEBSITE STARTUP
     include_once('../../includes/class.init.php');
     $init = new init(1,0,0);
@@ -7,7 +7,7 @@
 ?>
 <body class="container">
 
-    <? 
+    <?php
         include("../../includes/menu.beheer.php");
     ?>       
 

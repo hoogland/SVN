@@ -94,7 +94,7 @@
                 foreach($standTmp as $id => $player)
                 {
                     $stand[$player["player"]]["value"] = $value;
-                    $stand[$player["player"]]["KeizerGemiddelde"] = round($stand[$player["player"]]["KeizerGemiddelde"],1);
+                    $stand[$player["player"]]["KeizerGemiddelde"] = round($stand[$player["player"]]["KeizerGemiddelde"],2);
                     $value--;   
                 }        
             }

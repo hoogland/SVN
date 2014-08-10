@@ -24,7 +24,7 @@
             // !!! IMPORTANT: Before going live, all skips (except passwords) should be gone !!!
             
             //SYSTEM VARIABLES
-            $server["REMOTE_ADDR"]      = array("userIPv4", "clean_ipv4", 600); 
+            $server["REMOTE_ADDR"]      = array("userIPv4", "skip", 600); 
             $session["idSession"]       = array("idSession", "clean_hash", 600);
             $session["idSessionHash"]   = array("idSessionHash", "clean_hash", 600);
             $session["referral"]        = array("referral", "skip", 600);

@@ -513,7 +513,7 @@
 
         //LOGIN
         function login()
-        {      
+        {                                   
             if($this->repository->get_data('userEmail') != "" && $this->repository->get_data('userPassword') && !$this->repository->get_data('createAccount'))
             {         
                 $userEmail = $this->repository->get_data('userEmail');

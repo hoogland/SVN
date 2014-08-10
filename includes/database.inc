@@ -1,8 +1,8 @@
 <?php
 $db_host = 'localhost';
-$db_user = 'deb66668_site';
-$db_password = 'YKWv5KV5hbn1i0soyYNq3hYLA7sEuKXz';
-$database = 'deb66668_svn';
+$db_user = 'svn';
+$db_password = '5VDFSaAS4ZAnbExd';
+$database = 'svn';
 
 //mysql_connect($db_host, $db_user, $db_password);
 //mysql_select_db($database);
