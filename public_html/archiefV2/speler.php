@@ -169,7 +169,6 @@
                 text: ''
             },
             xAxis:{
-
             },
             yAxis:{
                 title: {text: ''},
@@ -179,7 +178,7 @@
             }                         ,
             tooltip:
             {
-                pointFormat: '{point.datum}<b>{point.y}</b>'
+                pointFormat: '<b>{point.y}</b>'
             },
             series: [{
             }],
@@ -202,6 +201,7 @@
 
             ratingChartOptions.series[0].data = data;
             ratingChartOptions.yAxis.min = ratings.min() * 0.95;
+            ratingChartOptions.xAxis.categories = dates;  
 
             $('#ratingChart').highcharts(ratingChartOptions);
         });        
