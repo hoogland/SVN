@@ -347,6 +347,7 @@
                 case "offsetTPR": $this->offsetTPR();break;
                 case "adjustmentTPR": $this->adjustmentTPR();break;
                 case "hooglandTPR": $this->hooglandTPR();break;
+                case "svnTPR": $this->svnTPR();break;
                 default: $this->offsetTPR();
             }
         } 
@@ -428,6 +429,16 @@
                     $this->standings[$id]["TPR"] = round($ratingPlayerTotal / $player["Matches"] + 800 * ($player["Score"] - $this->standings[$id]["ScoreExpected"] + 0.5 - $this->expectancyFormula($ratingPlayerTotal / $player["Matches"], (array_sum($player["RatedOpponents"])/ count($player["RatedOpponents"])))) / ($player["Matches"] + 1));
                 }
             }
+        }
+        
+        private function svnTPR()
+        {
+            foreach($this->standings as $id => $player)
+            {
+                $matches = $player["Matches"];
+                $score = $player["Score"];
+                $this->standings[$id]["TPR"] = round(array_sum($player["RatedOpponents"])/ count($this->filter($player["PlayerMatches"],"ratingOpponent",0,true)) + 250 * (log($score * (6 + $matches) + 6) - log (($matches - $score) * ( 6 + $matches) + 6))); 
+            }            
         }
 
         /**

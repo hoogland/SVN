@@ -19,7 +19,7 @@
 
             $this->competitionColumns = array("Ranking","Subgroup","Name","Rating","TPR","Score","Matches","Percentage","RtO");
             $this->tempi = array(1 => "Snelschaken", 2 => "Rapid", 3 => "Regulier");
-            $this->tprMethods = array('offsetTPR', 'adjustmentTPR', 'hooglandTPR');
+            $this->tprMethods = array('offsetTPR', 'adjustmentTPR', 'hooglandTPR', 'svnTPR');
 
         }
         
@@ -79,7 +79,7 @@
 
         function getKNSBPlayers($filter = null)
         {
-            $sql = "SELECT * FROM ".settings::prefix."knsb_rating ".($filter ? "WHERE naam LIKE '%".implode("%' AND naam LIKE '%", explode(" ", $filter))."%'" : "")." ORDER BY naam ASC";
+            $sql = "SELECT A.* FROM ".settings::prefix."knsb_rating A INNER JOIN( SELECT MAX(id) id, knsb FROM ".settings::prefix."knsb_rating GROUP BY knsb) B ON A.id = B.id ".($filter ? "WHERE naam LIKE '%".implode("%' AND naam LIKE '%", explode(" ", $filter))."%'" : "")." ORDER BY naam ASC";       
             $result = mysql_query($sql);
             $data;
             for($a = 0; $a < mysql_num_rows($result); $a++)
@@ -100,6 +100,16 @@
         function getExternalTeams()
         {
             $sql = "SELECT * FROM  ".settings::prefix."teams ORDER BY naam ASC";
+            $result = mysql_query($sql);
+            $data;
+            for($a = 0; $a < mysql_num_rows($result); $a++)
+                $data[] = mysql_fetch_assoc($result);
+            return $data;
+        }
+        
+        function getClubs()
+        {
+            $sql = "SELECT * FROM  ".settings::prefix."verenigingen ORDER BY id ASC";
             $result = mysql_query($sql);
             $data;
             for($a = 0; $a < mysql_num_rows($result); $a++)

@@ -15,8 +15,8 @@
         <script src="../../js/bootstrap.min.js"></script>
         <script src="../../js/jquery.floatThead.js"></script>
         <script src="http://code.highcharts.com/highcharts.js"></script>
-        <link rel="stylesheet" type="text/css" href="../css/style.css" />
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css" />
         <link rel="stylesheet" type="text/css" href="../rrip.css" />  
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
     </head>

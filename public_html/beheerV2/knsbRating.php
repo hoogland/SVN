@@ -36,20 +36,43 @@
     <div class="row hidden-print">
         <div class="col-md-12" ng-controller="knsbLists">
             <h1 class="hidden-print">KNSB Ratinglijst verwerken</h1>
-            <h2>Mark Huizer site</h2>
-                <div class="form-group">
-                    <label for="knsbList" class="col-lg-2 control-label">Ratinglijst:</label>
-                    <div class="col-lg-3">
-                        <select name="knsbList" class="form-control" ng-model="knsbList" ng-options="ratingList.value for ratingList in ratingLists track by ratingList.id" ng-change="knsbListGet(knsbList)"></select>
+            <h2>KNSB Rating</h2>
+            <div class="form-group row">
+                <label for="knsbList" class="col-lg-2 control-label">Ratinglijst:</label>
+                <div class="col-lg-3">
+                    <select name="knsbList" class="form-control" ng-model="knsbList" ng-options="ratingList.value for ratingList in ratingLists track by ratingList.id" ng-change="knsbListGet(knsbList)"></select>
+                </div>
+                <button ng-click="knsbProcessExternalRatings(knsbList)" class="btn btn-primary pull-right">Verwerken</button>
+            </div>
+            
+            
+            <div class="row">
+                Clubs
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{knsbClubProgress / knsbClubs.length * 100}}%;">
                     </div>
                 </div>
-                <button ng-click="knsbInsertRating()" class="btn btn-primary pull-right">Verwerken</button> 
+                Spelers
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{knsbClubsProgress / knsbPlayers * 100}}%;">
+                    </div>
+                </div>
+            </div>           
+             <h2>Mark Huizer site</h2>
+            <div class="form-group">
+                <label for="knsbList" class="col-lg-2 control-label">Ratinglijst:</label>
+                <div class="col-lg-3">
+                    <select name="knsbList" class="form-control" ng-model="knsbList" ng-options="ratingList.value for ratingList in ratingLists track by ratingList.id" ng-change="knsbListGet(knsbList)"></select>
+                </div>
+            </div>
+            <button ng-click="knsbInsertRating()" class="btn btn-primary pull-right">Verwerken</button> 
             <table  class="table table-condensed table-striped">
                 <thead><tr><th>KNSB</th><th>Naam</th><th>Rating</th><th>Verschil</th></tr></thead>
                 <tr ng-repeat="userRating in userRatings" ng-class="{success: userRating.result.code == 200, danger : userRating.result != undefined && userRating.result.code != 200}"><td>{{userRating.knsb}}</td><td>{{userRating.name}}</td><td>{{userRating.rating}}</td><td>{{userRating.ratingDiff}}</td><td>{{userRating.result.message}}</td></tr>
             </table>
 
-            </form>
+            
+            <hr style="clear:both">
             <h2>KNSB lijst</h2>
             <form action="knsbRating.php" method="post" role="form" class="form-horizontal" enctype="multipart/form-data">
                 <div class="form-group">
