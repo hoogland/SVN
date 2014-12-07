@@ -17,7 +17,7 @@
         //Updating the match
         if($init->repository->get_data("matchId"))
         {
-            $external->updateMatch($init->repository->get_data("matchId"),$init->repository->get_data("date"),$init->repository->get_data("externalAway"),$init->repository->get_data("externalGroup"),$init->repository->get_data("ratingTeam"),$init->repository->get_data("scoreTeam"),$init->repository->get_data("opponentName"),$init->repository->get_data("opponentTeam"),$init->repository->get_data("ratingOpponent"),$init->repository->get_data("scoreOpponent"));    
+            $external->updateMatch($init->repository->get_data("matchId"),$init->repository->get_data("date"),$init->repository->get_data("externalAway"),$init->repository->get_data("externalGroup"),$init->repository->get_data("ratingTeam"),$init->repository->get_data("scoreTeam"),$init->repository->get_data("opponentName"),$init->repository->get_data("opponentTeam"),$init->repository->get_data("ratingOpponent"),$init->repository->get_data("scoreOpponent"),$init->repository->get_data("report"),$init->repository->get_data("reportOpponent"));
             for($a = 1; $a <= 8; $a++)
             {
                 if(!$init->repository->get_data("gameId".$a))
@@ -192,7 +192,7 @@
                 <table class="table">
                     <tr>
                         <td>Datum</td><td><input type="text" class="form-control input-sm" id="date" name="date" value="<?php echo date("d/m/Y",strtotime($matchDetails["datum"]));?>"></td>
-                        <td>Groep</td><td><select class="form-control input-sm" name="externalGroup"><optgroup label="RSB"><?php foreach($data->getExternalGroups() as $line){ echo '<option value="'.$line["id"].'" '.($matchDetails["groupId"] == $line["id"] ? ' SELECTED' : '').'>'.$line["groep"].'</option>';};?></optgroup><optgroup label="KNSB"><?php foreach($data->getExternalGroups(1) as $line){ echo '<option value="'.$line["id"].'">'.$line["groep"].'</option>';};?></optgroup></select></td>
+                        <td>Groep</td><td><select class="form-control input-sm" name="externalGroup"><option selected disabled hidden value=''></option><optgroup label="RSB"><?php foreach($data->getExternalGroups() as $line){ echo '<option value="'.$line["id"].'" '.($matchDetails["groupId"] == $line["id"] ? ' SELECTED' : '').'>RSB '.$line["groep"].'</option>';};?></optgroup><optgroup label="KNSB"><?php foreach($data->getExternalGroups(1) as $line){ echo '<option value="'.$line["id"].'">KNSB '.$line["groep"].'</option>';};?></optgroup></select></td>
                     </tr>
                     <tr>
                         <?php $uitThuis = array("Thuis", "Uit");?>
@@ -209,9 +209,13 @@
                         <td>Score</td><td><input type="text" name="scoreTeam" class="form-control input-sm" value="<?php echo $matchDetails["score"];?>"></td>
                         <td>Score</td><td><input type="text" name="scoreOpponent" class="form-control input-sm" value="<?php echo $matchDetails["scoreTegenstander"];?>"></td>
                     </tr>
+                    <tr>
+                        <td>Verslag</td><td><input type="text" name="report" class="form-control input-sm" value="<?php echo $matchDetails["verslag"];?>"></td>
+                        <td>Verslag tegenstander</td><td><input type="text" name="reportOpponent" class="form-control input-sm" value="<?php echo $matchDetails["verslagTegenstander"];?>"></td>
+                    </tr>
                 </table>
                 <h3>Partijen</h3>
-                <table class="table table-striped" id="matches">
+                <table class="table table-striped" id="matches"  ng-app="SVNpublic" ng-controller="externCompetitie">
                     <thead>
                         <tr>            
                             <th>Bord</th>
@@ -234,9 +238,12 @@
                             $speler->getDetails();
                         ?>
                         <tr>
-                            <td><?php echo $a;?><input type="hidden" name="gameId<?php echo $a;?>" value="<?php echo $game["id"];?>"></td>
-                            <td><input class="form-control input-sm memberSearch" name="memberName<?php echo $a;?>" value="<?php echo $speler->name;?>"><input type="hidden" name="memberId<?php echo $a;?>" value="<?php echo $game["spelerId"];?>"></td>
-                            <td><input  class="form-control input-sm" type="text" name="memberRating<?php echo $a;?>" placeholder="Rating" style="width: 70px;" maxlength="4" value="<?php echo $game["spelerElo"];?>"></td>
+                            <td><?php echo $a;?>
+                                <input type="hidden" name="gameId<?php echo $a;?>" value="<?php echo $game["id"];?>">
+                                <input type="hidden" name="memberId<?php echo $a;?>" value="{{playerSelect<?php echo $a;?>.id}}">
+                            </td>
+                            <td><select class="form-control" ng-model="playerSelect<?php echo $a;?>" ng-options="player as (player.achternaam  + ' ' + player.voornaam) for player in players.data track by player.id" ng-init="playerSelect<?php echo $a;?> = playerSelect<?php echo $a;?> || {id: '<?php echo $game["spelerId"];?>'}"></select></td>
+                            <td><input  class="form-control input-sm" type="text" name="memberRating<?php echo $a;?>" ng-model="playerSelect<?php echo $a;?>.rating"  placeholder="Rating" style="width: 70px;" maxlength="4" ng-init="playerSelect<?php echo $a;?>.rating = <?php echo $game["spelerElo"];?>"></td>
                             <td>-</td>
                             <td><input class="form-control input-sm knsbSearch" name="opponentName<?php echo $a;?>" value="<?php echo $game["tegenstanderNaam"];?>"></td>
                             <td><input class="form-control input-sm" type="text" name="opponentKNSB<?php echo $a;?>" style="width: 100px;" maxlength="8" value="<?php echo $game["tegenstanderKNSB"];?>"></td>
@@ -250,5 +257,10 @@
         </div>
     </div>
     </body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.3/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.3/angular-resource.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap.min.js"></script>
+<script src="../js/svn.js"></script>
+
 </html>
 

@@ -3,13 +3,15 @@
     include_once('../../includes/class.init.php');
     include_once('../../includes/class.player.php');
     include_once('../../includes/class.external.php');
+    
 
     $init = new init();
     $settings = new settings();
-    $external = new externalCompetition($settings);
+    $external = new externalCompetition($settings); 
+    
 
     $roundSelect =  $competitie->rounds[count($competitie->rounds) - 1];
-
+                                                                             
     include_once('../../includes/header.archief.php');
 ?>
 
@@ -28,11 +30,11 @@
                         <option value="">Selecteer een team</option>
                         <?php 
                             foreach($external->getTeams() as $team)
-                            {
+                            {                          
                                 $selected = "";
                                 if($team["team"] == $_GET["team"])
                                     $selected = "SELECTED";
-                                echo "<option ".$selected.">".$team["team"]."</option>";
+                                echo "<option ".$selected." value=".$team["team"].">".$team["name"]."</option>";
                             }
                         ?>
                     </select>

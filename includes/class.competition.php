@@ -430,16 +430,17 @@
                 }
             }
         }
-        
         private function svnTPR()
         {
             foreach($this->standings as $id => $player)
             {
                 $matches = $player["Matches"];
                 $score = $player["Score"];
-                $this->standings[$id]["TPR"] = round(array_sum($player["RatedOpponents"])/ count($this->filter($player["PlayerMatches"],"ratingOpponent",0,true)) + 250 * (log($score * (6 + $matches) + 6) - log (($matches - $score) * ( 6 + $matches) + 6))); 
+                $RtO = array_sum($player["RatedOpponents"])/ count($this->filter($player["PlayerMatches"],"ratingOpponent",0,true));
+                $this->standings[$id]["TPR"] = round($RtO + 250 * (log($score * (6 + $matches) + 6) - log (($matches - $score) * ( 6 + $matches) + 6))); 
             }            
-        }
+        }        
+
 
         /**
         * Function to calculate the expected score

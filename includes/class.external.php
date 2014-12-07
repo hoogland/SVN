@@ -11,14 +11,13 @@
         * @param mixed $settings
         * @return externalCompetition
         */
-        public function __construct($settings)
+        public function __construct()
         {
-            $this->settings = $settings;
-            $this->prefix = $settings->prefix;   
+            $this->prefix = settings::prefix;   
         }
         
         
-        public function getMatches($season = null, $team = null)
+        public function getMatches($season = null, $team = null, $details = true)
         {
             $sql = "SELECT * FROM ".$this->prefix."extern_wedstrijden_team WHERE 1 = 1";
             if($season)
@@ -31,6 +30,21 @@
             $data;
             while($row = mysql_fetch_assoc($result))
                 $data[] = $row;
+                
+            //Get all the individual results    
+            if($details)
+            {
+                for($a = 0; $a < count($data); $a++)
+                {
+                    $sql = "SELECT * FROM ".$this->prefix."extern_partijen WHERE teamwedstrijdId = ".$data[$a]['id']." ORDER BY bord, id";
+                    $data[$a]['sql'] = $sql;
+                    $result = mysql_query($sql);
+                    while($row = mysql_fetch_assoc($result))
+                        $data[$a]["games"][] = $row;
+                    
+                }
+                
+            }
             return $data;
         }
         
@@ -57,7 +71,7 @@
 
         public function getTeams()
         {
-            $sql = "SELECT DISTINCT team FROM ".$this->prefix."extern_wedstrijden_team ORDER BY team ASC";
+            $sql = "SELECT DISTINCT team, naam as name FROM ".$this->prefix."extern_wedstrijden_team WT, ".$this->prefix."teams T WHERE WT.team = T.id ORDER BY team ASC";
             $result = mysql_query($sql);
             $data;
             while($row = mysql_fetch_assoc($result))
@@ -126,9 +140,9 @@
         * @param mixed $opponentRating
         * @param mixed $opponentScore
         */
-        public function updateMatch($teamMatch, $date, $away, $groupId, $teamRating, $teamScore, $opponentName, $opponentTeam, $opponentRating, $opponentScore)
+        public function updateMatch($teamMatch, $date, $away, $groupId, $teamRating, $teamScore, $opponentName, $opponentTeam, $opponentRating, $opponentScore, $report, $opponentReport)
         {
-            $sql = "UPDATE ".$this->prefix."extern_wedstrijden_team SET datum = '".date("Y-m-d", strtotime(str_replace("/","-",$date)))."', uitwedstrijd = '".$away."', groupId = '".$groupId."', teamElo = '".$teamRating."', score = '".$teamScore."', tegenstander = '".$opponentName."', tegenstanderTeam = '".$opponentTeam."', tegenstanderElo = '".$opponentRating."', scoreTegenstander = '".$opponentScore."' WHERE id = '".$teamMatch."' ";
+            $sql = "UPDATE ".$this->prefix."extern_wedstrijden_team SET datum = '".date("Y-m-d", strtotime(str_replace("/","-",$date)))."', uitwedstrijd = '".$away."', groupId = '".$groupId."', teamElo = '".$teamRating."', score = '".$teamScore."', tegenstander = '".$opponentName."', tegenstanderTeam = '".$opponentTeam."', tegenstanderElo = '".$opponentRating."', scoreTegenstander = '".$opponentScore."', verslag = '".$report."', verslagTegenstander = '".$opponentReport."' WHERE id = '".$teamMatch."' ";
             $result = mysql_query($sql);
         }
         

@@ -56,6 +56,7 @@
             foreach($players as $player)
             {
                 $stand[$player->id]["value"] = $value;
+                $stand[$player->id]["StartWaarde"] = $value;
                 $value--;
             }
 

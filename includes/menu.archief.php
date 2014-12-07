@@ -24,15 +24,15 @@
             </li>
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Extern <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="externUitslagen.php?seizoen=<?php echo settings::standardCompetitionExternalSeason;?>&team=<?php echo settings::standardCompetitionExternal;?>">Uitslagen</a></li>
+                    <li><a href="externCompetitie.php?seizoen=<?php echo settings::standardCompetitionExternalSeason;?>&team=<?php echo settings::standardCompetitionExternal;?>">Uitslagen</a></li>
                 </ul>
             </li>
-        </ul> 
+        </ul>
         <form action="" role="form" class="navbar-form navbar-right" method="get">
             <div class="form-group">
                 <select name="seizoen" class="form-control" onchange="this.form.submit()">
                     <option value="">Selecteer een seizoen</option>
-                    <?php 
+                    <?php
                         $data = new data($settings);
                         foreach($data->getSeasons(true) as $season)
                         {
@@ -47,8 +47,8 @@
             <div class="form-group">
                 <select name="competitie" class="form-control" onchange="this.form.submit()">
                 <option value="">Selecteer een competitie</option>
-                    <?php 
-                        
+                    <?php
+
                         foreach($data->getCompetitions($_GET["seizoen"]) as $competition)
                         {
                             $selected = "";
@@ -57,7 +57,7 @@
                             echo "<option value=\"".$competition["id"]."\" ".$selected.">".$competition["naam"]."</option>";
                         }
                     ?>
-               
+
                 </select>
             </div>
         </form>

@@ -80,15 +80,15 @@
                             <table class="table table-striped table-condensed">
                                 <?php
                                     $compColumns = $data->getCompetitionColums($competitie->options["compSystem"]);
-                                    echo "<tr><thead>";
+                                    echo "<thead><tr>";
                                     foreach(explode(",",$competitie->options["DisplayData"]) as $field)
                                     {
                                         $sort = $data->filter($compColumns, "name", $field);
                                         echo "<th style='background-color: #FFF'><span class=\"visible-md visible-lg\">".$sort[0]["name_long"]."</span><span class=\"visible-xs visible-sm\">".$sort[0]["name_short"]."</span></th>";
                                     }
 
-                                    echo "</thead></tr>";
-                                    foreach($competitie->standings as $key => $data)
+                                    echo "</tr></thead><tbody>";
+                                    foreach($competitie->standings as $key => $dataPlayer)
                                     {
                                         foreach(explode(",",$competitie->options["DisplayData"]) as $field)
                                         {
@@ -96,17 +96,19 @@
                                                 echo "<td>".($key + 1)."</td>";
                                             elseif($field == "Name")
                                             {
-                                                $player = new player($settings, $data["player"]);
+                                                $player = new player($settings, $dataPlayer["player"]);
                                                 $player->getDetails();
-                                                echo "<td><a href=\"competitieSpeler.php?seizoen=".$_GET["seizoen"]."&competitie=".$_GET["competitie"]."&spelerId=".$data["player"]."\">".$player->name."</a></td>";        
+                                                echo "<td><a href=\"competitieSpeler.php?seizoen=".$_GET["seizoen"]."&competitie=".$_GET["competitie"]."&spelerId=".$dataPlayer["player"]."\">".$player->name."</a></td>";        
                                             }
                                             else
-                                                echo "<td>".$data[$field]."</td>";
+                                                echo "<td>".$dataPlayer[$field]."</td>";
                                         }
                                         echo "</tr>";
                                     }
-                                ?>
-                            </table>
+
+                                    
+                                ?>                  
+                            </tbody></table>
                         </div>
 
                         <div id="partijen" class="tab-pane">

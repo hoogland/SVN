@@ -23,6 +23,18 @@
 
         }
         
+        function getDefaultData(){
+            $data = array(
+                "club" => settings::vereniging,
+                "clubNumber" => settings::verenigingsNummer,
+                "teamName" => settings::teamName,
+                "defaultYear" => settings::standardCompetitionSeason,
+                "defaultClubCompetition" => settings::standardCompetition
+            );
+            
+            return $data;     
+        }
+        
         function getCompetitionColums($compType)
         {
             $sql = "SELECT * FROM ".$this->prefix."columns WHERE ".($compType == "Keizer" ? "keizer = 1" : "zwitsers = 1");
@@ -59,11 +71,18 @@
         */
         function getPlayers($filter = null)
         {
-            $sql = "SELECT * FROM ".settings::prefix."leden ".($filter ? "WHERE achternaam LIKE '%".implode("%' AND achternaam LIKE '%", explode(" ", $filter))."%' " : "")." ORDER BY achternaam ASC";
+            $sql = "SELECT ".settings::prefix."leden.* FROM ".settings::prefix."leden ".($filter ? "WHERE achternaam LIKE '%".implode("%' AND achternaam LIKE '%", explode(" ", $filter))."%' " : "")." ORDER BY achternaam ASC";
             $result = mysql_query($sql);
             $data;
-            for($a = 0; $a < mysql_num_rows($result); $a++)
-                $data[] = mysql_fetch_assoc($result);
+            for($a = 0; $a < mysql_num_rows($result); $a++) {
+                $player = mysql_fetch_assoc($result);
+                $sql2 = "SELECT rating FROM ".settings::prefix."rating WHERE speler_id = ".$player["id"]." ORDER BY datum DESC LIMIT 0,1";
+                $result2 = mysql_query($sql2);
+                $rating = mysql_fetch_assoc($result2);
+                $player["rating"] = $rating["rating"];
+                $data[] = $player;
+
+            }
             return $data;
         } 
 

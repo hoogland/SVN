@@ -28,7 +28,7 @@
             $session["idSession"]       = array("idSession", "clean_hash", 600);
             $session["idSessionHash"]   = array("idSessionHash", "clean_hash", 600);
             $session["referral"]        = array("referral", "skip", 600);
-            
+
             //INPUT VARIABLES
             $post["email"]                         = array("userEmail", "clean_email", 600);
             $post["password"]                      = array("userPassword", "skip", 600);
@@ -165,11 +165,8 @@
             $post["color"]                         = array("color", "clean_integer", 600);
             $get["opponent"]                       = array("opponent", "clean_integer", 600);
             $post["opponent"]                      = array("opponent", "clean_integer", 600);
-
-
-
-
-
+            $post["report"]                        = array("report", "clean_string", 600);
+            $post["reportOpponent"]                = array("reportOpponent", "clean_string", 600);
                        
             //Special case contactType
             if(isset($_POST["contactType"]) && $this->clean_integer($_POST["contactType"]))
