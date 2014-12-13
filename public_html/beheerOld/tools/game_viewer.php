@@ -17,7 +17,7 @@
   $pgn = str_replace("\"", "%22", $pgn);
   $pgn = str_replace("  "," ", $pgn);
   
-  $link = "http://www.svnieuwerkerk.nl/archief/games/games_embed.php?pgn=".$pgn;
+  $link = "http://www.svnieuwerkerk.nl/archiefOld/games/games_embed.php?pgn=".$pgn;
   if($title != "")
   {
     $link .= "&title=".$title;

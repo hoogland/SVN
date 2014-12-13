@@ -85,7 +85,7 @@
         $sql = "INSERT INTO svn_partijen (speler_wit, rating_wit, speler_zwart, rating_zwart, uitslag, tempo, comp_id, datum, ronde) VALUES ('".$spelers[$partij['0']]['id']."','".$partij['rating_wit']."','".$spelers[$partij['1']]['id']."','".$partij['rating_zwart']."',".$resultaat.",".$stand_tempo.",".$_SESSION['competitie_session'].",'".$datum."',".$ronde_insert.")";
         $result = mysql_query($sql); 
       }
-      header("Location: http://www.svnieuwerkerk.nl/beheer/competitie/uitslagen_fide.php");
+      header("Location: http://www.svnieuwerkerk.nl/beheerOld/competitie/uitslagen_fide.php");
   }
 ?>
 

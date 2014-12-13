@@ -192,7 +192,7 @@
                 <table class="table">
                     <tr>
                         <td>Datum</td><td><input type="text" class="form-control input-sm" id="date" name="date" value="<?php echo date("d/m/Y",strtotime($matchDetails["datum"]));?>"></td>
-                        <td>Groep</td><td><select class="form-control input-sm" name="externalGroup"><option selected disabled hidden value=''></option><optgroup label="RSB"><?php foreach($data->getExternalGroups() as $line){ echo '<option value="'.$line["id"].'" '.($matchDetails["groupId"] == $line["id"] ? ' SELECTED' : '').'>RSB '.$line["groep"].'</option>';};?></optgroup><optgroup label="KNSB"><?php foreach($data->getExternalGroups(1) as $line){ echo '<option value="'.$line["id"].'">KNSB '.$line["groep"].'</option>';};?></optgroup></select></td>
+                        <td>Groep</td><td><select class="form-control input-sm" name="externalGroup"><option selected disabled hidden value=''></option><optgroup label="RSB"><?php foreach($data->getExternalGroups() as $line){ echo '<option value="'.$line["id"].'" '.($matchDetails["groupId"] == $line["id"] ? ' SELECTED' : '').'>RSB '.$line["groep"].'</option>';};?></optgroup><optgroup label="KNSB"><?php foreach($data->getExternalGroups(1) as $line){ echo '<option value="'.$line["id"].'"'.($matchDetails["groupId"] == $line["id"] ? ' SELECTED' : '').'>KNSB '.$line["groep"].'</option>';};?></optgroup></select></td>
                     </tr>
                     <tr>
                         <?php $uitThuis = array("Thuis", "Uit");?>

@@ -1,42 +1,27 @@
-<?
- //WEBSITE STARTUP
-  include_once('class_login2.php');
-  include('class_menu.php');
+<?php
+    //WEBSITE STARTUP
+    include_once('../../includes/class.init.php');
+    include_once('../../includes/class.competition.php');
+    include_once('../../includes/class.swiss.php');
+    include_once('../../includes/class.player.php');
 
-  $login = new login(0, 2);
-  $login->main();
-  
-  $menu = new menu();
-  
+    $init = new init(0,0,0);                        
+
+    include_once('../../includes/header.beheer.php');     
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<body class="container">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
-<head>
-   <title>SV Nieuwerkerk | Beheer</title>
-   
-   <meta name="author" content="Rob Hoogland" />
-   <meta name="copyright" content="&copy; 2010 jeugdschaken.nl" />
-   <meta name="description" content="Welkom - mijn-2e-huis.nl" />
-   <meta name="keywords" content="Share documents, School Project, information, file sharing" />
-   <meta name="robots" content="index,nofollow" />
-    
-   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-
-   <link rel="stylesheet" type="text/css" href="style.css" />
+    <?php
+        include("../../includes/menu.beheer.php");        
+    ?>       
 
 
-</head>
-
-<body>
-
-    <? $menu->menu_main($login->LOGGED_IN);?>        
-    <div id="text">
-        <h1>Beheer SV Nieuwerkerk</h1>
-    </div>    
-    
-
-</body>
+    <div class="row hidden-print">
+        <div class="col-md-12">
+            <h1 class="hidden-print"><?php echo settings::vereniging;?> Beheersite</h1>
+        </div>
+    </div>
+    </body>
 </html>
 

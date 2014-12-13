@@ -27,7 +27,7 @@
           $sql = sprintf("UPDATE svn_competities SET naam = '%s', type_comp = ".$_POST['type_comp'].", stand_tempo = ".$_POST['stand_tempo'].", naam_uitgebreid = '%s', plaats = '%s', land = '%s', wedstrijdleider = '%s', speeltempo = '%s' WHERE id = ".$_POST['competitie_id'],$_POST['naam'],$_POST['naam_uitgebreid'],$_POST['plaats'],$_POST['land'],$_POST['wedstrijdleider'],$_POST['speeltempo']);
           mysql_query($sql);
       }
-      header('location: http://www.svnieuwerkerk.nl/beheer/competitie/main.php');exit();
+      header('location: http://www.svnieuwerkerk.nl/beheerOld/competitie/main.php');exit();
   }
 ?>
 

@@ -24,7 +24,7 @@
           $sql = sprintf("UPDATE svn_leden SET voorletters = '%s', tussenvoegsel = '%s', achternaam = '%s', knsb = '%s', adres = '%s', postcode = '%s', plaats = '%s', telefoon = '%s', geslacht = '%s', type_lid = '%s', geb_dat = '%s', email = '%s' WHERE id = ".$_POST['speler_id'],$_POST['voorletters'],$_POST['tussenvoegsel'],$_POST['achternaam'],$_POST['knsb'],$_POST['adres'],$_POST['postcode'],$_POST['plaats'],$_POST['telefoon'],$_POST['geslacht'],$_POST['type_lid'],$_POST['geb_dat'],$_POST['email']);
           mysql_query($sql);
       }
-      header('location: http://www.svnieuwerkerk.nl/beheer/leden/main.php');exit();
+      header('location: http://www.svnieuwerkerk.nl/beheerOld/leden/main.php');exit();
   }
 ?>
 

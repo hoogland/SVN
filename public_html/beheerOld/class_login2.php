@@ -2,9 +2,9 @@
   class login
   {
       //DEFINE VARIABLES
-      var $DEFAULT_PAGE             = "http://svnieuwerkerk.nl/beheer";                   //HOMEPAGE OF SITE
-      var $REFERRER                 = "http://svnieuwerkerk.nl/beheer";                   //BASE NAME OF SITE
-      var $LOG_MAP                  = "beheer/log/";                                             //FOLDER FOR LOGGFILES
+      var $DEFAULT_PAGE             = "http://svnieuwerkerk.nl/beheerOld";                   //HOMEPAGE OF SITE
+      var $REFERRER                 = "http://svnieuwerkerk.nl/beheerOld";                   //BASE NAME OF SITE
+      var $LOG_MAP                  = "beheerOld/log/";                                             //FOLDER FOR LOGGFILES
       var $LOGFILE                  = 0;                                                  // 0 = NO LOG FILE, 1 = CREATE LOG FILE 
       var $HASH_KEY                 = "appelflap";                                        //HASH KEY FOR USER ID'S 
       var $DEMAND_LOGIN             = 0;                                                  //SETTING IF USER HAS TO BE LOGGED IN

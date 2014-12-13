@@ -1,6 +1,6 @@
 <?php
     include("../database.inc");
-    include("../../archief/class_competitie.php");
+    include("../../archiefOld/class_competitie.php");
 
     $competitie = new competitie();
     $competitie->eindscore(19);

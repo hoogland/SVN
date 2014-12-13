@@ -38,6 +38,7 @@
                 switch($data->subaction)
                 {      
                     case "matches" : return $class->getMatches($data->data->season, $data->data->team, $data->data->details); break;
+                    case "topScorers" : return $class->getTopscorers($data->data->season, $data->data-->team); break;
                     default: return;
                 }
             }

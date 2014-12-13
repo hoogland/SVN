@@ -22,7 +22,7 @@
           $sql = sprintf("UPDATE svn_seizoen SET naam = '%s' WHERE id = ".$_POST['seizoen_id'],$_POST['naam']);
           mysql_query($sql);
       }
-      header('location: http://www.svnieuwerkerk.nl/beheer/seizoenen/main.php');exit();
+      header('location: http://www.svnieuwerkerk.nl/beheerOld/seizoenen/main.php');exit();
   }
   
   //WIJZIGEN KAMPIOENEN

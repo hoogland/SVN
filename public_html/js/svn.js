@@ -1,4 +1,4 @@
-var app = angular.module("SVNpublic", ['ngResource']);
+var app = angular.module("SVNpublic", ['ngResource', 'ngAnimate']);
 
 
 
@@ -6,6 +6,7 @@ app.controller("externCompetitie", function($scope, $resource, $filter, match, t
     $scope.defaultData = [];
     $scope.seasons = [];
     $scope.teams = [];
+    $scope.topscorers = [];
     $scope.players = [];
 
     $scope.selectedTeam = [];
@@ -14,12 +15,18 @@ app.controller("externCompetitie", function($scope, $resource, $filter, match, t
     $scope.$location = {};
 
     $scope.$watch('selectedTeam', function(){
-        match.query($scope.selectedSeason.id, $scope.selectedTeam.id).success(function(data, status, headers, config) { 
+        match.query($scope.selectedSeason.id, $scope.selectedTeam.id).success(function(data, status, headers, config) {
             $scope.matches = data;
         }).
-        error(function(data, status, headers, config) {
-            // log error
-        });        
+            error(function(data, status, headers, config) {
+                // log error
+            });
+        match.topscorers($scope.selectedSeason.id, $scope.selectedTeam.id).success(function(data, status, headers, config) {
+            $scope.topscorers = data;
+        }).
+            error(function(data, status, headers, config) {
+                // log error
+            });
     }) ;
     $scope.$watch('selectedSeason', function(){
         match.query($scope.selectedSeason.id, $scope.selectedTeam.id).success(function(data, status, headers, config) { 
@@ -27,7 +34,13 @@ app.controller("externCompetitie", function($scope, $resource, $filter, match, t
         }).
         error(function(data, status, headers, config) {
             // log error
-        });        
+        });
+        match.topscorers($scope.selectedSeason.id, $scope.selectedTeam.id).success(function(data, status, headers, config) {
+            $scope.topscorers = data;
+        }).
+            error(function(data, status, headers, config) {
+                // log error
+            });
     }) ;
     
     function getMatches(){
@@ -89,9 +102,9 @@ app.factory("match", ['$http', function($http){
     var obj = {};
 
     obj.query = function(season, team){
-       // season= 38;team=1;
+        // season= 38;team=1;
         if (season && team) {
-            return $http.post('../archiefV2/webservice.php',
+            return $http.post('../archief/webservice.php',
                 {
                     "method": "GET",
                     "action": "extern",
@@ -104,6 +117,21 @@ app.factory("match", ['$http', function($http){
                 })
         }
     };
+    obj.topscorers = function(season, team){
+        // season= 38;team=1;
+        if (season && team) {
+            return $http.post('../archief/webservice.php',
+                {
+                    "method": "GET",
+                    "action": "extern",
+                    "subaction": "topScorers",
+                    "data": {
+                        "season": season,
+                        "team": team
+                    }
+                })
+        }
+    };
 
     return obj;
 }]);
@@ -112,7 +140,7 @@ app.factory("player", ['$http', function($http){
     var obj = {};
 
     obj.query = function(){
-        return $http.post('../archiefV2/webservice.php',
+        return $http.post('../archief/webservice.php',
             {
                 "method": "GET",
                 "action": "data",
@@ -130,7 +158,7 @@ app.factory("season", ['$http', function($http){
     var obj = {};
 
     obj.query = function(){
-        return  $http.post('../archiefV2/webservice.php',
+        return  $http.post('../archief/webservice.php',
         {
             "method" : "GET", 
             "action" : "data", 
@@ -144,7 +172,7 @@ app.factory("defaultData", ['$http', function($http){
     var obj = {};
 
     obj.get = function(){
-        return  $http.post('../archiefV2/webservice.php',
+        return  $http.post('../archief/webservice.php',
         {
             "method" : "GET", 
             "action" : "data", 
@@ -158,7 +186,7 @@ app.factory("team", ['$http', function($http){
     var obj = {};
 
     obj.query = function(){
-        return  $http.post('../archiefV2/webservice.php',
+        return  $http.post('../archief/webservice.php',
         {
             "method" : "GET", 
             "action" : "data", 

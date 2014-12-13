@@ -8,7 +8,7 @@
         
         var $prefix = "svn_";
         const baseUrl = 'http://svn.local/';
-        const archive = 'http://svn.local/archiefV2';
+        const archive = 'http://svn.local/archief';
         const userLoginHashKey = 'E*W@JY8m#yD$$8!nHEJve2Bg6Bfue2zEQX3gAM#CxS$xWCa@3WjmvcXzR9vSA&QqBN3^d^CP6&!^Exr7GRjfP@T8U3v38%GJH2^h';
         const prefix = "svn_";
         

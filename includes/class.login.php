@@ -13,7 +13,7 @@
     {
         //DEFINE VARIABLES
         var $DEFAULT_PAGE;                                                                  //HOMEPAGE OF SITE
-        var $PATH                     = "/beheerV2/";                                         //THE SUBFORLDER OF THE SITE
+        var $PATH                     = "/beheer/";                                         //THE SUBFORLDER OF THE SITE
         var $LOG_MAP                  = "../logs/";                                         //FOLDER FOR LOGGFILES
         var $LOGFILE                  = 1;                                                  // 0 = NO LOG FILE, 1 = CREATE LOG FILE 
         var $HASH_KEY                 = Setting::userLoginHashKey;                                        

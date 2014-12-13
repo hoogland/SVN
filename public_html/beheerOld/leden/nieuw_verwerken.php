@@ -8,7 +8,7 @@
   
   if(!isset($_POST["knsb"]) || $_POST["knsb"] == "")
   {
-    header('location: http://www.svnieuwerkerk.nl/beheer/leden/nieuw.php');
+    header('location: http://www.svnieuwerkerk.nl/beheerOld/leden/nieuw.php');
     exit();
   }
   else
@@ -17,7 +17,7 @@
     //  $sql = sprintf("INSERT INTO svn_leden (naam, type_comp, stand_tempo, seizoen_id) VALUES (\"%s\",".$_POST['type_comp'].",".$_POST['stand_tempo'].",".$_SESSION['seizoen'].")",$_POST["naam"]);
       $result = mysql_query($sql);
     //  echo $sql;
-      header('location: http://www.svnieuwerkerk.nl/beheer/leden/main.php');
+      header('location: http://www.svnieuwerkerk.nl/beheerOld/leden/main.php');
   }
   
 ?>

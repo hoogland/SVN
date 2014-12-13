@@ -8,7 +8,7 @@
   
   if(!isset($_POST["naam"]) || $_POST["naam"] == "")
   {
-    header('location: http://www.svnieuwerkerk.nl/beheer/competitie/nieuw.php');
+    header('location: http://www.svnieuwerkerk.nl/beheerOld/competitie/nieuw.php');
     exit();
   }
   else
@@ -16,7 +16,7 @@
       $sql = sprintf("INSERT INTO svn_seizoen (naam) VALUES (\"%s\")",$_POST["naam"]);
       $result = mysql_query($sql);
   //    echo $sql;
-      header('location: http://www.svnieuwerkerk.nl/beheer/seizoenen/main.php?menu=1');
+      header('location: http://www.svnieuwerkerk.nl/beheerOld/seizoenen/main.php?menu=1');
   }
   
 ?>

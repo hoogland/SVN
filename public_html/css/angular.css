@@ -21,6 +21,7 @@ html{
     border-bottom: 1px solid #e4e4e4;
     border-left:4px solid transparent;
     min-height: 40px;
+    overflow:auto;
     line-height:40px;
 }
 
@@ -33,4 +34,22 @@ html{
 .externalMatch .matchTitle.active{
     border-left: 4px solid #0059b3;
     background-color: rgba(0,89,179,0.1);
+}
+
+.ng-enter, .ng-move, .ng-leave{
+       -webkit-transition:0.2s linear all;
+       transition:0.2s linear all;
+     }
+
+.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.ng-enter {
+    opacity:0;
+    max-hight: 0px;
+}
+
+.ng-leave,
+.ng-move.ng-move-active,
+.ng-enter.ng-enter-active {
+    opacity:1;
 }

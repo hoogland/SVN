@@ -61,7 +61,7 @@ class menu
                  if($logged_in == 0)
                     echo "<a href=\"login.php\">Login</a>";
                 else
-                    echo "<a href=\"http://svnieuwerkerk.nl/beheer/index.php?logout=1\">Logout</a>";
+                    echo "<a href=\"http://svnieuwerkerk.nl/beheerOld/index.php?logout=1\">Logout</a>";
             ?>
         </div>
         <div id="menu_language">
