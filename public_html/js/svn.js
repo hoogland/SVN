@@ -78,7 +78,7 @@ app.controller("externCompetitie", function($scope, $resource, $filter, match, t
         // log error
     });
 
-})                                                                   
+});
 
 app.controller("seasons", function($scope, $http) {        
 
@@ -94,7 +94,7 @@ app.controller("seasons", function($scope, $http) {
         // log error
         $scope.status = status;
     });   
-})
+});
 
 
 
