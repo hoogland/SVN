@@ -30,12 +30,12 @@ print_r($init);
                 <div class="externalMatch" ng-repeat="match in matches.data"c>
                     <div class="matchTitle" ng-click="showDetails = ! showDetails" ng-class="{active:showDetails}"  ng-show="match.uitwedstrijd != 1">
                         <div class="col-sm-2 col-xs-3">{{match.datum | date:'dd-MM-yyyy '}}</div>
-                        <div class="col-sm-8 col-xs-7"><div class="col-sm-6">{{defaultData.teamName}} {{match.team}} ({{match.teamElo}})</div><div class="col-sm-6"><span class="hidden-xs">-</span> {{match.tegenstander}} {{match.tegenstanderTeam}} ({{match.tegenstanderElo}})</div></div>
+                        <div class="col-sm-8 col-xs-7"><div class="col-sm-6">{{defaultData.teamName}} {{match.team}} ({{match.teamElo}})</div><div class="col-sm-6"><span class="hidden-xs inline-block">-</span> {{match.tegenstander}} {{match.tegenstanderTeam}} ({{match.tegenstanderElo}})</div></div>
                         <div class="col-xs-2">{{match.score  | number:1}} - {{match.games.length - match.score | number:1}}</div>
                     </div>
                     <div class="matchTitle" ng-click="showDetails = ! showDetails" ng-class="{active:showDetails}"  ng-show="match.uitwedstrijd == 1">
                         <div class="col-sm-2 col-xs-3">{{match.datum | date:'dd-MM-yyyy '}}</div>
-                        <div class="col-sm-8 col-xs-7"><div class="col-sm-6">{{match.tegenstander}} {{match.tegenstanderTeam}} ({{match.tegenstanderElo}})</div><div class="col-sm-6"><span class="hidden-xs">-</span> {{defaultData.teamName}} {{match.team}} ({{match.teamElo}})</div></div>
+                        <div class="col-sm-8 col-xs-7"><div class="col-sm-6">{{match.tegenstander}} {{match.tegenstanderTeam}} ({{match.tegenstanderElo}})</div><div class="col-sm-6"><span class="hidden-xs inline-block">-</span> {{defaultData.teamName}} {{match.team}} ({{match.teamElo}})</div></div>
                         <div class="col-xs-2">{{match.games.length - match.score | number:1}} - {{match.score  | number:1}}</div>
                     </div>
                     <div class="row matchDetails" ng-show="showDetails">
@@ -46,11 +46,11 @@ print_r($init);
                             <h4>Partijen</h4>
                             <table class="table table-striped" ng-show="match.uitwedstrijd != 1">
                                 <thead><tr><th>Bord</th><th>{{defaultData.teamName}} {{match.team}}</th><th>Rating</th><th></th><th>{{match.tegenstander}} {{match.tegenstanderTeam}}</th><th>Rating</th><th style="text-align:center">Uitslag</th></tr></thead>
-                                <tr ng-repeat="game in match.games" ng-init="player = (players.data | filter:{id : game.spelerId})[0]"><td>{{game.bord}}</td><td>{{player.voornaam}} {{player.tussenvoegsel}} {{player.achternaam}}</td><td>{{game.spelerElo}}</td><td>-</td><td>{{game.tegenstanderNaam}}</td><td>{{game.tegenstanderElo}}</td><td style="text-align:center">{{game.score | number}} - {{1 - game.score | number}}</td></tr>
+                                <tr ng-repeat="game in match.games" ng-init="player = (players.data | filter:{id : game.spelerId} : true)[0]"><td>{{game.bord}}</td><td>{{player.voornaam}} {{player.tussenvoegsel}} {{player.achternaam}}</td><td>{{game.spelerElo}}</td><td>-</td><td>{{game.tegenstanderNaam}}</td><td>{{game.tegenstanderElo}}</td><td style="text-align:center">{{game.score | number}} - {{1 - game.score | number}}</td></tr>
                             </table>
                             <table class="table table-striped" ng-show="match.uitwedstrijd == 1">
                                 <thead><tr><th>Bord</th><th>{{match.tegenstander}} {{match.tegenstanderTeam}}</th><th>Rating</th><th></th><th>{{defaultData.teamName}} {{match.team}}</th><th>Rating</th><th style="text-align:center">Uitslag</th></tr></thead>
-                                <tr ng-repeat="game in match.games" ng-init="player = (players.data | filter:{id : game.spelerId})[0]"><td>{{game.bord}}</td><td>{{game.tegenstanderNaam}}</td><td>{{game.tegenstanderElo}}</td><td>-</td><td>{{player.voornaam}} {{player.tussenvoegsel}} {{player.achternaam}}</td><td>{{game.spelerElo}}</td><td style="text-align:center">{{1 - game.score | number}} - {{game.score | number}}</td></tr>
+                                <tr ng-repeat="game in match.games" ng-init="player = (players.data | filter:{id : game.spelerId} : true)[0]"><td>{{game.bord}}</td><td>{{game.tegenstanderNaam}}</td><td>{{game.tegenstanderElo}}</td><td>-</td><td>{{player.voornaam}} {{player.tussenvoegsel}} {{player.achternaam}}</td><td>{{game.spelerElo}}</td><td style="text-align:center">{{1 - game.score | number}} - {{game.score | number}}</td></tr>
                             </table>
                         </div>
                     </div>
@@ -61,7 +61,7 @@ print_r($init);
                 <table class="table table-condensed table-striped">
                     <thead><tr><th>Speler</th><th>Score</th></tr></thead>
                     <tbody>
-                        <tr ng-repeat="topscorer in topscorers.data" ng-animate="'animate'" ng-init="player = (players.data | filter:{id : topscorer.spelerId})[0]"><td>{{player.voornaam}} {{player.tussenvoegsel}} {{player.achternaam}}</td><td>{{topscorer.score}} uit {{topscorer.partijen}}</td></tr>
+                        <tr ng-repeat="topscorer in topscorers.data" ng-animate="'animate'" ng-init="player = (players.data | filter:{id : topscorer.spelerId} : true)[0]"><td>{{player.voornaam}} {{player.tussenvoegsel}} {{player.achternaam}}</td><td>{{topscorer.score}} uit {{topscorer.partijen}}</td></tr>
                     </tbody>
                 </table>
 

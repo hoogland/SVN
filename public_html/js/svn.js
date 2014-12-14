@@ -15,6 +15,13 @@ app.controller("externCompetitie", function($scope, $resource, $filter, match, t
     $scope.$location = {};
 
     $scope.$watch('selectedTeam', function(){
+        getMatches();
+    }) ;
+    $scope.$watch('selectedSeason', function(){
+        getMatches();
+    }) ;
+    
+    function getMatches(){
         match.query($scope.selectedSeason.id, $scope.selectedTeam.id).success(function(data, status, headers, config) {
             $scope.matches = data;
         }).
@@ -27,24 +34,6 @@ app.controller("externCompetitie", function($scope, $resource, $filter, match, t
             error(function(data, status, headers, config) {
                 // log error
             });
-    }) ;
-    $scope.$watch('selectedSeason', function(){
-        match.query($scope.selectedSeason.id, $scope.selectedTeam.id).success(function(data, status, headers, config) { 
-            $scope.matches = data;
-        }).
-        error(function(data, status, headers, config) {
-            // log error
-        });
-        match.topscorers($scope.selectedSeason.id, $scope.selectedTeam.id).success(function(data, status, headers, config) {
-            $scope.topscorers = data;
-        }).
-            error(function(data, status, headers, config) {
-                // log error
-            });
-    }) ;
-    
-    function getMatches(){
-        
     }
 
     //Get seasons

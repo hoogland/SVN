@@ -36,7 +36,7 @@ html{
     background-color: rgba(0,89,179,0.1);
 }
 
-.ng-enter, .ng-move, .ng-leave{
+.ng-enter, .ng-move{
        -webkit-transition:0.2s linear all;
        transition:0.2s linear all;
      }
@@ -52,4 +52,9 @@ html{
 .ng-move.ng-move-active,
 .ng-enter.ng-enter-active {
     opacity:1;
+}
+
+.inline-block{
+    display: inline !important;
+
 }
