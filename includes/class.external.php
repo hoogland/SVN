@@ -27,7 +27,7 @@
             $sql .= " ORDER BY datum ASC, id ASC";
 
             $result = mysql_query($sql);
-            $data = [];
+            $data;
             while($row = mysql_fetch_assoc($result))
                 $data[] = $row;
                 
@@ -88,12 +88,12 @@
                 $data[] = $row;
             return $data;
         }
-        
+
         public function getTopscorers($season = null, $team = null)
         {
             $sql = "SELECT spelerId, sum(score) AS score, count(*) AS partijen FROM svn_extern_partijen WHERE teamwedstrijdId IN (SELECT id FROM svn_extern_wedstrijden_team WHERE seizoen = ".$season." AND team = ".$team.") GROUP BY spelerId ORDER BY score DESC, partijen ASC";
             $result = mysql_query($sql);
-            $data = [];
+            $data = array();
             while($row = mysql_fetch_assoc($result))
                 $data[] = $row;
             return $data;

@@ -10,12 +10,13 @@
     $data = json_decode(json_encode($_GET), FALSE);
      $data = $objData;
     //Extra security due to public webservice without login
+
     if($data->method != "GET")
         echo json_encode(array("status" => array("code" => "403", "text" => "Alleen GET-acties zijn toegestaan")));
     else
     {
         $webservice = new webservice($init);
         echo json_encode($webservice->execute($data));
-    }                      
+    };
         
 ?>

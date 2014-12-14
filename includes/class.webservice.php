@@ -18,7 +18,7 @@
 
         function execute($data)
         {
-            $result;     
+            $result = array();
             switch($data->action)
             {
                 case "data" : $result = $this->data($data); break;
