@@ -13,55 +13,55 @@
 
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span></a>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>
                 <ul class="dropdown-menu">
-                    <li class="disabled"><a href="geschiedenis.php"><span class="glyphicon glyphicon-list"></span> Gebruikers</a></li>
+                    <li class="disabled"><a href="geschiedenis.php"><span class="fa fa-list"></span> Gebruikers</a></li>
                     <li class="divider"></li>
-                    <li><a href="usersCreate.php"><span class="glyphicon glyphicon-user"></span> Nieuwe gebruiker</a></li>
+                    <li><a href="usersCreate.php"><span class="fa fa-user"></span> Nieuwe gebruiker</a></li>
                 </ul>
             </li>
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Ledenadministratie <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="members.php"><span class="glyphicon glyphicon-list"></span> Overzicht</a></li>
-                    <li><a href="knsbRating.php"><span class="glyphicon glyphicon-stats"></span> KNSB Rating verwerken</a></li>
+                    <li><a href="members.php"><span class="fa fa-list"></span> Overzicht</a></li>
+                    <li><a href="knsbRating.php"><span class="fa fa-area-chart"></span> KNSB Rating verwerken</a></li>
                     <li class="divider"></li>
-                    <li class="disabled"><a href="kampioenen.php"><span class="glyphicon glyphicon-plus"></span> Nieuw</a></li>
+                    <li class="disabled"><a href="kampioenen.php"><span class="fa fa-plus"></span> Nieuw</a></li>
                 </ul>
             </li>
             <li class="dropdown disabled"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Seizoenen<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="externUitslagen.php?seizoen=2010&team=1"><span class="glyphicon glyphicon-list"></span> Overzicht</a></li>
+                    <li><a href="externUitslagen.php?seizoen=2010&team=1"><span class="fa fa-list"></span> Overzicht</a></li>
                     <li class="divider"></li>
-                    <li><a href="externTopscorers.php"><span class="glyphicon glyphicon-plus"></span> Nieuw</a></li>
+                    <li><a href="externTopscorers.php"><span class="fa fa-plus"></span> Nieuw</a></li>
                 </ul>
             </li>
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Competities<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li class="disabled"><a href=""><span class="glyphicon glyphicon-list"></span> Overzicht</a></li>
-                    <li class="disabled"><a href=""><span class="glyphicon glyphicon-plus"></span> Nieuw</a></li>
+                    <li class="disabled"><a href=""><span class="fa fa-list"></span> Overzicht</a></li>
+                    <li class="disabled"><a href=""><span class="fa fa-plus"></span> Nieuw</a></li>
                     <li class="divider"></li>
-                    <li><a href="compSettings.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>"><span class="glyphicon glyphicon-cog"></span> Instellingen</a></li>
-                    <li><a href="compPlayers.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>"><span class="glyphicon glyphicon-user"></span> Deelnemers</a></li>
-                    <li><a href="compPairing.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>"><span class="glyphicon glyphicon-resize-small"></span> Indeling</a></li>
-                    <li><a href="<?php echo settings::archive;?>/standen.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>" target="_blank"><span class="glyphicon glyphicon-list-alt"></span> Standen</a></li>
-                    <li class="disabled"><a href=""><span class="glyphicon glyphicon-tower"></span> Rating rapportage</a></li>
+                    <li><a href="compSettings.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>"><span class="fa fa-cog"></span> Instellingen</a></li>
+                    <li><a href="compPlayers.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>"><span class="fa fa-user"></span> Deelnemers</a></li>
+                    <li><a href="compPairing.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>"><span class="fa fa-compress"></span> Indeling</a></li>
+                    <li><a href="<?php echo settings::archive;?>/standen.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>" target="_blank"><span class="fa fa-list-ol"></span> Standen</a></li>
+                    <li class="disabled"><a href=""><span class="fa fa-file-text-o"></span> Rating rapportage</a></li>
                     <li class="divider"></li>
-                    <li><a href="compExternal.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>"><span class="glyphicon glyphicon-road"></span> Extern</a></li>
+                    <li><a href="compExternal.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>"><span class="fa fa-road"></span> Extern</a></li>
                 </ul>
             </li>
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li class=" disabled"><a href="toolFen.php">Gameviewer</a></li>
-                    <li><a href="toolFen.php">FEN Viewer</a></li>
+                    <li class=" disabled"><a href="toolFen.php"><span class="fa fa-puzzle-piece"></span> Gameviewer</a></li>
+                    <li><a href="toolFen.php"><span class="fa fa-qrcode"></span> FEN Viewer</a></li>
                 </ul>
             </li>
-            <li><a href="help.php"><span class="glyphicon glyphicon-question-sign" title="Help"></span></a>
+            <li><a href="help.php"><span class="fa fa-question-circle" title="Help"></span></a>
             </li>
             <?php
                 if($init->login->LOGGED_IN != 1)
                     echo '<li class="dropdown"><a href="login.php">Inloggen</span></a></li>';
                 else
-                    echo '<li class="dropdown"><a href="login.php?logout=true"><span class="glyphicon glyphicon-log-out" title="Uitloggen"></span></span></a></li>';
+                    echo '<li class="dropdown"><a href="login.php?logout=true"><span class="fa fa-power-off" title="Uitloggen"></span></span></a></li>';
                 ?>           
             
         </ul> 

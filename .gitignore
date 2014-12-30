@@ -1,5 +1,7 @@
 .svn
 .idea
+database.inc
+class.settings.php
 
 #################
 ## Eclipse

@@ -1,7 +1,6 @@
-<?
+<?php
     //WEBSITE STARTUP
     include_once('../../includes/class.settings.php');
-    include_once('../archiefOld/class_menu.php');
     include_once('../../includes/class.competition.php');
     include_once('../../includes/class.swiss.php');
     include_once('../../includes/class.player.php');
@@ -10,7 +9,6 @@
     $settings = new settings();
 
 
-    $menu = new menu();
     $competitie = new competition($settings, $_GET['competitie']);
     $competitie->getGeneralData();
 
@@ -31,7 +29,7 @@
 
 <body class="container">
 
-    <? 
+    <?php 
         include("../../includes/menu.archief.php");
     ?>       
 
@@ -54,7 +52,7 @@
                 <div class="col-md-2 hidden-print">
                     <h2>Rondes</h2>
                     <ul id="rondes">
-                        <?
+                        <?php
                             foreach($competitie->rounds as $round)
                             {
                                 echo "<li><a href=\"standen.php?seizoen=".$competitie->season."&competitie=".$competitie->id."&ronde=".$round["ronde"]."\">".$round["ronde"]." - ".date("d-m-Y",strtotime($round["datum"]))."</a></li>";

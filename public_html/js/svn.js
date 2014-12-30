@@ -1,4 +1,4 @@
-var app = angular.module("SVNpublic", ['ngResource', 'ngAnimate']);
+var app = angular.module("SVNpublic", ['ngResource']);
 
 
 
