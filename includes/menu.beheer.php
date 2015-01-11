@@ -44,7 +44,7 @@
                     <li><a href="compPlayers.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>"><span class="fa fa-user"></span> Deelnemers</a></li>
                     <li><a href="compPairing.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>"><span class="fa fa-compress"></span> Indeling</a></li>
                     <li><a href="<?php echo settings::archive;?>/standen.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>" target="_blank"><span class="fa fa-list-ol"></span> Standen</a></li>
-                    <li class="disabled"><a href=""><span class="fa fa-file-text-o"></span> Rating rapportage</a></li>
+                    <li><a href="compReport.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>"><span class="fa fa-file-text-o"></span> Rating rapportage</a></li>
                     <li class="divider"></li>
                     <li><a href="compExternal.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>"><span class="fa fa-road"></span> Extern</a></li>
                 </ul>

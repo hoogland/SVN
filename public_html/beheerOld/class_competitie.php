@@ -6,15 +6,15 @@
         {  ?>
         <div id="menu_comp">
             <ul>
-                <li><a href="index.php?competitie=<? echo $_GET['competitie'];?>&action=spelers">Spelerslijst</a> 
-                <li><a href="index.php?competitie=<? echo $_GET['competitie'];?>">Rangschikking</a> 
-                <li><a href="index.php?competitie=<? echo $_GET['competitie'];?>&action=xref">Xref</a> 
-                <li><a href="index.php?competitie=<? echo $_GET['competitie'];?>&action=statistieken">Statistieken</a> 
+                <li><a href="index.php?competitie=<?php echo $_GET['competitie'];?>&action=spelers">Spelerslijst</a>
+                <li><a href="index.php?competitie=<?php echo $_GET['competitie'];?>">Rangschikking</a> 
+                <li><a href="index.php?competitie=<?php echo $_GET['competitie'];?>&action=xref">Xref</a> 
+                <li><a href="index.php?competitie=<?php echo $_GET['competitie'];?>&action=statistieken">Statistieken</a> 
             </ul>  
             Standen + Uitslagen
             <ul>
 
-                <?
+                <?php
                     $sql = "SELECT MAX(ronde) FROM svn_partijen WHERE comp_id = ".$_GET['competitie'];
                     $result = mysql_query($sql);
                     $row = mysql_fetch_array($result);
@@ -29,7 +29,7 @@
             </ul>
         </div>
         <div id="ranglijst">
-            <?
+            <?php
                 if($_GET['action'] == "xref")
                     $this->xref($_GET['competitie']);
                 elseif($_GET['action'] == "statistieken")
@@ -67,7 +67,7 @@
             ?>
         </div>
 
-        <?    }
+        <?php    }
 
         function stand($spelers, $partijen, $competitie = null)                  //GENEREREN STAND
         {
