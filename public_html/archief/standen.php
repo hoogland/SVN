@@ -118,7 +118,6 @@
                                 <?php
                                     foreach($competitie->getMatches($roundSelect["ronde"]) as $match)
                                     {
-                                        // print_r($match);
                                         $playerWhite = new player($settings, $match["speler_wit"]);
                                         $playerWhite->getDetails();
                                         $playerBlack = new player($settings, $match["speler_zwart"]);
@@ -131,7 +130,7 @@
                                             case "3" : $uitslag = "0 - 1";break;
                                         }
 
-                                        echo "<tr><td><a href=\"competitieSpeler.php?seizoen=".$_GET["seizoen"]."&competitie=".$_GET["competitie"]."&spelerId=".$playerWhite->id."\">".$playerWhite->name."</a> (".$match["rating_wit"].")</td><td>-</td><td><a href=\"competitieSpeler.php?seizoen=".$_GET["seizoen"]."&competitie=".$_GET["competitie"]."&spelerId=".$playerBlack->id."\">".$playerBlack->name."</a> (".$match["rating_zwart"].")</td><td>".$uitslag."</td></tr>";
+                                        echo "<tr><td><a href=\"competitieSpeler.php?seizoen=".$_GET["seizoen"]."&competitie=".$_GET["competitie"]."&spelerId=".$playerWhite->id."\">".$playerWhite->name."</a> (".$match["rating_wit"].")</td><td>-</td><td><a href=\"competitieSpeler.php?seizoen=".$_GET["seizoen"]."&competitie=".$_GET["competitie"]."&spelerId=".$playerBlack->id."\">".$playerBlack->name."</a> (".$match["rating_zwart"].")</td><td>".$uitslag."".($match["reglementair"] ? ' <i class="fa fa-exclamation-circle text-danger pointer" title="Reglementaire uitslag"></i>' : ''). "</td></tr>";
 
                                     }
                                 ?>

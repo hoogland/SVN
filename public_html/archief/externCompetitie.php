@@ -31,17 +31,17 @@ print_r($init);
                     <div class="matchTitle" ng-click="showDetails = ! showDetails" ng-class="{active:showDetails}"  ng-show="match.uitwedstrijd != 1">
                         <div class="col-sm-2 col-xs-3">{{match.datum | date:'dd-MM-yyyy '}}</div>
                         <div class="col-sm-8 col-xs-7"><div class="col-sm-6">{{defaultData.teamName}} {{team.naamKort}} ({{match.teamElo}})</div><div class="col-sm-6"><span class="hidden-xs inline-block">-</span> {{match.tegenstander}} {{match.tegenstanderTeam}} ({{match.tegenstanderElo}})</div></div>
-                        <div class="col-xs-2">{{match.score  | number:1}} - {{match.games.length - match.score | number:1}}</div>
+                        <div class="col-xs-2">{{match.score  | number:1}} - {{match.scoreTegenstander}}</div>
                     </div>
                     <div class="matchTitle" ng-click="showDetails = ! showDetails" ng-class="{active:showDetails}"  ng-show="match.uitwedstrijd == 1">
                         <div class="col-sm-2 col-xs-3">{{match.datum | date:'dd-MM-yyyy '}}</div>
                         <div class="col-sm-8 col-xs-7"><div class="col-sm-6">{{match.tegenstander}} {{match.tegenstanderTeam}} ({{match.tegenstanderElo}})</div><div class="col-sm-6"><span class="hidden-xs inline-block">-</span> {{defaultData.teamName}} {{team.naamKort}} ({{match.teamElo}})</div></div>
-                        <div class="col-xs-2">{{match.games.length - match.score | number:1}} - {{match.score  | number:1}}</div>
+                        <div class="col-xs-2">{{match.scoreTegenstander}} - {{match.score  | number:1}}</div>
                     </div>
                     <div class="row matchDetails" ng-show="showDetails">
                         <div class="col-md-12">
                             <h4 ng-show="{{match.verslag || match.verslagTegenstander}}">Verslagen</h4>
-                            <div ng-show="{{match.verslag}}"><a ng-href="{{match.verslag}}" target="_blank">Nieuwerkerk {{team.naamKort}}</a></div>
+                            <div ng-show="{{match.verslag}}"><a ng-href="{{match.verslag}}" target="_blank">{{defaultData.club}}</a></div>
                             <div ng-show="{{match.verslagTegenstander}}"> <a ng-href="{{match.verslagTegenstander}}" target="_blank">{{match.tegenstander}}</a></div>
                             <h4>Partijen</h4>
                             <table class="table table-striped" ng-show="match.uitwedstrijd != 1">
