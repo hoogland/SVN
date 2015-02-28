@@ -38,6 +38,14 @@
 ?>
 <link href="../css/select2.css" rel="stylesheet"/>
 <script src="../js/select2.min.js"></script>
+
+<script src="../js/select.js"></script>
+<link rel="stylesheet" href="../css/select.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap.min.js"></script>
+<script src="../js/svn.js"></script>
+
 <script>
     $(function() {
         $( "#date" ).datepicker({dateFormat: "dd/mm/yy" });
@@ -215,6 +223,7 @@
                     </tr>
                 </table>
                 <h3>Partijen</h3>
+
                 <table class="table table-striped" id="matches"  ng-app="SVNpublic" ng-controller="externCompetitie">
                     <thead>
                         <tr>            
@@ -230,7 +239,7 @@
                     </thead>
                     <?php 
                         $results = array("1" => "1 - 0","0.5" => "&#189;-&#189;","0" => "0 - 1");
-                        for($a = 1; $a < 11; $a++)
+                        for($a = 1; $a < 9; $a++)
                         {
                             $game = $data->filter($matchGames,"bord",$a);
                             $game = $game[0];
@@ -242,9 +251,17 @@
                                 <input type="hidden" name="gameId<?php echo $a;?>" value="<?php echo $game["id"];?>">
                                 <input type="hidden" name="memberId<?php echo $a;?>" value="{{playerSelect<?php echo $a;?>.id}}">
                             </td>
-                            <td><select class="form-control" ng-model="playerSelect<?php echo $a;?>" ng-options="player as (player.achternaam  + ' ' + player.voornaam) for player in players.data track by player.id" ng-init="playerSelect<?php echo $a;?> = playerSelect<?php echo $a;?> || {id: '<?php echo $game["spelerId"];?>'}"></select></td>
-                            <td><input  class="form-control input-sm" type="text" name="memberRating<?php echo $a;?>" ng-model="playerSelect<?php echo $a;?>.rating"  placeholder="Rating" style="width: 70px;" maxlength="4" ng-init="playerSelect<?php echo $a;?>.rating = <?php echo $game["spelerElo"];?>"></td>
-                            <td>-</td>
+                            <td ng-init="playerSelect<?php echo $a;?> = players">
+                                <!--      <ui-select ng-model="playerSelect<?php echo $a;?>" theme="selectize" ng-disabled="disabled" style="width: 300px;" >
+                                    <ui-select-match placeholder="Selecteer of zoek een speler">{{$select.selected.voornaam + ' ' + $select.selected.tussenvoegsel + ' ' + $select.selected.achternaam}}</ui-select-match>
+                                    <ui-select-choices repeat="player in players.data | filter: $select.search" value="{{$select.selected.id}}">
+                                        <div ng-bind-html="player.voornaam + ' ' + player.tussenvoegsel + ' ' + player.achternaam | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </td>
+                           <td><select class="form-control" ng-model="playerSelect<?php echo $a;?>" ng-options="player as (player.achternaam  + ' ' + player.voornaam) for player in players.data track by player.id" ng-init="playerSelect<?php echo $a;?> = playerSelect<?php echo $a;?> || {id: '<?php echo $game["spelerId"];?>'}"></select></td>
+                           <td><input  class="form-control input-sm" type="text" name="memberRating<?php echo $a;?>" ng-model="playerSelect<?php echo $a;?>.rating"  placeholder="Rating" style="width: 70px;" maxlength="4" ng-init="playerSelect<?php echo $a;?>.rating = <?php echo $game["spelerElo"];?>"></td>
+                       -->      <td>-</td>
                             <td><input class="form-control input-sm knsbSearch" name="opponentName<?php echo $a;?>" value="<?php echo $game["tegenstanderNaam"];?>"></td>
                             <td><input class="form-control input-sm" type="text" name="opponentKNSB<?php echo $a;?>" style="width: 100px;" maxlength="8" value="<?php echo $game["tegenstanderKNSB"];?>"></td>
                             <td><input class="form-control input-sm" type="text" name="opponentRating<?php echo $a;?>" placeholder="Rating" style="width: 70px;" maxlength="4" value="<?php echo $game["tegenstanderElo"];?>"></td>
@@ -257,8 +274,6 @@
         </div>
     </div>
     </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap.min.js"></script>
-<script src="../js/svn.js"></script>
 
 </html>
 

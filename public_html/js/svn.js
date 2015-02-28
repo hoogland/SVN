@@ -1,4 +1,4 @@
-var app = angular.module("SVNpublic", ['ngResource']);
+var app = angular.module("SVNpublic", ['ngResource','ngSanitize',  'ui.select']);
 
 
 

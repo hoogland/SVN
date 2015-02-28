@@ -1,0 +1,3 @@
+<select ng-model="$root.competitionSelected" ng-controller="svnDataController" ng-options="competition.naam for competition in competitions.data" class="form-control" ng-show="competitions.data.length">
+    <option value="" disabled selected>Selecteer een competitie</option>
+</select>

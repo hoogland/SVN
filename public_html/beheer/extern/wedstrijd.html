@@ -1,0 +1,54 @@
+<h1>Externe Competitie</h1>
+
+<table class="table">
+    <tbody><tr>
+        <td>Datum</td><td><input type="text" class="form-control input-sm hasDatepicker" id="date" name="date" value="01/01/1970"></td>
+        <td>Groep</td><td><select class="form-control input-sm" name="externalGroup"><option selected="" disabled="" hidden="" value=""></option><optgroup label="RSB"><option value="1">RSB Promotie</option><option value="2">RSB 1a</option><option value="3">RSB 1b</option><option value="4">RSB 2a</option><option value="5">RSB 2b</option><option value="6">RSB 2c</option><option value="7">RSB 2d</option><option value="8">RSB 3a</option><option value="9">RSB 3b</option><option value="10">RSB 3c</option><option value="11">RSB 3d</option><option value="12">RSB 3e</option><option value="13">RSB 3f</option><option value="14">RSB 3g</option><option value="15">RSB 3h</option><option value="16">RSB 4a</option><option value="17">RSB 4b</option><option value="18">RSB 4c</option><option value="19">RSB 4d</option><option value="20">RSB 4e</option><option value="21">RSB 4f</option><option value="22">RSB 4g</option><option value="23">RSB 4h</option><option value="24">RSB Beker</option></optgroup><optgroup label="KNSB"><option value="25">KNSB Meesterklasse</option><option value="26">KNSB 1a</option><option value="27">KNSB 1b</option><option value="28">KNSB 2a</option><option value="29">KNSB 2b</option><option value="30">KNSB 2c</option><option value="31">KNSB 2d</option><option value="32">KNSB 3a</option><option value="33">KNSB 3b</option><option value="34">KNSB 3c</option><option value="35">KNSB 3d</option><option value="36">KNSB 3e</option><option value="37">KNSB 3f</option><option value="38">KNSB 3g</option><option value="39">KNSB 3h</option><option value="40">KNSB Beker</option></optgroup></select></td>
+    </tr>
+    <tr>
+        <td>Thuis / Uit</td><td><select class="form-control input-sm" name="externalAway" id="externalAway"><option value="0" selected="">Thuis</option><option value="1">Uit</option></select></td>
+        <td>Tegenstander</td><td>
+        <span class="col-xs-10" style="padding-left: 0px;"><input type="text" name="opponentName" class="form-control input-sm" value="" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==); background-attachment: scroll; background-position: 100% 50%; background-repeat: no-repeat;"></span>
+        <span class="col-xs-2" style="padding-right: 0px;"><input type="text" name="opponentTeam" placeholder="Team" class="form-control input-sm" value=""></span></td>
+    </tr>
+    <tr>
+        <td>Gemiddelde rating</td><td><input type="text" name="ratingTeam" class="form-control input-sm" value=""></td>
+        <td>Gemiddelde rating</td><td><input type="text" name="ratingOpponent" class="form-control input-sm" value=""></td>
+    </tr>
+    <tr>
+        <td>Score</td><td><input type="text" name="scoreTeam" class="form-control input-sm" value=""></td>
+        <td>Score</td><td><input type="text" name="scoreOpponent" class="form-control input-sm" value=""></td>
+    </tr>
+    <tr>
+        <td>Verslag</td><td><input type="text" name="report" class="form-control input-sm" value=""></td>
+        <td>Verslag tegenstander</td><td><input type="text" name="reportOpponent" class="form-control input-sm" value=""></td>
+    </tr>
+    </tbody>
+</table>
+
+<table class="table table-striped ng-scope" id="matches">
+    <thead>
+    <tr>
+        <th>Bord</th>
+        <th>Speler</th>
+        <th>Rating</th>
+        <th></th>
+        <th>Tegenstander</th>
+        <th>KNSB</th>
+        <th>Rating</th>
+        <th>Uitslag</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="t in '12345678'">
+            <td>{{t}}</td>
+            <td><select></select></td>
+            <td><input type="number"></td>
+            <td>-</td>
+            <td><select></select></td>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+            <td><select></select></td>
+        </tr>
+    </tbody>
+</table>

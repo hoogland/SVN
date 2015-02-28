@@ -41,7 +41,7 @@ print_r($init);
                     <div class="row matchDetails" ng-show="showDetails">
                         <div class="col-md-12">
                             <h4 ng-show="{{match.verslag || match.verslagTegenstander}}">Verslagen</h4>
-                            <div ng-show="{{match.verslag}}"><a ng-href="{{match.verslag}}" target="_blank">Nieuwerkerk {{team.naamKort}}</a></div>
+                            <div ng-show="{{match.verslag}}"><a ng-href="{{match.verslag}}" target="_blank">{{defaultData.teamName}} {{team.naamKort}}</a></div>
                             <div ng-show="{{match.verslagTegenstander}}"> <a ng-href="{{match.verslagTegenstander}}" target="_blank">{{match.tegenstander}}</a></div>
                             <h4>Partijen</h4>
                             <table class="table table-striped" ng-show="match.uitwedstrijd != 1">
