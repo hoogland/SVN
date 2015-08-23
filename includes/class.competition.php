@@ -35,10 +35,20 @@
         * @param mixed $id
         * @return competition
         */
-        public function __construct($settings, $id, $errorClass = null, $notificationClass = null)
+        public function __construct($settings = null, $id, $errorClass = null, $notificationClass = null)
         {
-            $this->settings = $settings;
+            // Additional check to set the settings when is called via api service.
+            // Else is used in current /beheer
+            if(is_null($settings))
+            {
+                include_once("class.settings.php");
+                $this->settings = new settings();
+            }
+            else
+                $this->settings = $settings;
+
             $this->prefix = $settings->prefix;
+            $this->prefix = "svn_";
             $this->id = $id;   
             $this->errorClass = $errorclass;
             $this->notificationClass = $notificationClass;
@@ -74,12 +84,12 @@
                 $result = mysql_query($sql);
                 while($data = mysql_fetch_assoc($result))
                     $this->options[$data["option"]] = $data["value"];
-                $this->sorting = explode(",",$this->options["Sorting"]); 
+                $this->sorting = explode(",",$this->options["Sorting"]);
                 if($this->sorting[0] == "")
-                    $this->sorting = array("Score", "SB", "TPR");   
+                    $this->sorting = array("Score", "SB", "TPR");
                 if($this->options["DisplayData"] == "")
                     $this->options["DisplayData"] = "Ranking,Name,Score,SB,WP,Matches,Percentage,TPR";
-                $this->getRounds();    
+                $this->getRounds();
 
                 if($this->options["compSystem"] == "Keizer")
                 {
@@ -95,6 +105,22 @@
                     require_once("class.swiss.php");
                     $this->indeling = new swiss();
                 }
+
+                //Return general data
+                return array(
+                    "seizoen_id" => $this->season,
+                    "naam" => $this->name,
+                    "naam_uitgebreid" => $this->nameExtended,
+                    "type_comp" => $this->typeCompetion,
+                    "stand_tempo" => $this->tempo,
+                    "speeltempo" => $this->tempoExtended,
+                    "plaats" => $this->place,
+                    "land" => $this->country,
+                    "wedstrijdleider" => $this->arbiter,
+                    "wedstrijdleider_email" => $this->arbiterMail,
+                    "displayData" => explode(",",$this->options["DisplayData"])
+
+            );
             }
         }
 
@@ -141,8 +167,8 @@
             $players;
 
             while($data = mysql_fetch_assoc($result))
-                $players[$data["speler_id"]] = new player($this->settings, $data["speler_id"]);     
-            return $players; 
+                $players[$data["speler_id"]] = new player($this->settings, $data["speler_id"]);
+            return $players;
         }
 
         /**
@@ -207,8 +233,10 @@
                 $result = mysql_query($sql);
 
                 $rounds;
-                while($data = mysql_fetch_assoc($result))
+                while($data = mysql_fetch_assoc($result)) {
+                    $data["ronde"] = (int) $data["ronde"];
                     $rounds[] = $data;
+                }
                 $this->rounds = $rounds;
                 return $rounds;
             }  
@@ -270,6 +298,11 @@
                 $this->standings[$id]["player"] = $id;         
 
             $this->standings = array_reverse($this->multisort($this->standings,$this->sorting));
+
+//            Set position
+            for($a = 1; $a < count($this->standings) + 1; $a++)
+                $this->standings[$a - 1]['Ranking'] = $a;
+            return $this->standings;
         }
 
         public function getSubgroup()

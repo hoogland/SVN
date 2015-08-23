@@ -71,7 +71,7 @@
                     <option value="">Selecteer een seizoen</option>
                     <?php 
                         $data = new data();
-                        foreach($data->getSeasons(true) as $season)
+                        foreach($data->getSeasons(true, true) as $season)
                         {
                             $selected = "";
                             if($season["id"] == $_GET["seizoen"])

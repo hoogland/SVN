@@ -1,0 +1,28 @@
+body {
+  font-color: #000;
+  background-color: white;
+  padding-top: 70px;
+  overflow-y: scroll; }
+
+.navbar-default {
+  background-color: #092d59;
+  background-image: none;
+  color: #FFF; }
+  .navbar-default .navbar-brand a, .navbar-default .navbar-nav > li > a {
+    color: #FFF; }
+
+.svnTable.table-hover .table-row {
+  border-left: 4px solid transparent;
+  border-bottom: 1px solid #e4e4e4;
+  min-height: 40px;
+  overflow: auto;
+  line-height: 40px; }
+  .svnTable.table-hover .table-row:hover {
+    border-left: 4px solid #092d59;
+    background-color: #f4f4f4;
+    cursor: pointer; }
+  .svnTable.table-hover .table-row.active {
+    border-left: 4px solid #092d59;
+    background-color: rgba(9, 45, 89, 0.1); }
+
+/*# sourceMappingURL=main.css.map */

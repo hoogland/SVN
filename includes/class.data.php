@@ -45,9 +45,11 @@
             return $data;
         }
 
-        function getSeasons($desc = false)
+        function getSeasons($desc = false, $all = false)
         {
             $sql = "SELECT * FROM ".$this->prefix."seizoen WHERE id IN (SELECT seizoen_id FROM svn_competities) ORDER BY naam ".(!$desc ? "ASC" : "DESC");
+            if($all)
+                $sql = "SELECT * FROM ".$this->prefix."seizoen ORDER BY naam ".(!desc ? "ASC" : "DESC");
             $result = mysql_query($sql);
             $data;
             for($a = 0; $a < mysql_num_rows($result); $a++)

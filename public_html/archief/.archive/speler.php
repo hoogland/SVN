@@ -10,8 +10,8 @@
 
     include_once('../../includes/header.archief.php');
 ?>
-<link href="../css/select2.css" rel="stylesheet"/>
-<script src="../js/select2.min.js"></script>
+<link href="../../css/select2.css" rel="stylesheet"/>
+<script src="../../js/select2.min.js"></script>
 <script>
     $(function() {
     });

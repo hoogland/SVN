@@ -1,0 +1,18 @@
+<div class="subheader">
+    <div class="row">
+        <div class="col-sm-6">
+            Seizoen
+            <select
+                    class="form-control"
+                    ng-model="selectedSeason"
+                    ng-options="season as season.naam for season in seasons.data  | orderBy:'naam':true track by season.id"
+
+                    data-ng-change="changeSeason(selectedSeason.id)"></select>
+        </div>
+        <div class="col-sm-6">
+            Competitie
+            <select class="form-control" ng-model="selectedComp" ng-options="comp as comp.naam for comp in competitions.data track by comp.id" data-ng-change="changeComp(selectedComp.id)"></select>
+        </div>
+    </div>
+</div>
+<div ui-view></div>

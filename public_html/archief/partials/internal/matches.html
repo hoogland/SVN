@@ -1,0 +1,17 @@
+<h2 ng-init="round = (roundSelected)">Uitslagen ronde {{roundSelected}}</i></h2>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Witspeler</th>
+        <th></th>
+        <th>Zwartspeler</th>
+        <th>Uitslag</th>
+    </tr>
+    </thead>
+    <tr ng-repeat="match in matches.data">
+        <td ng-init="player = (players.data | filter:{id : match.speler_wit} : true)[0]">{{player.voornaam}} {{player.tussenvoegsel}} {{player.achternaam}} ({{match.rating_wit}})</td>
+        <td>-</td>
+        <td ng-init="player = (players.data | filter:{id : match.speler_zwart} : true)[0]">{{player.voornaam}} {{player.tussenvoegsel}} {{player.achternaam}} ({{match.rating_zwart}})</td>
+        <td>{{match.uitslag}}</td>
+    </tr>
+</table>

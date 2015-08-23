@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../css/sb-admin-2.css" />
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <title></title>
+</head>
+<body role="document">
+<div ng-app="app">
+
+ <!--   <div class="navbar navbar-default navbar-fixed-top" role="navigation" ng-include src="'partials/main/menuHeader.html'">
+    </div>-->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">SV Nieuwerkerk</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse navbar-menubuilder">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ui-sref-active="active"><a ui-sref="spelers">Spelers</a></li>
+                    <li ui-sref-active="active"><a ui-sref="intern">Intern</a></li>
+                    <li ui-sref-active="active"><a ui-sref="extern">Extern</a></li>
+                    <li ui-sref-active="active"><a ui-sref="historie">Historie</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" ng-controller="mainController">
+        <div ui-view><!-- Your content goes here --></div>
+    </div>
+</div>
+
+<script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-resource.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-sanitize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+
+
+<script src="scripts/svnApp.js"></script>
+
+<script src="scripts/controllers/mainController.js"></script>
+<script src="scripts/controllers/externalCompController.js"></script>
+<script src="scripts/controllers/internalCompController.js"></script>
+<script src="scripts/controllers/internal/roundController.js"></script>
+
+<script src="scripts/services/svnApiService.js"></script>
+<script src="scripts/services/svnPlayerService.js"></script>
+<script src="scripts/services/svnSeasonsService.js"></script>
+<script src="scripts/services/svnTeamsService.js"></script>
+<script src="scripts/services/svnTeamMatchesService.js"></script>
+<script src="scripts/services/svnCompetitionService.js"></script>
+<script src="scripts/services/svnGeneralDataService.js"></script>
+
+
+</body>
+</html>

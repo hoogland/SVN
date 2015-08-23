@@ -23,6 +23,7 @@
             {
                 case "data" : $result = $this->data($data); break;
                 case "extern" : $result = $this->extern($data);break;
+                case "intern" : $result = $this->intern($data);break;
                 default: return;
             }
             if($result)
@@ -44,6 +45,25 @@
             }
         }
 
+        private function intern($data)
+        {
+            include('class.competition.php');
+            include_once('class.player.php');
+            $class = new competition(null, $data->data->competition);
+            $compInfo = $class->getGeneralData();
+            if($data->method == "GET")
+            {
+                switch($data->subaction)
+                {
+                    case "generalData" : return $compInfo;break;
+                    case "rounds" : return $class->getRounds();break;
+                    case "standing" : return $class->getStanding($data->data->round);break;
+                    case "matches" : return $class->getMatches($data->data->round);break;
+                    default: return;
+                }
+            }
+        }
+
         function data($data)
         {
             include('class.data.php');
@@ -51,8 +71,9 @@
             if($data->method == "GET")
             {
                 switch($data->subaction)
-                {      
+                {
                     case "defaultData" : return $class->getDefaultData(); break;
+                    case "competitionColumns" : return $class->getCompetitionColums($data->data->compType); break;
                     case "seasons" : return $class->getSeasons(); break;
                     case "teams" : return $class->getExternalTeams(); break;
                     case "competitions" : return $class->getCompetitions($data->data->season);break;

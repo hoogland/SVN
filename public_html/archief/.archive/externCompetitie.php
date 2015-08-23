@@ -72,6 +72,6 @@ print_r($init);
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-resource.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-animate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-route.js"></script>
-    <script src="../js/svn.js"></script>
+    <script src="../../js/svn.js"></script>
 </body>
 </html>

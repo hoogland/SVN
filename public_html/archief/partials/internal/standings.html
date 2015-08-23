@@ -1,0 +1,10 @@
+<table class="table table-striped">
+    <thead>
+        <tr><th ng-repeat="displayData in competition.data.displayData">{{displayData}}</th></tr>
+    </thead>
+    <tr ng-repeat="standing in standings.data" ng-init="player = (players.data | filter:{id : standing['player']} : false)[0]">
+        <td ng-repeat="displayData in competition.data.displayData">
+            {{displayData !== "Name" ? standing[displayData] : player.voornaam + ' ' + player.tussenvoegsel + ' ' +  player.achternaam}}
+        </td>
+    </tr>
+</table>
