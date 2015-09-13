@@ -23,8 +23,9 @@
         $sql = "SELECT * FROM ".$settings->prefix."partijen_pgn WHERE id = ".$_GET["gameId"];
         $sql = mysql_query($sql);
         $result = mysql_fetch_assoc($sql);
-        $pgn =  $result["pgn"];      
+        $pgn =  $result["pgn"];
         $pgn = str_replace("\r\n", " ", $pgn);
+        $pgn = str_replace("\n", " ", $pgn);
         $pgn = str_replace("  "," ", $pgn);
 
     }
@@ -48,13 +49,14 @@
 ?>      
 <script type="text/javascript" src="http://chesstempo.com/js/pgnyui.js" /></script>   
 <script type="text/javascript" src="http://chesstempo.com/js/pgnviewer.js"></script>  
-<link type="text/css" rel="stylesheet" href="http://chesstempo.com/css/board-min.css" />  
+<link type="text/css" rel="stylesheet" href="http://chesstempo.com/css/board-min.css" />
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
 <script>  
     new PgnViewer(  
         { boardName: "demo",    
             pgnString: '<? echo $pgn;?>',
-            boardImagePath: "http://www.svnieuwerkerk.nl/archiefV2/pgn",
+            boardImagePath: "http://www.svnieuwerkerk.nl/archief/pgn",
             pieceSet: 'merida',   
             pieceSize: 35,  
             showCoordinates: true,
