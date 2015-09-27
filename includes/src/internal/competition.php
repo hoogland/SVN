@@ -8,16 +8,29 @@
  */
 
 namespace svn\competition;
-
+error_reporting(E_ALL|E_STRICT);
 class competition
 {
     var $id;
+    var $db;
 
     /**
      * @param $id
      */
-    public function __construct($id){
+    public function __construct($id = null){
         $this->id = $id;
+        //echo __DIR__;
+
+        require_once __DIR__ . '../../../vendor/medoo.min.php';
+        require_once __DIR__ . '../../settings.php';
+
+        $this->db = new \medoo(array(
+                  'database_type' => \svn\settings::dbType,
+                  'database_name' => \svn\settings::dbName,
+                  'server' => \svn\settings::server,
+                  'username' => \svn\settings::dbUsername,
+                  'password' => \svn\settings::dbPassword)
+        );
     }
 
     /**
@@ -93,7 +106,8 @@ class competition
      * Retrieve the id's of all the players in the competition
      */
     public function getPlayers(){
-
+        $data = $this->db->select('svn_comp_deelname', '*', array('comp_id' => $this->id));
+        return $data;
     }
 
     /**

@@ -13,10 +13,20 @@ class rounds
 {
     private $conn;
 
-    function __construct(){
-        require_once 'database.php';
-        $db = new \database();
-        $this->conn = $db->connect();
+    public function __construct($id = null){
+        $this->id = $id;
+        //echo __DIR__;
+
+        require_once __DIR__ . '../../../vendor/medoo.min.php';
+        require_once __DIR__ . '../../settings.php';
+
+        $this->db = new \medoo(array(
+                'database_type' => \svn\settings::dbType,
+                'database_name' => \svn\settings::dbName,
+                'server' => \svn\settings::server,
+                'username' => \svn\settings::dbUsername,
+                'password' => \svn\settings::dbPassword)
+        );
     }
 
     /**
@@ -26,18 +36,9 @@ class rounds
      * Query the existing round + providing details
      * @return array
      */
-    public function getRounds($competitionId, $roundId = null){
-        $query = $this->conn->prepare("SELECT * FROM svn_rounds WHERE comp_id = ?".($roundId ? " AND round_id = ?" : ""));
-        if(!$roundId)
-            $query->bind_param("i", $competitionId);
-        else
-            $query->bind_param("ii", $competitionId, $roundId);
-
-        $query->execute();
-
-        $rounds = $query->fetch_assoc();
-
-        return $rounds;
+    public function getRounds($competitionId){
+        $data = $this->db->select('svn_rounds', '*', array('comp_id' => $competitionId));
+        return $data;
     }
 
     /**
