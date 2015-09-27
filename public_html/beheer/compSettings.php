@@ -2,7 +2,7 @@
     //WEBSITE STARTUP
     include_once('../../includes/class.init.php');
     $init = new init(1,0,0);
-    include_once('../../includes/class.competition.php');
+    include_once('../../includes/competition.php');
     include_once('../../includes/class.swiss.php');
     include_once('../../includes/class.player.php');
     //require_once('../../includes/class.data.php');
