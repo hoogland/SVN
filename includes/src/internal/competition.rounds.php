@@ -9,9 +9,10 @@
 namespace svn\competition;
 
 
-class rounds
+class round
 {
-    private $conn;
+    var $id;
+    var $db;
 
     public function __construct($id = null){
         $this->id = $id;
@@ -43,32 +44,40 @@ class rounds
 
     /**
      * @param $competitionId
-     * @param $roundData
+     * @param $roundData Array(compId, round, date)
      *
      * Create a new round
      */
-    public function createRound($competitionId, $roundData){
-
-
-
+    public function createRound($roundData){
+        $data = $this->db->insert('svn_rounds', $roundData);
+        return $data;
     }
 
     /**
      * @param $roundId
-     * @param $data
+     * @param $roundData Array(roundId, round, date)
      *
      * Update existing round
      */
-    public function updateRound($roundId, $data){
-
+    public function updateRound($roundData){
+        if($this->id) {
+            $data = $this->db->update('svn_rounds', $roundData, array("id" => $this->id));
+            return $data;
+        }
     }
 
-    public function deleteRound($roundId){
-        // Delete games
+    /**
+     * @return bool|int
+     */
+    public function deleteRound(){
+        if($this->id) {
+            // Delete games
 
-        // Delete standing
+            // Delete standing
 
-        // Delete round
-
+            // Delete round
+            $data = $this->db->delete('svn_rounds', array("id" => $this->id));
+            return $data;
+        }
     }
 }

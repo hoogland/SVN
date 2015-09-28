@@ -28,14 +28,14 @@ $api->group('/seasons', function() use ($api){
 });
 
 //COMPETITIONS
-$api->group('/seasons/:seasonId', function($seasonId) use ($api) {
-    $api->get('/competitions', function ($seasonId) {
+$api->group('/seasons/:seasonId/competitions', function($seasonId) use ($api) {
+    $api->get('', function ($seasonId) {
         require_once '../../../includes/src/season.php';
         //get all competitions of a season
         $season = new \svn\season($seasonId);
          echo  json_encode($season->getCompetitions());
     });
-    $api->get('/competitions/:competitionId', function ($seasonId, $competitionId) {
+    $api->get('/:competitionId', function ($seasonId, $competitionId) {
         //get all rounds
         echo $seasonId." ".$competitionId;
 
@@ -58,17 +58,21 @@ $api->group('/seasons/:seasonId', function($seasonId) use ($api) {
 
 
 //ROUNDS
-$api->group('/seasons/:seasonId/competitions/:competitionId', function($seasonId, $competitionId) use ($api) {
+$api->group('/seasons/:seasonId/competitions/:competitionId/rounds', function($seasonId, $competitionId) use ($api) {
     require_once '../../../includes/src/internal/competition.rounds.php';
-    $api->get('/rounds', function ($seasonId, $competitionId) {
+    $api->get('', function ($seasonId, $competitionId) {
         //get all rounds
-        $rounds = new \svn\competition\rounds();
+        $rounds = new \svn\competition\round();
         echo  json_encode($rounds->getRounds($competitionId));
     });
-    $api->get('/rounds/:roundId', function ($seasonId, $competitionId, $roundId) {
+    $api->get('/:roundId', function ($seasonId, $competitionId, $roundId) {
         //get round details
         echo $seasonId." ".$competitionId." ".$roundId;
 
+    });
+    $api->delete('/:roundId', function ($seasonId, $competitionId, $roundId) {
+        $round = new \svn\competition\round($roundId);
+        echo $round->deleteRound();
     });
 });
 
