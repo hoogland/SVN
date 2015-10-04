@@ -8,7 +8,8 @@
  */
 
 namespace svn\competition;
-error_reporting(E_ALL|E_STRICT);
+error_reporting(E_ALL | E_STRICT);
+
 class competition
 {
     var $id;
@@ -17,7 +18,8 @@ class competition
     /**
      * @param $id
      */
-    public function __construct($id = null){
+    public function __construct($id = null)
+    {
         $this->id = $id;
         //echo __DIR__;
 
@@ -25,11 +27,11 @@ class competition
         require_once __DIR__ . '../../settings.php';
 
         $this->db = new \medoo(array(
-                  'database_type' => \svn\settings::dbType,
-                  'database_name' => \svn\settings::dbName,
-                  'server' => \svn\settings::server,
-                  'username' => \svn\settings::dbUsername,
-                  'password' => \svn\settings::dbPassword)
+                'database_type' => \svn\settings::dbType,
+                'database_name' => \svn\settings::dbName,
+                'server' => \svn\settings::server,
+                'username' => \svn\settings::dbUsername,
+                'password' => \svn\settings::dbPassword)
         );
     }
 
@@ -38,8 +40,9 @@ class competition
      *
      * Updates the competition settings/information
      */
-    public function update($data){
-        if(array_key_exists('options'))
+    public function update($data)
+    {
+        if (array_key_exists('options'))
             $this->updateOptions($data['options']);
     }
 
@@ -48,7 +51,8 @@ class competition
      *
      * Updates the options of a competition
      */
-    private function updateOptions($options){
+    private function updateOptions($options)
+    {
 
     }
 
@@ -56,20 +60,65 @@ class competition
      * Games section
      */
 
-    public function getGames($round = null){
-
+    /**
+     * @param null $round
+     * @return array|bool
+     *
+     * Get the games of a competition / round
+     */
+    public function getGames($round = null)
+    {
+        if ($round) {
+            $data = $this->db->select('svn_partijen', '*', array('round_id' => (int)$round));
+            return $data;
+        }
     }
 
-    public function createGame($round, $data){
+    /**
+     * @param $round
+     * @param $data  array{competition, round, speler_wit, speler_zwart}
+     *
+     */
+    public function createGame($competition, $round, $player_white, $player_black)
+    {
+        // Get ratings for players
+        $rating = $this->db->select("svn_rating", "rating", ["AND" => ["speler_id" => $player_white->id, "datum[<=]" => $round->date], "ORDER" => ["datum DESC"], "LIMIT" => [0, 1]]);
+        $player_white->rating = $rating[0];
+        $rating = $this->db->select("svn_rating", "rating", ["AND" => ["speler_id" => $player_black->id, "datum[<=]" => $round->date], "ORDER" => ["datum DESC"], "LIMIT" => [0, 1]]);
+        $player_black->rating = $rating[0];
 
+        //Insert game
+        $this->db->insert("svn_partijen", ['speler_wit' => $player_white->id, 'rating_wit' => $player_white->rating, 'speler_zwart' => $player_black->id, 'rating_zwart' => $player_black->rating, 'tempo' => $competition->stand_tempo, 'comp_id' => $competition->id, 'datum' => $round->date, 'ronde' => $round->round, 'round_id' => $round->id]);
+        //echo $this->db->last_query();
+        //Return games
+        return $this->getGames($round->id);
     }
 
-    public function updateGame($gameId, $data){
-
+    /**
+     * @param $gameId
+     * @param $data array(player_white, player
+     * @return bool|int
+     *
+     * Updates an existing game. All data should be given
+     */
+    public function updateGame($gameId, $data)
+    {
+        if ($gameId) {
+            $data = $this->db->update('svn_partijen', $data, array('id' => $gameId));
+            return $data;
+        }
     }
 
-    public function deleteGame($gameId){
-
+    /**
+     * @param $gameId
+     * @return bool|int
+     *
+     * Deleting a game
+     */
+    public function deleteGame($gameId)
+    {
+        $data = $this->db->delete('svn_partijen', array('id' => $gameId));
+        return $data;
     }
 
 
@@ -77,20 +126,24 @@ class competition
      * Standings section
      */
 
-    public function getStanding($round = null){
+    public function getStanding($round = null)
+    {
 
     }
 
-    public function createStanding($round){
+    public function createStanding($round)
+    {
 
     }
 
-    public function updateStanding($round){
+    public function updateStanding($round)
+    {
         //Delete standing
         $this->deleteStanding($round);
     }
 
-    public function deleteStanding($round){
+    public function deleteStanding($round)
+    {
 
     }
 
@@ -105,15 +158,17 @@ class competition
     /**
      * Retrieve the id's of all the players in the competition
      */
-    public function getPlayers(){
-        $data = $this->db->select('svn_comp_deelname', '*', array('comp_id' => $this->id));
+    public function getPlayers()
+    {
+        $data = $this->db->select('svn_comp_deelname', array('[>]svn_leden' => ['speler_id' => 'id']), '*', array('comp_id' => $this->id));
         return $data;
     }
 
     /**
      * @param $playerId
      */
-    public function addPlayer($playerId){
+    public function addPlayer($playerId)
+    {
 
     }
 
@@ -122,7 +177,8 @@ class competition
      *
      * Removes player from the competition
      */
-    public function deletePlayer($playerId){
+    public function deletePlayer($playerId)
+    {
         // Remove games
 
         // Remove byes
@@ -136,7 +192,8 @@ class competition
      *
      * Function to save the initial sorting of the players
      */
-    public function updateSorting($sorting){
+    public function updateSorting($sorting)
+    {
 
     }
 
@@ -153,14 +210,24 @@ class competition
      *
      * Calculate the TPR of a player based on the provided ratings
      */
-    public function calculateTPR($method, $damped = null, $opponents){
+    public function calculateTPR($method, $damped = null, $opponents)
+    {
         $tpr = null;
-        switch($method){
-            case "offsetTPR":        $tpr = $this->getOffsetTPR($damped, $opponents);break;
-            case "adjustmentTPR":    $tpr = $this->getAdjustmentTPR($damped, $opponents);break;
-            case "hooglandTPR":      $tpr = $this->getHooglandTPR($damped, $opponents);break;
-            case "svnTPR":           $tpr = $this->getSvnTPR($damped, $opponents);break;
-            default:                 $tpr = $this->getOffsetTPR($damped, $opponents);
+        switch ($method) {
+            case 'offsetTPR':
+                $tpr = $this->getOffsetTPR($damped, $opponents);
+                break;
+            case 'adjustmentTPR':
+                $tpr = $this->getAdjustmentTPR($damped, $opponents);
+                break;
+            case 'hooglandTPR':
+                $tpr = $this->getHooglandTPR($damped, $opponents);
+                break;
+            case 'svnTPR':
+                $tpr = $this->getSvnTPR($damped, $opponents);
+                break;
+            default:
+                $tpr = $this->getOffsetTPR($damped, $opponents);
         }
         return $tpr;
     }
@@ -172,7 +239,8 @@ class competition
      *
      * Returns the
      */
-    private function getOffsetTPR($damped, $opponents){
+    private function getOffsetTPR($damped, $opponents)
+    {
         $tpr = null;
 
 
@@ -184,7 +252,8 @@ class competition
      * @param $opponents
      * @return null
      */
-    private function getAdjustmentTPR($damped, $opponents){
+    private function getAdjustmentTPR($damped, $opponents)
+    {
         $tpr = null;
 
         return $tpr;

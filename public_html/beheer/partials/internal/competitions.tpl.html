@@ -1,0 +1,8 @@
+<h1>Competities</h1>
+
+<table class="table">
+    <thead>
+        <tr><th>Naam</th><th>Tempo</th></tr>
+    </thead>
+    <tr ng-repeat="competition in competitions | orderBy: '-stand_tempo'"><td>{{competition.naam}}</td><td>{{competition.speeltempo}}</td></tr>
+</table>

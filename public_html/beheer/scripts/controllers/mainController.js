@@ -4,18 +4,24 @@
 (function(){
     'use strict'
 
-    angular.module('svnBeheer')
+    angular.module('app')
         .controller('mainController', mainController);
 
-    mainController.$inject = ['$scope', '$stateParams', '$mdSidenav', '$state', '$rootScope'];
+    mainController.$inject = ['$scope', '$stateParams', '$state', '$rootScope', 'SeasonsService', 'CompetitionService'];
 
-    function mainController($scope, $stateParams, $mdSidenav, $state, $rootScope) {
+    function mainController($scope, $stateParams, $state, $rootScope, SeasonsService, CompetitionService) {
         var vm = this;
 
-
-        $scope.toggleSidenav = function(menuId) {
-            $mdSidenav(menuId).toggle();
+        $scope.getSeasons = function(){
+            $scope.seasons = SeasonsService.querySeasons();
         };
+
+        $scope.getCompetitions = function(){
+            $scope.competitions = CompetitionService.queryCompetitions({season : $scope.seasonSelect.id});
+        }
+
+
+        $scope.getSeasons();
 
 
     }

@@ -1,0 +1,47 @@
+#seasonView .tile {
+  text-align: center; }
+
+#content #round {
+  width: 20%;
+  margin-top: -50px;
+  float: right; }
+  #content #round select {
+    width: 80%; }
+#content #addMatch {
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #020731; }
+#content input[type=checkbox] {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none; }
+
+body {
+  overflow-y: scroll; }
+
+#navBar {
+  width: 100%;
+  position: fixed;
+  padding: 10px;
+  border-bottom: 3px solid #020731;
+  z-index: 100;
+  background-color: inherit; }
+  #navBar #brand {
+    font-size: 32px;
+    color: #020731; }
+
+#content {
+  padding-top: 60px; }
+
+.form-control, .btn {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px; }
+
+.btn:hover {
+  -webkit-box-shadow: 0px 1px 4px 0 rgba(0, 0, 0, 0.37);
+  -moz-box-shadow: 0px 1px 4px 0 rgba(0, 0, 0, 0.37);
+  box-shadow: 0px 2px 1px 0 rgba(0, 0, 0, 0.37); }
+
+/*# sourceMappingURL=main.css.map */
