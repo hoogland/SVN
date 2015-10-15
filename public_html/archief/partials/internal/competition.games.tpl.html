@@ -1,0 +1,29 @@
+<table class="table" ng-init="getRoundMatches(state.competitionId, state.roundId);">
+    <thead>
+    <tr>
+        <th>Witspeler</th>
+        <th></th>
+        <th>Zwartspeler</th>
+        <th>Uitslag</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+
+    </tr>
+    <tr ng-repeat="match in matches">
+        <td><a ui-sref="internal.competition.player({playerId:match.speler_wit})">{{participants[match.speler_wit].voornaam + ' '+
+            participants[match.speler_wit].tussenvoegsel + ' '+ participants[match.speler_wit].achternaam}}</a> ({{match.rating_wit}})</td>
+
+        <td>-</td>
+        <td><a ui-sref="internal.competition.player({playerId:match.speler_zwart})">{{participants[match.speler_zwart].voornaam + ' '+
+            participants[match.speler_zwart].tussenvoegsel + ' '+ participants[match.speler_zwart].achternaam}}</a> ({{match.rating_zwart}})</td>
+
+        <td>
+            <span ng-if="match.uitslag == 1">1-0</span>
+            <span ng-if="match.uitslag == 2">&frac12;-&frac12;</span>
+            <span ng-if="match.uitslag == 3">0-1</span>
+        </td>
+    </tr>
+    </tbody>
+</table>

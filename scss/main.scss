@@ -1,9 +1,17 @@
 @import 'variables';
 @import 'seasons';
 @import 'competition';
+@import 'participants';
+@import 'modal';
+@import 'rounds';
+@import 'settings';
+
 body{
   overflow-y: scroll;
 
+  td{
+    font-size: 10pt;
+  }
 }
 #navBar {
   width: 100%;
@@ -35,4 +43,12 @@ body{
     -moz-box-shadow: 0px 1px 4px 0 rgba(0, 0, 0, 0.37);
     box-shadow: 0px 2px 1px 0 rgba(0, 0, 0, 0.37);
   }
+}
+
+.addBar{
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background-color: rgba($primary-color, 1);
 }

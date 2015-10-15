@@ -16,20 +16,31 @@
                     ng-click="internalCollapsed = !internalCollapsed"><a class="dropdown-toggle" data-toggle="dropdown">Competities
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li ui-sref-active="active"><a ui-sref="internal.overview"><span class="fa fa-list"></span>
-                            Overzicht</a></li>
-                        <li class="disabled"><a href=""><i class="fa fa-plus"></i> Nieuw</a></li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="internal.overview"><span class="fa fa-list"></span> Overzicht</a>
+                        </li>
+                        <li class="disabled">
+                            <a href=""><i class="fa fa-plus"></i> Nieuw</a>
+                        </li>
                         <li class="divider"></li>
-                        <li><a href="compSettings.php?seizoen=&competitie="><span class="fa fa-cog"></span> Instellingen</a>
+                        <li>
+                            <a ui-sref="internal.settings.general({competitionId : competitionSelect.id})"><span class="fa fa-cog"></span> Instellingen</a>
                         </li>
-                        <li><a href="compPlayers.php?seizoen=&competitie="><span class="fa fa-user"></span>
-                            Deelnemers</a></li>
-                        <li><a ui-sref="internal.grouping({competitionId : competitionSelect.id})"><span class="fa fa-compress"></span> Indeling</a>
+                        <li>
+                            <a ui-sref="internal.participants({competitionId : competitionSelect.id})"><span class="fa fa-user"></span> Deelnemers</a>
                         </li>
-                        <li><a href="http://svnieuwerkerk.nl/archief/standen.php?seizoen=&competitie="
-                               target="_blank"><span class="fa fa-list-ol"></span> Standen</a></li>
-                        <li><a href="compReport.php?seizoen=&competitie="><span class="fa fa-file-text-o"></span> Rating
-                            rapportage</a></li>
+                        <li>
+                            <a ui-sref="internal.rounds({competitionId : competitionSelect.id})"><span class="fa fa-refresh"></span> Rondes</a>
+                        </li>
+                        <li>
+                            <a ui-sref="internal.grouping({competitionId : competitionSelect.id})"><span class="fa fa-compress"></span> Indeling</a>
+                        </li>
+                        <li>
+                            <a href="http://svnieuwerkerk.nl/archief/standen.php?seizoen=&competitie=" target="_blank"><span class="fa fa-list-ol"></span> Standen</a>
+                        </li>
+                        <li>
+                            <a href="compReport.php?seizoen=&competitie="><span class="fa fa-file-text-o"></span> Rating rapportage</a>
+                        </li>
                         <li class="divider"></li>
                         <li><a href="compExternal.php?seizoen="><span class="fa fa-road"></span> Extern</a></li>
                     </ul>

@@ -1,0 +1,14 @@
+<div id="settings" ng-init="queryOptions(competitionSelect.id)">
+    <h1>Instellingen - {{competitionSelect.naam}}</h1>
+    <ul class="nav nav-tabs">
+        <li role="presentation" ui-sref-active="active"><a
+                ui-sref="internal.settings.general({competitionId : competitionSelect.id})">Algemeen</a></li>
+        <li role="presentation" ui-sref-active="active"><a
+                ui-sref="internal.settings.scores({competitionId : competitionSelect.id})">Scores</a></li>
+        <li role="presentation" ui-sref-active="active"><a
+                ui-sref="internal.settings.ranking({competitionId : competitionSelect.id})">Rangschikking</a></li>
+        <li role="presentation" ui-sref-active="active"><a
+                ui-sref="internal.settings.display({competitionId : competitionSelect.id})">Weergave</a></li>
+    </ul>
+    <div ui-view></div>
+</div>

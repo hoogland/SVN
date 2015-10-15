@@ -1,0 +1,47 @@
+<div id="participants">
+    <h1>Deelnemers - {{competitionSelect.naam}}</h1>
+    <div class="row addBar" ng-init="queryMembers()">
+        <div class="col-md-8 col-md-push-2">
+            <div class="row">
+                <div class="col-md-10">
+                    <ui-select ng-model="$parent.newPlayer" theme="bootstrap">
+                        <ui-select-match placeholder="Nieuwe deelnemer">{{$select.selected.voornaam}} {{$select.selected.tussenvoegsel}} {{$select.selected.achternaam}}</ui-select-match>
+                        <ui-select-choices repeat="member in members | filter: $select.search | orderBy: 'voornaam'">
+                            <span ng-bind-html="member.voornaam + ' ' + member.tussenvoegsel + ' ' + member.achternaam | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary" ng-click="createParticipant(competitionSelect.id, newPlayer, participants.length + 1)">Toevoegen</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-push-2 th">
+            <div class="col-md-5">Speler</div>
+            <div class="col-md-4">Subgroep</div>
+            <div class="col-md-2">Jeugdtempo</div>
+        </div>
+    </div>
+    <div class="row">
+        <ul class="col-md-8 col-md-push-2">
+            <li ng-repeat="participant in participants | orderBy: 'plaats'">
+                <div class="col-md-5"><span class="move">{{$index + 1}}</span> {{participant.voornaam}}
+                    {{participant.tussenvoegsel}} {{participant.achternaam}}
+                </div>
+                <div class="col-md-4">
+                    <input type="text" ng-model="participant.sub" class="form-control" ng-change="updateParticipant(competitionSelect.id, participant)">
+                </div>
+                <div class="col-md-2">
+                    <input type="checkbox" ng-model="participant.jeugdtempo" ng-true-value="1" ng-false-value="0" ng-change="updateParticipant(competitionSelect.id, participant)"
+                           class="form-control">
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-danger" ng-click="deleteParticipant(competitionSelect.id, participant)"><i class="fa fa-trash"></i></button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

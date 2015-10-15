@@ -1,0 +1,9 @@
+<div id="competitions">
+    <h1>Competities</h1>
+    Klik op een competitie om de stand weer te geven
+    <div class="row">
+        <div class="col-md-2 season" ng-repeat="competition in competitions | orderBy : '-naam'"><a
+                ui-sref="internal.competition.round.standing({seasonId : seasonSelect.id, competitionId:competition.id})">{{competition.naam}}</a>
+        </div>
+    </div>
+</div>

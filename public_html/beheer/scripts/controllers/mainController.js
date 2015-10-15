@@ -7,21 +7,33 @@
     angular.module('app')
         .controller('mainController', mainController);
 
-    mainController.$inject = ['$scope', '$stateParams', '$state', '$rootScope', 'SeasonsService', 'CompetitionService'];
+    mainController.$inject = ['$scope', '$stateParams', '$state', '$rootScope', 'SeasonsService', 'CompetitionService', 'genericDataService'];
 
-    function mainController($scope, $stateParams, $state, $rootScope, SeasonsService, CompetitionService) {
-        var vm = this;
+    function mainController($scope, $stateParams, $state, $rootScope, SeasonsService, CompetitionService, genericDataService) {
 
         $scope.getSeasons = function(){
             $scope.seasons = SeasonsService.querySeasons();
         };
 
+        $scope.queryMembers = function(){
+            $scope.members = genericDataService.queryMembers();
+        };
+
         $scope.getCompetitions = function(){
             $scope.competitions = CompetitionService.queryCompetitions({season : $scope.seasonSelect.id});
-        }
+        };
+
+        $scope.getByeTypes = function(){
+            $scope.byeTypes = genericDataService.queryByeTypes();
+        };
+
+        $scope.getColumns = function(compType){
+            $scope.availableColumns = genericDataService.queryColumns(compType);
+        };
 
 
         $scope.getSeasons();
+        $scope.getByeTypes();
 
 
     }

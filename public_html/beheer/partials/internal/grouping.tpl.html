@@ -3,10 +3,12 @@
     <select  class="form-control pull-left"
             ng-init="getRounds(competitionSelect.id)"
             ng-model="roundSelect"
-            ng-options="round.round for round in rounds | orderBy: 'round' track by round.id ">
+            ng-options="round.round for round in rounds | orderBy: 'round' track by round.id "
+            ng-change="editRound(roundSelect.id)">
         <option style="display:none" value="">Selecteer een ronde</option>
     </select>
-    <button class="btn btn-success pull-right"><i class="fa fa-plus"></i></button>
+    <button class="btn btn-success pull-right" ng-click="openRoundsModal()"><i class="fa fa-plus"></i></button>
 </div>
 
-<div ui-view></div>
+<div ui-view="matches"></div>
+<div ui-view="byes"></div>

@@ -4,7 +4,7 @@
 
 angular
     .module('app')
-    .controller('MatchCtrl', function ($scope, MatchService) {
+    .controller('MatchCtrl', function ($scope, MatchService, CompetitionService) {
         //Get all matches of a round
         $scope.getRoundMatches = function (roundId) {
             $scope.matches = MatchService.queryRoundMatches(roundId);
@@ -20,14 +20,22 @@ angular
         };
 
         //Updates an existing match
-        $scope.updateMatch = function (match) {
-            console.log(MatchService.updateMatch(match));
+        $scope.updateMatch = function (match, update) {
+            MatchService.updateMatch(match).$promise.then(function(){
+                if(update){
+                    CompetitionService.saveStanding(match.comp_id, match.ronde).$promise.then(function(){
+                        console.log("competitie opgeslagen");
+                    })};
+            })
         };
 
         //Deletes an existing match
         $scope.deleteMatch = function (match) {
             console.log(MatchService.deleteMatch(match));
             $scope.matches.splice($scope.matches.indexOf(match),1);
+            CompetitionService.saveStanding(match.comp_id, match.ronde).$promise.then(function(){
+                console.log("competitie opgeslagen");
+            })
         };
 
 

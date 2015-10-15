@@ -15,11 +15,23 @@ angular
                     url: '/API/v1/index.php/rounds/:round/matches',
                     isArray: true
                 },
+                queryCompRound: {
+                    url: '/API/v1/index.php/competitions/:competition/rounds/:round/matches',
+                    isArray: true
+                },
                 save:{
                     method: 'PUT'
                 },
                 create:{
                     method: 'POST',
+                    isArray: true
+                },
+                getPlayerGames:{
+                    url: '/API/v1/index.php/competitions/:competition/players/:player/matches',
+                    isArray: true
+                },
+                getPlayerByes:{
+                    url: '/API/v1/index.php/competitions/:competition/players/:player/byes',
                     isArray: true
                 }
             });
@@ -27,6 +39,13 @@ angular
         return {
             queryRoundMatches: function(round) {
                 return Match.query({round : round}, function(successResult) {
+                    return successResult;
+                }, function(errorResult) {
+                    console.log(errorResult);
+                });
+            },
+            queryCompRoundMatches: function(competition, round) {
+                return Match.queryCompRound({competition : competition,round : round}, function(successResult) {
                     return successResult;
                 }, function(errorResult) {
                     console.log(errorResult);
@@ -55,6 +74,20 @@ angular
                 }, function(errorResult) {
                     console.log(errorResult);
                 });
-            }
+            },
+            getPlayerMatches: function(competition, player){
+                return Match.getPlayerGames({competition: competition,player: player}, function (successResult) {
+                    return successResult;
+                }, function (errorResult) {
+                    console.log(errorResult);
+                });
+            },
+            getPlayerByes: function(competition, player){
+                return Match.getPlayerByes({competition: competition,player: player}, function (successResult) {
+                    return successResult;
+                }, function (errorResult) {
+                    console.log(errorResult);
+                });
+            },
         }
     });
