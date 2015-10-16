@@ -10,6 +10,10 @@
     mainController.$inject = ['$scope', '$state', '$filter', '$rootScope', 'SeasonsService', 'CompetitionService', 'genericDataService'];
 
     function mainController($scope, $state, $filter, $rootScope, SeasonsService, CompetitionService, genericDataService) {
+        var getConfig = function(){
+            $scope.config = genericDataService.queryConfig();
+        };
+        getConfig();
 
         $scope.setState = function (state) {
             $scope.state = state;

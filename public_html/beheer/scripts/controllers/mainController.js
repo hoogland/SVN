@@ -11,6 +11,10 @@
 
     function mainController($scope, $stateParams, $state, $rootScope, SeasonsService, CompetitionService, genericDataService) {
 
+        var getConfig = function(){
+            $scope.config = genericDataService.queryConfig();
+        };
+
         $scope.getSeasons = function(){
             $scope.seasons = SeasonsService.querySeasons();
         };
@@ -32,6 +36,7 @@
         };
 
 
+        getConfig();
         $scope.getSeasons();
         $scope.getByeTypes();
 

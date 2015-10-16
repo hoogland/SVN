@@ -11,10 +11,19 @@ require '../../../includes/vendor/Slim/Slim.php';
 \Slim\Slim::registerAutoloader();
 $api = new \Slim\Slim();
 
+//Configuration
+$api->group('/data/config', function() use ($api){
+    $api->get('', function(){
+        require_once '../../../includes/src/generic.php';
+        $data = new \svn\generic();
+        echo  json_encode($data->getConfig(), JSON_NUMERIC_CHECK);
+    });
+});
+
 //Bye Types
 $api->group('/data/byeTypes', function() use ($api){
-    require_once '../../../includes/src/generic.php';
     $api->get('', function(){
+        require_once '../../../includes/src/generic.php';
         $data = new \svn\generic();
         echo  json_encode($data->getByeTypes(), JSON_NUMERIC_CHECK);
     });
@@ -22,8 +31,8 @@ $api->group('/data/byeTypes', function() use ($api){
 
 //Bye Types
 $api->group('/data/columns/:columnType', function($columnType) use ($api){
-    require_once '../../../includes/src/generic.php';
     $api->get('', function($columnType){
+        require_once '../../../includes/src/generic.php';
         $data = new \svn\generic();
         echo  json_encode($data->getCompFields($columnType), JSON_NUMERIC_CHECK);
     });
@@ -43,9 +52,9 @@ $api->group('/members', function() use ($api){
 
 //SEASONS
 $api->group('/seasons', function() use ($api){
-    require_once '../../../includes/src/generic.php';
     $api->get('', function(){
-       //get all seasons
+        require_once '../../../includes/src/generic.php';
+        //get all seasons
         $season = new \svn\generic();
         echo  json_encode($season->getSeasons(), JSON_NUMERIC_CHECK);
 

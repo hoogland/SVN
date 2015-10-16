@@ -11,6 +11,10 @@ angular
         var API_PATH = '/API/v1/index.php/';
 
         var data = $resource(API_PATH, null,            {
+            config: {
+                url: '/API/v1/index.php/data/config',
+                isArray: false
+            },
             members: {
                 url: '/API/v1/index.php/members',
                 isArray: true
@@ -26,14 +30,21 @@ angular
         });
 
         return {
-            queryMembers: function(season) {
+            queryConfig: function() {
+                return data.config(null, function(successResult) {
+                    return successResult;
+                }, function(errorResult) {
+                    console.log(errorResult);
+                });
+            },
+            queryMembers: function() {
                 return data.members(null, function(successResult) {
                     return successResult;
                 }, function(errorResult) {
                     console.log(errorResult);
                 });
             },
-            queryByeTypes: function(season) {
+            queryByeTypes: function() {
                 return data.byeTypes(null, function(successResult) {
                     return successResult;
                 }, function(errorResult) {

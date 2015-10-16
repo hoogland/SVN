@@ -33,6 +33,22 @@ class generic
         );
     }
 
+
+    /**
+     * @return array
+     *
+     * Gets the public configuration for the website
+     */
+    public function getConfig()
+    {
+        $data = array(
+            "vereniging" => \svn\settings::vereniging ,
+            "analyticsUA" => \svn\settings::AnalyticsUA ,
+            "teamName" => \svn\settings::teamName ,
+        );
+        return $data;
+    }
+
     /**
      * @return array|bool
      * Get all members of club
