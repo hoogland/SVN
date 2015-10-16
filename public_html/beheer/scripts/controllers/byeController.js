@@ -4,7 +4,7 @@
 
 angular
     .module('app')
-    .controller('ByeCtrl', function ($scope, ByeService) {
+    .controller('ByeCtrl', function ($scope, ByeService, CompetitionService) {
         //Get all byes of a round
         $scope.getRoundByes = function (roundId) {
             $scope.byes = ByeService.queryRoundByes(roundId);
@@ -12,11 +12,15 @@ angular
 
         //Creates a new bye
         $scope.createBye = function (newBye){
-            $scope.byes = ByeService.createBye($scope.roundSelect, newBye.player, newBye.bye);
-
-            //Clear the selected players
-            $scope.newBye.player = undefined;
-            $scope.newBye.bye = undefined
+            ByeService.createBye($scope.roundSelect, newBye.player, newBye.bye).$promise.then(function(value){
+                $scope.byes = value;
+                //Save the standing
+                CompetitionService.saveStanding($scope.competitionSelect.id, $scope.roundSelect.round).$promise.then(function(){
+                });
+                //Clear the selected players
+                $scope.newBye.player = undefined;
+                $scope.newBye.bye = undefined
+            });
         };
 
         //Updates an existing bye
@@ -26,8 +30,13 @@ angular
 
         //Deletes an existing bye
         $scope.deleteBye = function (bye) {
-            console.log(ByeService.deleteBye(bye));
-            $scope.byes.splice($scope.byes.indexOf(bye),1);
+            ByeService.deleteBye(bye).$promise.then(function(value){
+                CompetitionService.saveStanding($scope.competitionSelect.id, $scope.roundSelect.round).$promise.then(function(){
+                });
+
+                //Remove the bye from dom
+                $scope.byes.splice($scope.byes.indexOf(bye),1);
+            });
         };
 
         //Add watcher to retrieve byes when changing round

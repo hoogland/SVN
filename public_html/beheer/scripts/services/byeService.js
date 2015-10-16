@@ -16,7 +16,8 @@ angular
                     isArray: true
                 },
                 save:{
-                    method: 'PUT'
+                    method: 'PUT',
+                    isArray: true
                 },
                 create:{
                     method: 'POST',
