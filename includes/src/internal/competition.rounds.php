@@ -43,7 +43,7 @@ class round
      */
     public function getRounds($competitionId, $round = false)
     {
-        if ($competitionId && !$round)
+        if ($competitionId && $round === false)
             $data = $this->db->select('svn_rounds', '*', array('comp_id' => $competitionId));
         else
             $data = $this->db->select('svn_rounds', '*', array('id' => $round));

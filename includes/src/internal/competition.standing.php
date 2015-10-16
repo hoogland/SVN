@@ -67,8 +67,17 @@ class standing extends competition
      */
     public function calculateStanding($round, $previousRound)
     {
-        //Get current standing if exists
+        //Get the participants
         $participants = $this->getPlayers();
+        //Get the ratings of the members
+        $roundDetails = $this->roundClass->getRounds($this->id, $this->roundClass->getRoundId($this->id, $round));
+        $ratingDate = $this->db->max("svn_rating", "datum", array("datum[<=]" => $roundDetails[0]["date"]));
+        $participantRatings = array();
+            //Rewrite to usable data
+        foreach($this->db->select("svn_rating", array("speler_id", "rating"), array("datum" => $ratingDate)) as $player)
+            $participantRatings[$player["speler_id"]] = $player["rating"];
+
+        //Get current standing if exists
         if ($round > 1) {
             $this->standing = $this->getStanding($previousRound);
             //Update roundnr
@@ -153,6 +162,8 @@ class standing extends competition
                 $this->standing[$key]["RtO"] = $this->standing[$key]["RtOTotal"] / $this->standing[$key]["Games"];
             if ($this->standing[$key]["Score"] > 0)
                 $this->standing[$key]["Percentage"] = $this->standing[$key]["Score"] / ($this->standing[$key]["Win"] + $this->standing[$key]["Draw"] + $this->standing[$key]["Loss"]);
+            if(array_key_exists($player["player_id"], $participantRatings))
+                $this->standing[$key]["Rating"] = $participantRatings[$player["player_id"]];
         }
 
         //Update Opponent dependant scores
