@@ -15,6 +15,7 @@
             'ngMaterial',   // Angular material https://material.angularjs.org/latest/#/getting-started
             'ui.bootstrap', // https://angular-ui.github.io/bootstrap/#/getting_started
             'ui.select',    // https://github.com/angular-ui/ui-select
+            'ct.ui.router.extras.dsr', //https://github.com/christopherthielen/ui-router-extras
         ])
 
         .config(function ($urlRouterProvider, $stateProvider, $httpProvider) {

@@ -59,6 +59,11 @@ angular
             });
         };
 
+        //Change the round and keeping rest of state intact
+        $scope.changeRound = function(round){
+            $state.go($state.current.name, {roundId: round});
+        };
+
         $scope.setState($state.params);
         $scope.$watch('state.competitionId', function (newValue) {
             if (newValue) {
