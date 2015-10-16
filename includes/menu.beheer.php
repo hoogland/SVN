@@ -28,27 +28,9 @@
                     <li class="disabled"><a href="kampioenen.php"><span class="fa fa-plus"></span> Nieuw</a></li>
                 </ul>
             </li>
-            <li class="dropdown disabled"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Seizoenen<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="externUitslagen.php?seizoen=2010&team=1"><span class="fa fa-list"></span> Overzicht</a></li>
-                    <li class="divider"></li>
-                    <li><a href="externTopscorers.php"><span class="fa fa-plus"></span> Nieuw</a></li>
-                </ul>
-            </li>
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Competities<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li class="disabled"><a href=""><span class="fa fa-list"></span> Overzicht</a></li>
-                    <li class="disabled"><a href=""><span class="fa fa-plus"></span> Nieuw</a></li>
-                    <li class="divider"></li>
-                    <li><a href="compSettings.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>"><span class="fa fa-cog"></span> Instellingen</a></li>
-                    <li><a href="compPlayers.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>"><span class="fa fa-user"></span> Deelnemers</a></li>
-                    <li><a href="compPairing.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>"><span class="fa fa-compress"></span> Indeling</a></li>
-                    <li><a href="<?php echo settings::archive;?>/standen.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>" target="_blank"><span class="fa fa-list-ol"></span> Standen</a></li>
-                    <li><a href="compReport.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>&competitie=<?php echo $init->repository->get_data("competitie");?>"><span class="fa fa-file-text-o"></span> Rating rapportage</a></li>
-                    <li class="divider"></li>
-                    <li><a href="compExternal.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>"><span class="fa fa-road"></span> Extern</a></li>
-                </ul>
-            </li>
+            <li><a href="./#/seasons">Seizoenen</a></li>
+            <li><a href="./#/competitions/overview">Intern</a></li>
+            <li><a href="compExternal.php?seizoen=<?php echo $init->repository->get_data("seizoen");?>">Extern</a></li>
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li class=" disabled"><a href="toolFen.php"><span class="fa fa-puzzle-piece"></span> Gameviewer</a></li>
