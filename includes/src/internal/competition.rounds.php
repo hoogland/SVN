@@ -27,7 +27,9 @@ class round
                 'database_name' => \svn\settings::dbName,
                 'server' => \svn\settings::server,
                 'username' => \svn\settings::dbUsername,
-                'password' => \svn\settings::dbPassword)
+                'password' => \svn\settings::dbPassword,
+                'charset' => 'utf8',
+            )
         );
 
     }

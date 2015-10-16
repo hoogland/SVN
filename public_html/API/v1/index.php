@@ -31,10 +31,11 @@ $api->group('/data/columns/:columnType', function($columnType) use ($api){
 
 //MEMBERS
 $api->group('/members', function() use ($api){
-    require_once '../../../includes/src/generic.php';
     $api->get('', function(){
+        require_once '../../../includes/src/generic.php';
         //get all seasons
         $data = new \svn\generic();
+
         echo  json_encode($data->getMembers(), JSON_NUMERIC_CHECK);
     });
 });
