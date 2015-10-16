@@ -45,6 +45,8 @@ class generic
             "vereniging" => \svn\settings::vereniging ,
             "analyticsUA" => \svn\settings::AnalyticsUA ,
             "teamName" => \svn\settings::teamName ,
+            "externalTeam" => \svn\settings::standardCompetitionExternal ,
+            "externalSeason" => \svn\settings::standardCompetitionExternalSeason ,
         );
         return $data;
     }
