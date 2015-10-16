@@ -10,13 +10,14 @@
         <th>Uitslag</th>
     </tr>
     </thead>
-    <tbody>
-        <tr ng-repeat="match in matches | orderBy : 'ronde'" >
+    <tbody >
+        <tr ng-repeat-start="round in rounds" class="hidden"></tr>
+        <tr ng-repeat="match in matches | filter: {ronde : round.round} | orderBy : 'ronde'" >
             <td><span style="    width: 14px;
     margin-right: 5px;
     display: block;
     float: left;
-    text-align: right;"> {{match.ronde}}</span> - {{match.datum}}</td>
+    text-align: right;"> {{round.round}}</span> - {{round.date}}</td>
             <td><a ui-sref="internal.competition.player({playerId:match.speler_wit})">{{participants[match.speler_wit].voornaam
                 + ' '+
                 participants[match.speler_wit].tussenvoegsel + ' '+ participants[match.speler_wit].achternaam}}</a>
@@ -36,12 +37,17 @@
             </td>
         </tr>
         <tr ng-repeat="bye in byes | filter: {round_id : round.id}">
-            <td>{{round.date}}</td>
+            <td><span style="    width: 14px;
+    margin-right: 5px;
+    display: block;
+    float: left;
+    text-align: right;"> {{round.round}}</span> - {{round.date}}</td>
             <td>{{participants[state.playerId].voornaam + ' '+ participants[state.playerId].tussenvoegsel + ' '+
                 participants[state.playerId].achternaam}}</td>
             <td></td>
             <td>{{byeTypes[bye.bye_id].name}}</td>
             <td></td>
         </tr>
+    <tr ng-repeat-end class="hidden"></tr>
     </tbody>
 </table>

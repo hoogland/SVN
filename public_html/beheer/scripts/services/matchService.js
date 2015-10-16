@@ -33,8 +33,12 @@ angular
                 getPlayerByes:{
                     url: '/API/v1/index.php/competitions/:competition/players/:player/byes',
                     isArray: true
-                }
-            });
+                },
+                queryRoundByes: {
+                    url: '/API/v1/index.php/competitions/:competition/rounds/:round/byes',
+                    isArray: true
+                },
+        });
 
         return {
             queryRoundMatches: function(round) {
@@ -86,6 +90,13 @@ angular
                 return Match.getPlayerByes({competition: competition,player: player}, function (successResult) {
                     return successResult;
                 }, function (errorResult) {
+                    console.log(errorResult);
+                });
+            },
+            queryCompRoundByes: function(competition, round) {
+                return Match.queryRoundByes({competition : competition,round : round}, function(successResult) {
+                    return successResult;
+                }, function(errorResult) {
                     console.log(errorResult);
                 });
             },

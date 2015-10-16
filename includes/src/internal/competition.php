@@ -159,14 +159,20 @@ class competition
     /**
      * @param null $round
      * @param null $playerId
+     * @param null $roundnr
      * @return array|bool Get the byes of a competition / round
      *
      * Get the byes of a competition / round
      */
-    public function getByes($round = null, $playerId = null)
+    public function getByes($round = null, $playerId = null, $roundnr = null)
     {
         if ($round) {
             $data = $this->db->select('svn_bye', '*', array('round_id' => (int)$round));
+            return $data;
+        }
+        if ($roundnr) {
+            $data = $this->db->select("svn_rounds", "id", array("AND" => array("comp_id" => $this->id, "round" => $roundnr)));
+            $data = $this->db->select('svn_bye', '*', array('round_id' => $data[0]));
             return $data;
         }
         if ($playerId) {

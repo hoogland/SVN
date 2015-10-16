@@ -110,6 +110,13 @@ $api->group('/competitions/:competitionId', function($competitionId) use ($api) 
         $competition = new svn\competition\competition($competitionId);
         echo json_encode($competition->getGames(null, $round), JSON_NUMERIC_CHECK);
     });
+    //Get all byes based on roundnr and comeptitionId
+    $api->get('/rounds/:round/byes', function ($competitionId, $round) {
+        require_once '../../../includes/src/internal/competition.php';
+        //get all matches from a round
+        $competition = new svn\competition\competition($competitionId);
+        echo json_encode($competition->getByes(null, null, $round), JSON_NUMERIC_CHECK);
+    });
 
     //Get all matches of a player based on playerId and comeptitionId
     $api->get('/players/:round/matches', function ($competitionId, $player) {

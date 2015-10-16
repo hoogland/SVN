@@ -30,7 +30,11 @@ angular
         $scope.getPlayerMatches = function (competitionId, playerId) {
             $scope.matches = MatchService.getPlayerMatches(competitionId, playerId);
         };
-        //Get all matches of a player
+        //Get all byes of a round
+        $scope.getRoundByes = function (competitionId, round) {
+            $scope.byes = MatchService.queryCompRoundByes(competitionId, round);
+        };
+        //Get all byes of a player
         $scope.getPlayerByes = function (competitionId, playerId) {
             $scope.byes = MatchService.getPlayerByes(competitionId, playerId);
         };

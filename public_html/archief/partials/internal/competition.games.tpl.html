@@ -1,4 +1,5 @@
-<table class="table" ng-init="getRoundMatches(state.competitionId, state.roundId);">
+<h3 ng-if="byes.length > 0">Partijen</h3>
+<table class="table" ng-init="getRoundMatches(state.competitionId, state.roundId);getRoundByes(state.competitionId, state.roundId);">
     <thead>
     <tr>
         <th>Witspeler</th>
@@ -27,3 +28,24 @@
     </tr>
     </tbody>
 </table>
+<div id="byes" ng-if="byes.length > 0">
+    <h3>Afwezigheden</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Speler</th>
+            <th>Reden</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="bye in byes">
+            <td><a ui-sref="internal.competition.player({playerId:bye.user_id})">{{participants[bye.user_id].voornaam}}
+                {{participants[bye.user_id].tussenvoegsel}} {{participants[bye.user_id].achternaam}}</a>
+            </td>
+            <td ng-init="byeType = (byeTypes | filter:{id : bye.bye_id} : true)[0]">{{byeType.name}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
