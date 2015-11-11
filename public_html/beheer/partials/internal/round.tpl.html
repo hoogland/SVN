@@ -35,6 +35,7 @@
         <table class="table" ng-init="getRoundMatches(roundSelect.id)">
             <thead>
             <tr>
+                <th>#</th>
                 <th>Witspeler</th>
                 <th></th>
                 <th>Zwartspeler</th>
@@ -46,6 +47,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="match in matches">
+                <td>{{$index + 1}}</td>
                 <td ng-init="white = (participants | filter:{id : match.speler_wit} : true)[0]">{{white.voornaam}}
                     {{white.tussenvoegsel}} {{white.achternaam}} ({{match.rating_wit}})
                 </td>
