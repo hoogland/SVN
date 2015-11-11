@@ -1,5 +1,9 @@
 RewriteEngine On
 
+<Limit GET POST PUT DELETE>
+  Allow from all
+</Limit>
+
 RewriteBase /API/v1
 
 RewriteCond %{REQUEST_FILENAME} !-f

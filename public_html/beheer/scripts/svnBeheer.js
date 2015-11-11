@@ -86,12 +86,18 @@
                     controller: 'CompetitionsCtrl'
                 })
 
-
                 //Seasons
                 .state('seasons', {
                     url: '/seasons',
                     templateUrl: 'views/seasons.html',
                     controller: 'seasonsCtrl'
+                })
+
+                //Management
+                .state('management', {
+                    url: '/beheer',
+                    templateUrl: 'views/management.html',
+                    controller: 'managementCtrl'
                 })
             $urlRouterProvider.otherwise('competitions/overview');
             // $httpProvider.interceptors.push('HttpInterceptorService');

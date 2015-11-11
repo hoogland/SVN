@@ -199,9 +199,15 @@ class standing extends competition
      */
     private function processByes($roundId){
         $byes = $this->getByes($roundId);
-        $byeTypes = array("", "awayClub","awayWithMessage", "awayNoMessage", "awayArbiter", "awayBye");
+        $byeTypes = array("awayNoMessage", "awayWithMessage","awayClub", "awayBye", "awayArbiter");
+        print_r($byes);
+        print_r($byeTypes);
+        print_r($this->competitionOptions);
         if($this->competitionOptions["System"]["value"] == "Keizer"){
             foreach($byes as $bye){
+                echo $this->standing[$this->playerLocation[$bye["user_id"]]]["Value"] * $this->competitionOptions[$byeTypes[$bye["bye_id"]]]["value"]." - ";
+                echo $this->standing[$this->playerLocation[$bye["user_id"]]]["Value"]." - ";
+                echo $this->competitionOptions[$byeTypes[$bye["bye_id"]]]["value"]." \r\n ";
                 $this->standing[$this->playerLocation[$bye["user_id"]]]["KeizerTotaal"] += $this->standing[$this->playerLocation[$bye["user_id"]]]["Value"] * $this->competitionOptions[$byeTypes[$bye["bye_id"]]]["value"];
             }
         }
@@ -296,10 +302,10 @@ class standing extends competition
                 , "TPR" => 0
                 , "RtO" => 0
                 , "RtOTotal" => 0
-                , "StartWaarde" => null
-                , "Value" => null
-                , "KeizerTotaal" => null
-                , "KeizerGemiddelde" => null
+                , "StartWaarde" => 0
+                , "Value" => 0
+                , "KeizerTotaal" => 0
+                , "KeizerGemiddelde" => 0
             );
             $this->playerLocation[$player["speler_id"]] = $key;
         }

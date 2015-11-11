@@ -114,9 +114,13 @@ class competition
     {
         // Get ratings for players
         $rating = $this->db->select("svn_rating", "rating", array("AND" => array("speler_id" => $player_white->id, "datum[<=]" => $round->date), "ORDER" => array("datum DESC"), "LIMIT" => array(0, 1)));
-        $player_white->rating = $rating[0];
+        if($rating)
+            $player_white->rating = $rating[0];
+        else    $player_white->rating = "Null";
         $rating = $this->db->select("svn_rating", "rating", array("AND" => array("speler_id" => $player_black->id, "datum[<=]" => $round->date), "ORDER" => array("datum DESC"), "LIMIT" => array(0, 1)));
-        $player_black->rating = $rating[0];
+        if($rating)
+            $player_black->rating = $rating[0];
+        else    $player_black->rating = "Null";
 
         //Insert game
         $this->db->insert("svn_partijen", array('speler_wit' => $player_white->id, 'rating_wit' => $player_white->rating, 'speler_zwart' => $player_black->id, 'rating_zwart' => $player_black->rating, 'tempo' => $competition->stand_tempo, 'comp_id' => $competition->id, 'datum' => $round->date, 'ronde' => $round->round, 'round_id' => $round->id));
