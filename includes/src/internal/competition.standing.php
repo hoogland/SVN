@@ -18,12 +18,15 @@ class standing extends competition
     var $matrixWin;
     var $matrixDraw;
     var $matrixLoss;
+    var $matrixByes;
 
     var $standing;
     var $playerLocation;
     var $roundClass;
     var $roundId;
     var $competitionOptions;
+
+    var $byeTypes = array("awayNoMessage", "awayWithMessage","awayClub", "awayBye", "awayArbiter");
 
     /**
      * @param $round
@@ -54,11 +57,13 @@ class standing extends competition
         }
 
         //Update round (matrices)
-        $this->roundClass->updateRound(array("matrix_score" => serialize($this->matrixScore),
+        $this->roundClass->updateRound(Array(
+            "matrix_score" => serialize($this->matrixScore),
             "matrix_games" => serialize($this->matrixGames),
             "matrix_win" => serialize($this->matrixWin),
             "matrix_draw" => serialize($this->matrixDraw),
-            "matrix_loss" => serialize($this->matrixLoss)));
+            "matrix_loss" => serialize($this->matrixLoss),
+            "matrix_byes" => serialize($this->matrixByes)));
     }
 
     /**
@@ -97,6 +102,7 @@ class standing extends competition
             $this->matrixWin = $roundData[0]["matrix_win"];
             $this->matrixDraw = $roundData[0]["matrix_draw"];
             $this->matrixLoss = $roundData[0]["matrix_loss"];
+            $this->matrixByes = $roundData[0]["matrix_byes"];
         } else
             $this->createInitialData($participants, $round);
 
@@ -129,8 +135,8 @@ class standing extends competition
                     break;
                 }
             }
-            //Keizer score
-            if ($this->competitionOptions["System"]["value"] == "Keizer") {
+            //Keizer score (without revaluation)
+            if ($this->competitionOptions["System"]["value"] == "Keizer" && $this->competitionOptions["KeizerRevaluation"]["value"] == 1) {
                 $this->standing[$this->playerLocation[$game["speler_wit"]]]["KeizerTotaal"] += $this->standing[$this->playerLocation[$game["speler_zwart"]]]["Value"] * (3 - $game["uitslag"]) / 2;
                 $this->standing[$this->playerLocation[$game["speler_zwart"]]]["KeizerTotaal"] += $this->standing[$this->playerLocation[$game["speler_wit"]]]["Value"] * ($game["uitslag"] - 1) / 2;
             }
@@ -182,6 +188,11 @@ class standing extends competition
         if ($this->competitionOptions["System"]["value"] == "Keizerling")
             $this->standing = $this->setKeizerlingScore($this->standing, $this->matrixScore, $this->competitionOptions["KeizerIterations"]["value"]);
 
+        //Update Keizer scores with revaluation
+        if ($this->competitionOptions["System"]["value"] == "Keizer" && $this->competitionOptions["KeizerRevaluation"]["value"] == 2) {
+            $this->standing = $this->setKeizerScore($this->standing, $this->matrixScore,$this->matrixByes);
+        }
+
 
         //Set the final ranking
         $this->standing = $this->setRanking($this->standing);
@@ -199,16 +210,17 @@ class standing extends competition
      */
     private function processByes($roundId){
         $byes = $this->getByes($roundId);
-        $byeTypes = array("awayNoMessage", "awayWithMessage","awayClub", "awayBye", "awayArbiter");
+        foreach($byes as $bye)
+            $this->matrixByes[$bye["user_id"]][$bye["bye_id"]]++;
         print_r($byes);
-        print_r($byeTypes);
+        print_r($this->byeTypes);
         print_r($this->competitionOptions);
         if($this->competitionOptions["System"]["value"] == "Keizer"){
             foreach($byes as $bye){
-                echo $this->standing[$this->playerLocation[$bye["user_id"]]]["Value"] * $this->competitionOptions[$byeTypes[$bye["bye_id"]]]["value"]." - ";
+                echo $this->standing[$this->playerLocation[$bye["user_id"]]]["Value"] * $this->competitionOptions[$this->byeTypes[$bye["bye_id"]]]["value"]." - ";
                 echo $this->standing[$this->playerLocation[$bye["user_id"]]]["Value"]." - ";
-                echo $this->competitionOptions[$byeTypes[$bye["bye_id"]]]["value"]." \r\n ";
-                $this->standing[$this->playerLocation[$bye["user_id"]]]["KeizerTotaal"] += $this->standing[$this->playerLocation[$bye["user_id"]]]["Value"] * $this->competitionOptions[$byeTypes[$bye["bye_id"]]]["value"];
+                echo $this->competitionOptions[$this->byeTypes[$bye["bye_id"]]]["value"]." \r\n ";
+                $this->standing[$this->playerLocation[$bye["user_id"]]]["KeizerTotaal"] += $this->standing[$this->playerLocation[$bye["user_id"]]]["Value"] * $this->competitionOptions[$this->byeTypes[$bye["bye_id"]]]["value"];
             }
         }
     }
@@ -242,6 +254,52 @@ class standing extends competition
 
     /**
      * @param $standing
+     * @return array
+     *
+     * Function to return an array with the values of the players
+     */
+    private function getKeizerValues($standing){
+        $value = array();
+        foreach ($standing as $player)
+            $value[$player["player_id"]] = $player["Value"];
+        return $value;
+    }
+
+    /**
+     * @return array
+     *
+     * Gets a value array of the available bye types
+     */
+    private function getByeValues(){
+        $value = array();
+        foreach ($this->byeTypes as $index => $byeType)
+            $value[$index] = $this->competitionOptions[$byeType]["value"];
+        return $value;
+    }
+
+    private function setKeizerScore($standing, $scoreMatrix, $byeMatrix){
+        //Get current values of player
+        $value[0] = $this->getKeizerValues($standing);
+        //Get current values of byes
+        $byeValues = $this->getByeValues();
+
+        //Calculate total values
+        $score = $this->matrixmult($scoreMatrix, $value);
+
+        //Set Keizer scores
+        foreach ($standing as $key => $player) {
+            $standing[$key]["KeizerTotaal"] = $score[$player["player_id"]][0];
+            if($player["Games"] > 0)
+                $standing[$key]["KeizerGemiddelde"] = $score[$player["player_id"]][0] / $player["Games"];
+            //Add Bye Scores
+            foreach($byeValues as $bye => $byeValue)
+                $standing[$key]["KeizerTotaal"] +=  $byeValue * $value[0][$player["player_id"]] * $byeMatrix[$player["player_id"]][$bye];
+        }
+        return $standing;
+    }
+
+    /**
+     * @param $standing
      * @param $scoreMatrix
      * @param $iterations
      * @return array
@@ -250,9 +308,7 @@ class standing extends competition
      */
     private function setKeizerlingScore($standing, $scoreMatrix, $iterations){
         //Get current values of player
-        $value = array();
-        foreach ($standing as $player)
-            $value[0][$player["player_id"]] = $player["Value"];
+        $value[0] = $this->getKeizerValues($standing);
 
         //Calculate total values
         $score = $this->matrixmult($scoreMatrix, $value);
@@ -311,12 +367,18 @@ class standing extends competition
         }
 
         foreach ($participants as $playerA) {
+            //Generate empty opponent score matrices
             foreach ($participants as $playerB) {
                 $this->matrixGames[$playerA["speler_id"]][$playerB["speler_id"]] = 0;
                 $this->matrixWin[$playerA["speler_id"]][$playerB["speler_id"]] = 0;
                 $this->matrixDraw[$playerA["speler_id"]][$playerB["speler_id"]] = 0;
                 $this->matrixLoss[$playerA["speler_id"]][$playerB["speler_id"]] = 0;
                 $this->matrixScore[$playerA["speler_id"]][$playerB["speler_id"]] = 0;
+            }
+
+            //Generate empty bye matrix
+            foreach($this->byeTypes as $index => $bye){
+                $this->matrixByes[$playerA["speler_id"]][$index] = 0;
             }
         }
     }

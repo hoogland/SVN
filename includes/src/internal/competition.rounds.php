@@ -53,6 +53,7 @@ class round
             $data[$key]["matrix_win"] = unserialize($data[$key]["matrix_win"]);
             $data[$key]["matrix_draw"] = unserialize($data[$key]["matrix_draw"]);
             $data[$key]["matrix_loss"] = unserialize($data[$key]["matrix_loss"]);
+            $data[$key]["matrix_byes"] = unserialize($data[$key]["matrix_byes"]);
         }
         return $data;
     }
