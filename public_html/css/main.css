@@ -17,6 +17,9 @@
 #crosstable td.player {
   min-width: 140px; }
 
+table > tbody > tr.bye > td {
+  color: #999; }
+
 #participants ul {
   list-style-type: none; }
   #participants ul li {

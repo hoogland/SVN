@@ -12,8 +12,9 @@
         <td ng-repeat="displayField in competitionOption.DisplayFields.value.split(',')">
             <a ui-sref="internal.competition.player({playerId:player.player_id})" ng-if="displayField == 'Name'">{{participants[player.player_id].voornaam + ' '+
                 participants[player.player_id].tussenvoegsel + ' '+ participants[player.player_id].achternaam}}</a>
-            {{displayField != 'Name' && displayField != 'Percentage' ? player[displayField] : ''}}
+            {{displayField != 'Name' && displayField != 'Percentage' && displayField.indexOf("Keizer") == -1 ? player[displayField] : '' }}
             {{displayField == 'Percentage' ? (player[displayField] * 100 | number: 0) + '%' : ''  }}
+            {{displayField.indexOf("Keizer") > -1 ? (player[displayField] | number: 1) : ''  }}
 
         </td>
         <td></td>
