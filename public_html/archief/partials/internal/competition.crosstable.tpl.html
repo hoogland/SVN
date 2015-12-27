@@ -18,7 +18,7 @@
         </td>
         <td data-ng-repeat="opponent in standing | filter: standingFilter | orderBy: 'Ranking'"
             ng-class="{black : participant.player_id == opponent.player_id}">
-           {{roundSelect.matrix_score[participant.player_id][opponent.player_id].toString().replace('.5','&frac12;').replace('0','')}}
+           {{roundSelect.matrix_games[participant.player_id][opponent.player_id] != 0 ? roundSelect.matrix_score[participant.player_id][opponent.player_id].toString().replace('0.5','&frac12;').replace('.5','&frac12;') : ""}}
         </td>
     </tr>
     </tbody>
