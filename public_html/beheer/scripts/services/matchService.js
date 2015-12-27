@@ -6,17 +6,16 @@
 
 angular
     .module('app')
-    .factory('MatchService', function($resource) {
+    .factory('MatchService', function($resource, SETTINGS) {
 
-        var API_PATH = '/API/v1/index.php/matches/:matchId';
-
+        var API_PATH = SETTINGS.API_BASEURL + 'matches/:matchId';
         var Match = $resource(API_PATH, null,            {
                 query: {
-                    url: '/API/v1/index.php/rounds/:round/matches',
+                    url: SETTINGS.API_BASEURL + 'rounds/:round/matches',
                     isArray: true
                 },
                 queryCompRound: {
-                    url: '/API/v1/index.php/competitions/:competition/rounds/:round/matches',
+                    url: SETTINGS.API_BASEURL + 'competitions/:competition/rounds/:round/matches',
                     isArray: true
                 },
                 save:{
@@ -27,15 +26,15 @@ angular
                     isArray: true
                 },
                 getPlayerGames:{
-                    url: '/API/v1/index.php/competitions/:competition/players/:player/matches',
+                    url: SETTINGS.API_BASEURL + 'competitions/:competition/players/:player/matches',
                     isArray: true
                 },
                 getPlayerByes:{
-                    url: '/API/v1/index.php/competitions/:competition/players/:player/byes',
+                    url: SETTINGS.API_BASEURL + 'competitions/:competition/players/:player/byes',
                     isArray: true
                 },
                 queryRoundByes: {
-                    url: '/API/v1/index.php/competitions/:competition/rounds/:round/byes',
+                    url: SETTINGS.API_BASEURL + 'competitions/:competition/rounds/:round/byes',
                     isArray: true
                 },
         });

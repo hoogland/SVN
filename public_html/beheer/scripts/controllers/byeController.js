@@ -4,7 +4,7 @@
 
 angular
     .module('app')
-    .controller('ByeCtrl', function ($scope, ByeService, CompetitionService) {
+    .controller('ByeCtrl', function ($scope, ByeService, CompetitionService, MatchService) {
         //Get all byes of a round
         $scope.getRoundByes = function (roundId) {
             $scope.byes = ByeService.queryRoundByes(roundId);
@@ -45,5 +45,25 @@ angular
                 $scope.getRoundByes(newValue.id);
         });
 
-
+        //Mass add Byes
+        $scope.addNonPlayingByes = function(byes, byeTypes, participants){
+            var newBye = {};
+            newBye.bye = byeTypes[0];
+            for(var i = 0; i < participants.length; i++){
+                var player = participants[i];
+                var addBye = true;
+                MatchService.matches.forEach(function(game){
+                    if(game.speler_wit == player.id || game.speler_zwart == player.id)
+                        addBye = false;
+                });
+                byes.forEach(function(bye){
+                    if(bye.user_id == player.id)
+                        addBye = false;
+                });
+                if(addBye){
+                    newBye.player = player;
+                    $scope.createBye(newBye);
+                };
+            };
+        }
     });

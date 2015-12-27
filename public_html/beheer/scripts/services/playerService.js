@@ -6,9 +6,9 @@
 
 angular
     .module('app')
-    .factory('PlayerService', function($resource) {
+    .factory('PlayerService', function($resource, SETTINGS) {
 
-        var API_PATH = '/API/v1/index.php/players/:player';
+        var API_PATH = SETTINGS.API_BASEURL + 'players/:player';
 
         var Round = $resource(API_PATH, null,            {
             save:{

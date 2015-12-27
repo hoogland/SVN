@@ -19,8 +19,10 @@
         ])
 
         .config(function ($urlRouterProvider, $stateProvider, $httpProvider) {
-            $stateProvider
+            //Load config data
 
+
+            $stateProvider
                 //Internal competition
                 .state('internal', {
                     url: '/competitions',

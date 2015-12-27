@@ -6,9 +6,9 @@
 
 angular
     .module('app')
-    .factory('RoundService', function($resource) {
+    .factory('RoundService', function($resource, SETTINGS) {
 
-        var API_PATH = '/API/v1/index.php/competitions/:competition/rounds';
+        var API_PATH = SETTINGS.API_BASEURL + 'competitions/:competition/rounds';
 
         var Round = $resource(API_PATH);
 

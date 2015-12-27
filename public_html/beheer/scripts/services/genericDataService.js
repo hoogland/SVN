@@ -6,25 +6,25 @@
 
 angular
     .module('app')
-    .factory('genericDataService', function($resource) {
+    .factory('genericDataService', function($resource, SETTINGS) {
 
-        var API_PATH = '/API/v1/index.php/';
+        var API_PATH = SETTINGS.API_BASEURL;
 
         var data = $resource(API_PATH, null,            {
             config: {
-                url: '/API/v1/index.php/data/config',
+                url: SETTINGS.API_BASEURL + 'data/config',
                 isArray: false
             },
             members: {
-                url: '/API/v1/index.php/members',
+                url: SETTINGS.API_BASEURL + 'members',
                 isArray: true
             },
             byeTypes:{
-                url: '/API/v1/index.php/data/byeTypes',
+                url: SETTINGS.API_BASEURL + 'data/byeTypes',
                 isArray: true
             },
             columns:{
-                url: '/API/v1/index.php/data/columns/:compType',
+                url: SETTINGS.API_BASEURL + 'data/columns/:compType',
                 isArray: true
             }
         });
@@ -32,6 +32,7 @@ angular
         return {
             queryConfig: function() {
                 return data.config(null, function(successResult) {
+                    console.log(SETTINGS);
                     return successResult;
                 }, function(errorResult) {
                     console.log(errorResult);

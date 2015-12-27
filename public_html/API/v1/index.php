@@ -11,6 +11,12 @@ require '../../../includes/vendor/Slim/Slim.php';
 \Slim\Slim::registerAutoloader();
 $api = new \Slim\Slim();
 
+//UP & RUNNING
+$api->get('/status', function(){
+    echo "Up & Running";
+});
+
+
 //Configuration
 $api->group('/data/config', function() use ($api){
     $api->get('', function(){

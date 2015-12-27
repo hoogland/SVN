@@ -6,49 +6,49 @@
 
 angular
     .module('app')
-    .factory('CompetitionService', function($resource) {
+    .factory('CompetitionService', function($resource, SETTINGS) {
 
-        var API_PATH = '/API/v1/index.php/seasons/:season/competitions';
+        var API_PATH = SETTINGS.API_BASEURL + 'seasons/:season/competitions';
 
         var Competition = $resource(API_PATH, null,            {
             query: {
-                url: '/API/v1/index.php/seasons/:season/competitions',
+                url: SETTINGS.API_BASEURL + 'seasons/:season/competitions',
                 isArray: true
             },
             participants: {
-                url: '/API/v1/index.php/competitions/:competition/participants',
+                url: SETTINGS.API_BASEURL + 'competitions/:competition/participants',
                 isArray: true
             },
             createParticipant: {
-                url: '/API/v1/index.php/competitions/:competition/participants',
+                url: SETTINGS.API_BASEURL + 'competitions/:competition/participants',
                 method: 'POST'
             },
             updateParticipant: {
-                url: '/API/v1/index.php/competitions/:competition/participants/:participantId',
+                url: SETTINGS.API_BASEURL + 'competitions/:competition/participants/:participantId',
                 method: 'PUT'
             },
             deleteParticipant: {
-                url: '/API/v1/index.php/competitions/:competition/participants/:participantId',
+                url: SETTINGS.API_BASEURL + 'competitions/:competition/participants/:participantId',
                 method: "DELETE"
             },
             createOption: {
-                url: '/API/v1/index.php/competitions/:competition/options',
+                url: SETTINGS.API_BASEURL + 'competitions/:competition/options',
                 method: 'POST'
             },
             queryOptions: {
-                url: '/API/v1/index.php/competitions/:competition/options',
+                url: SETTINGS.API_BASEURL + 'competitions/:competition/options',
                 method: 'GET'
             },
             updateOption:{
-                url: '/API/v1/index.php/competitions/:competition/options/:option',
+                url: SETTINGS.API_BASEURL + 'competitions/:competition/options/:option',
                 method: 'PUT'
             },
             getStanding:{
-                url: '/API/v1/index.php/competitions/:competition/standings/:round',
+                url: SETTINGS.API_BASEURL + 'competitions/:competition/standings/:round',
                 isArray: true
             },
             saveStanding:{
-                url: '/API/v1/index.php/competitions/:competition/standings/:round',
+                url: SETTINGS.API_BASEURL + 'competitions/:competition/standings/:round',
                 method: 'PUT',
             }
         });

@@ -8,6 +8,7 @@ angular
         //Get all matches of a round
         $scope.getRoundMatches = function (roundId) {
             $scope.matches = MatchService.queryRoundMatches(roundId);
+            MatchService.matches = $scope.matches;
         };
 
         //Creates a new match

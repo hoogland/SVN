@@ -6,13 +6,13 @@
 
 angular
     .module('app')
-    .factory('ByeService', function($resource) {
+    .factory('ByeService', function($resource, SETTINGS) {
 
-        var API_PATH = '/API/v1/index.php/byes/:byeId';
+        var API_PATH = SETTINGS.API_BASEURL + 'byes/:byeId';
 
         var Bye = $resource(API_PATH, null,            {
                 query: {
-                    url: '/API/v1/index.php/rounds/:round/byes',
+                    url: SETTINGS.API_BASEURL + 'rounds/:round/byes',
                     isArray: true
                 },
                 save:{

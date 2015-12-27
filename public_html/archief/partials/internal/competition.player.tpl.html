@@ -12,7 +12,7 @@
     </thead>
     <tbody >
         <tr ng-repeat-start="round in rounds" class="hidden"></tr>
-        <tr ng-repeat="match in matches | filter: {ronde : round.round} | orderBy : 'ronde'" >
+        <tr ng-repeat="match in matches | filter: {round_id : round.id} | orderBy : 'ronde'" >
             <td><span style="    width: 14px;
     margin-right: 5px;
     display: block;

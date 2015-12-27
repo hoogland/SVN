@@ -6,9 +6,9 @@
 
 angular
     .module('app')
-    .factory('SeasonsService', function($resource) {
+    .factory('SeasonsService', function($resource, SETTINGS) {
 
-        var API_PATH = '/API/v1/index.php/seasons';
+        var API_PATH = SETTINGS.API_BASEURL + 'seasons';
 
         var Seasons = $resource(API_PATH);
 
