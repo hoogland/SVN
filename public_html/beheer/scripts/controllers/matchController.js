@@ -14,7 +14,7 @@ angular
         //Creates a new match
         $scope.createMatch = function (newMatch){
             $scope.matches = MatchService.createMatch($scope.competitionSelect, $scope.roundSelect, newMatch.speler_wit, newMatch.speler_zwart);
-
+            MatchService.matches = $scope.matches;
             //Clear the selected players
             $scope.newMatch.speler_wit = undefined;
             $scope.newMatch.speler_zwart = undefined
@@ -36,11 +36,10 @@ angular
             $scope.matches.splice($scope.matches.indexOf(match),1);
             CompetitionService.saveStanding(match.comp_id, match.ronde).$promise.then(function(){
                 console.log("competitie opgeslagen");
-            })
+            });
+            MatchService.matches = $scope.matches;
         };
 
-
-        console.log('MatchController');
         $scope.$watch('roundSelect', function (newValue) {
             if (newValue)
                 $scope.getRoundMatches(newValue.id);
