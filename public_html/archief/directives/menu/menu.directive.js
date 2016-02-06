@@ -26,7 +26,7 @@
 
     function menuController($scope, $state){
         $scope.changeCompetition = function(seasonId, competitionId){
-            $state.go($state.current.name, {seasonId: seasonId, competitionId: competitionId});
+            $state.go($state.current.name, {seasonId: seasonId, competitionId: competitionId, roundId: ""});
         }
     };
 })();
