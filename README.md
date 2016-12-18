@@ -5,6 +5,7 @@ On http://svnieuwerkerk.nl/archief you can find a live version of the software i
 
 ## Progress board
 https://waffle.io/hoogland/SVN is used to track progress on the issues
+We are making the transision to JIRA: http://svnieuwerkerk.atlassian.net
 
 ## Limitations
 The tool has several limitations at this moment:
