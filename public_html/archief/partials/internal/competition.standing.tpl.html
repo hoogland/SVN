@@ -1,0 +1,23 @@
+<table class="table" ng-init="getStanding(state.competitionId, state.roundId);">
+    <thead>
+    <tr>
+        <th ng-repeat="displayField in competitionOption.DisplayFields.value.split(',')">
+            <span class="visible-md visible-lg">{{availableColumns[displayField].name_long}}</span>
+            <span class="visible-xs visible-sm">{{availableColumns[displayField].name_short}}</span>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="player in standing | filter: standingFilter | orderBy : 'Ranking'">
+        <td ng-repeat="displayField in competitionOption.DisplayFields.value.split(',')">
+            <a ui-sref="internal.competition.player({playerId:player.player_id})" ng-if="displayField == 'Name'">{{participants[player.player_id].voornaam + ' '+
+                participants[player.player_id].tussenvoegsel + ' '+ participants[player.player_id].achternaam}}</a>
+            {{displayField != 'Name' && displayField != 'Percentage' && displayField.indexOf("Keizer") == -1 ? player[displayField] : '' }}
+            {{displayField == 'Percentage' ? (player[displayField] * 100 | number: 0) + '%' : ''  }}
+            {{displayField.indexOf("Keizer") > -1 ? (player[displayField] | number: 1) : ''  }}
+
+        </td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>

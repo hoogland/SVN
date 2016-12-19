@@ -1,0 +1,23 @@
+
+<div class="svnModal" tabindex="0">
+    <div class="dialog" tabindex="0">
+        <div class="commands">
+            <button class="close fa fa-close" ng-click="cancel()"></button>
+        </div>
+        <div class="header">Nieuwe ronde {{competitionSelect.naam}}</div>
+        <div class="body">
+            <p class="input-group">
+            <input type="date" class="form-control" ng-model="roundDate" ng-required="true" placeholder="yyyy-mm-dd" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+        <div class="footer">
+            <div class="buttons">{{roundDate}}
+                <button class="ok" ng-click="createRound(competitionSelect, roundDate)">Opslaan</button>
+                <button class="cancel" ng-click="cancel()">Sluiten</button>
+            </div>
+        </div>
+    </div>
+</div>

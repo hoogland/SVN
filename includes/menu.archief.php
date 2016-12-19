@@ -14,7 +14,7 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
             <li><a href="speler.php">Spelers</a></li>
-            <li><a href="standen.php?seizoen=<?php echo settings::standardCompetitionSeason;?>&competitie=<?php echo settings::standardCompetition;?>">Competities</a></li>
+            <li><a href="/archief/#/intern/seizoen/<?php echo settings::standardCompetitionSeason;?>/competitie/<?php echo settings::standardCompetition;?>/ronde//stand">Competities</a></li>
             <li class="dropdown hidden"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Historie <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="geschiedenis.php">Competitie</a></li>

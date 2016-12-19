@@ -1,0 +1,45 @@
+<div id="competition">
+    <h1>Competitie - {{competitionSelect.naam}}</h1>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <tr>
+                    <td>Competitie</td>
+                    <td>{{competitionSelect.naam}}</td>
+                </tr>
+                <tr>
+                    <td>Tempo</td>
+                    <td>{{competitionSelect.speeltempo}}</td>
+                </tr>
+                <tr>
+                    <td>Paringsysteem</td>
+                    <td>{{competitionOption.System.value}}</td>
+                </tr>
+                <tr>
+                    <td>Plaats</td>
+                    <td>{{competitionSelect.plaats}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2" id="rounds">
+            <h2>Rondes</h2>
+            <ul>
+                <li ng-repeat="round in rounds"><a ng-click="changeRound(round.round)"  ng-class="{active : state.roundId == round.round}">{{round.round}} - {{round.date}}</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-10">
+            <ul class="nav nav-tabs">
+                <li role="presentation" ui-sref-active="active">
+                    <a ui-sref="internal.competition.round.standing">Stand</a></li>
+                <li role="presentation" ui-sref-active="active">
+                    <a ui-sref="internal.competition.round.games">Indeling</a></li>
+                <li role="presentation" ui-sref-active="active">
+                    <a ui-sref="internal.competition.round.crosstable">Kruistabel</a></li>
+            </ul>
+            <div ui-view></div>
+        </div>
+    </div>
+</div>

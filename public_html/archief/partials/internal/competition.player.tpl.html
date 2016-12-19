@@ -1,0 +1,53 @@
+<h2>{{participants[state.playerId].voornaam + ' '+ participants[state.playerId].tussenvoegsel + ' '+
+    participants[state.playerId].achternaam}}</h2>
+<table class="table table-striped" ng-init="getPlayerMatches(state.competitionId, state.playerId);getPlayerByes(state.competitionId, state.playerId);">
+    <thead>
+    <tr>
+        <th>Ronde</th>
+        <th>Witspeler</th>
+        <th></th>
+        <th>Zwartspeler</th>
+        <th>Uitslag</th>
+    </tr>
+    </thead>
+    <tbody >
+        <tr ng-repeat-start="round in rounds" class="hidden"></tr>
+        <tr ng-repeat="match in matches | filter: {round_id : round.id} | orderBy : 'ronde'" >
+            <td><span style="    width: 14px;
+    margin-right: 5px;
+    display: block;
+    float: left;
+    text-align: right;"> {{round.round}}</span> - {{round.date}}</td>
+            <td><a ui-sref="internal.competition.player({playerId:match.speler_wit})">{{participants[match.speler_wit].voornaam
+                + ' '+
+                participants[match.speler_wit].tussenvoegsel + ' '+ participants[match.speler_wit].achternaam}}</a>
+                ({{match.rating_wit}})
+            </td>
+
+            <td>-</td>
+            <td><a ui-sref="internal.competition.player({playerId:match.speler_zwart})">{{participants[match.speler_zwart].voornaam
+                + ' '+
+                participants[match.speler_zwart].tussenvoegsel + ' '+ participants[match.speler_zwart].achternaam}}</a>
+                ({{match.rating_zwart}})
+            </td>
+            <td style="text-align: center" ng-class="match.uitslag == 2 ? '' : (match.uitslag == 1 ? (state.playerId == match.speler_wit ?'success' : 'danger') : (state.playerId == match.speler_zwart ? 'success' : 'danger'))">
+                <span ng-if="match.uitslag == 1">1-0</span>
+                <span ng-if="match.uitslag == 2">&frac12;-&frac12;</span>
+                <span ng-if="match.uitslag == 3">0-1</span>
+            </td>
+        </tr>
+        <tr ng-repeat="bye in byes | filter: {round_id : round.id}" class="bye">
+            <td><span style="    width: 14px;
+    margin-right: 5px;
+    display: block;
+    float: left;
+    text-align: right;"> {{round.round}}</span> - {{round.date}}</td>
+            <td>{{participants[state.playerId].voornaam + ' '+ participants[state.playerId].tussenvoegsel + ' '+
+                participants[state.playerId].achternaam}}</td>
+            <td></td>
+            <td>{{byeTypes[bye.bye_id].name}}</td>
+            <td></td>
+        </tr>
+    <tr ng-repeat-end class="hidden"></tr>
+    </tbody>
+</table>

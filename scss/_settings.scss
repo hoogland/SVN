@@ -1,0 +1,47 @@
+#settings{
+  .nav.nav-tabs{
+    margin-bottom: 20px;
+  }
+
+  /* Styles go here */
+  .ranking {
+    ul{
+      padding:0px;
+      min-height:400px;
+      min-width:40%;
+
+      &active, &focus{
+        border:none;
+      }
+    }
+
+    .app {
+      width: 100%;
+      min-height:42px;
+      margin-bottom:3px;
+      border: 1px solid #000;
+      list-style: none;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      &:hover{
+        cursor: move;
+      }
+      div{
+        padding:10px;
+      }
+    }
+
+    .as-sortable-placeholder {
+      border: 1px dotted #0000ff !important;
+    }
+
+    #sortable-container {
+      display: inline-block;
+    }
+
+    .column {
+      border: 1px solid #000000;
+    }
+  }
+}

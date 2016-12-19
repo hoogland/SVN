@@ -1,7 +1,7 @@
 <?php
     //WEBSITE STARTUP
     include_once('../../includes/class.settings.php');
-    include_once('../../includes/class.competition.php');
+    include_once('../../includes/competition.php');
     include_once('../../includes/class.swiss.php');
     include_once('../../includes/class.player.php');
 

@@ -1,0 +1,80 @@
+<div class="row" ng-show="roundSelect.id">
+    <div class="col-md-12">
+        <h2>Partijen</h2>
+        <div class="row addBar" id="addMatch" ng-init="newMatch = bla">
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ui-select ng-model="$parent.newMatch.speler_wit" theme="bootstrap" on-select="alert()">
+                            <ui-select-match placeholder="Witspeler">{{$select.selected.voornaam}}
+                                {{$select.selected.tussenvoegsel}} {{$select.selected.achternaam}}
+                            </ui-select-match>
+                            <ui-select-choices
+                                    repeat="participant in participants | filter: $select.search | orderBy: 'voornaam'">
+                                <span ng-bind-html="participant.voornaam + ' ' + participant.tussenvoegsel + ' ' + participant.achternaam | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-md-6">
+                        <ui-select ng-model="$parent.newMatch.speler_zwart" theme="bootstrap">
+                            <ui-select-match placeholder="Zwartspeler">{{$select.selected.voornaam}}
+                                {{$select.selected.tussenvoegsel}} {{$select.selected.achternaam}}
+                            </ui-select-match>
+                            <ui-select-choices
+                                    repeat="participant in participants | filter: $select.search | orderBy: 'voornaam'">
+                                <span ng-bind-html="participant.voornaam + ' ' + participant.tussenvoegsel + ' ' + participant.achternaam | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" ng-click="createMatch(newMatch)">Toevoegen</button>
+            </div>
+        </div>
+        <table class="table" ng-init="getRoundMatches(roundSelect.id)">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Witspeler</th>
+                <th></th>
+                <th>Zwartspeler</th>
+                <th style="text-align : center">Reglementair</th>
+                <th style="text-align : center">Geen rapportage</th>
+                <th>Uitslag</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="match in matches">
+                <td>{{$index + 1}}</td>
+                <td ng-init="white = (participants | filter:{id : match.speler_wit} : true)[0]">{{white.voornaam}}
+                    {{white.tussenvoegsel}} {{white.achternaam}} ({{match.rating_wit}})
+                </td>
+                <td>-</td>
+                <td ng-init="black = (participants | filter:{id : match.speler_zwart} : true)[0]">{{black.voornaam}}
+                    {{black.tussenvoegsel}} {{black.achternaam}} ({{match.rating_zwart}})
+                </td>
+                <td><input type="checkbox" ng-model="match.reglementair" ng-true-value="1" ng-false-value="0"
+                           ng-change="updateMatch(match, false)"
+                           class="form-control"></td>
+                <td><input type="checkbox" ng-model="match.excludeRatingReport" ng-true-value="1" ng-false-value="0"
+                           ng-change="updateMatch(match, false)"
+                           class="form-control"></td>
+                <td>
+                    <select ng-model="match.uitslag" ng-change="updateMatch(match, true)" class="form-control">
+                        <option value=""></option>
+                        <option value="1">1-0</option>
+                        <option value="2">0.5 - 0.5</option>
+                        <option value="3">0-1</option>
+                    </select>
+                </td>
+                <td>
+                    <button class="btn btn-danger" ng-click="deleteMatch(match)"><i class="fa fa-trash"></i></button>
+                    <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

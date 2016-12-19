@@ -1,0 +1,30 @@
+#content{
+  #round{
+    width:20%;
+    margin-top: -50px;
+    float: right;
+
+    select{
+      width:80%;
+    }
+  }
+
+  input[type=checkbox]{
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+}
+
+#crosstable{
+  .black{
+    background-color: black;
+  }
+  td.player{
+    min-width:140px;
+  }
+}
+
+table > tbody > tr.bye > td{
+  color: $grey-1;
+}

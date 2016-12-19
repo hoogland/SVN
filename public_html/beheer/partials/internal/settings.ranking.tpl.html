@@ -1,0 +1,18 @@
+<div class="col-md-8 col-md-push-2 ranking">
+    <div class="col-sm-6">
+        <h2>Beschikbare criteria</h2>
+        <ul ui-sortable="sortableOptions" ng-model="competitionOption.Ranking[0]" class="sortList">
+            <li class="app" data-ng-repeat="column in competitionOption.Ranking[0]" data-as-sortable-item>
+                <div data-as-sortable-item-handle>{{column.name}}</div>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-6">
+        <h2>Gebruikte criteria</h2>
+        <ul ui-sortable="sortableOptions" ng-model="competitionOption.Ranking[1]" class="sortList">
+            <li class="app" data-ng-repeat="column in competitionOption.Ranking[1]" data-as-sortable-item>
+                <div data-as-sortable-item-handle>{{column.name}}</div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,175 @@
+#seasonView .tile {
+  text-align: center; }
+
+#content #round {
+  width: 20%;
+  margin-top: -50px;
+  float: right; }
+  #content #round select {
+    width: 80%; }
+#content input[type=checkbox] {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none; }
+
+#crosstable .black {
+  background-color: black; }
+#crosstable td.player {
+  min-width: 140px; }
+
+#participants ul {
+  list-style-type: none; }
+  #participants ul li {
+    float: left;
+    width: 100%;
+    display: inline-block;
+    padding: 16px;
+    overflow: auto;
+    clear: both;
+    text-decoration: none; }
+    #participants ul li .move {
+      height: 34px;
+      line-height: 14px;
+      padding: 10px;
+      padding-right: 20px;
+      width: 20px;
+      display: inline-block;
+      cursor: move; }
+      #participants ul li .move:hover {
+        background-color: #020731;
+        color: white; }
+    #participants ul li input {
+      float: right; }
+#participants .th {
+  font-size: 16px;
+  font-weight: bold; }
+
+.svnModal .commands {
+  position: absolute;
+  right: 4px;
+  margin: 4px 14px 0px 0px;
+  z-index: 2; }
+  .svnModal .commands button.close {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    padding: 14px;
+    cursor: pointer;
+    color: black; }
+.svnModal .header {
+  background: #fafafa;
+  border-bottom: #eee 1px solid;
+  border-radius: 2px 2px 0px 0px;
+  padding: 16px 24px;
+  font-weight: bold; }
+.svnModal .body {
+  min-height: 56px;
+  padding: 16px 24px; }
+.svnModal .footer {
+  background: #fafafa;
+  border-top: #eee 1px solid;
+  border-radius: 0px 0px 2px 2px;
+  padding: 6px 24px;
+  min-height: 43px; }
+  .svnModal .footer .buttons {
+    text-align: right; }
+    .svnModal .footer .buttons button {
+      background-color: transparent;
+      border: none;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      min-width: 88px;
+      min-height: 35px;
+      margin: 4px; }
+      .svnModal .footer .buttons button.ok {
+        color: #3593D2; }
+
+.modal-dialog {
+  margin-top: 5%; }
+
+#rounds ul {
+  list-style-type: none;
+  padding-left: 5px; }
+  #rounds ul li.round {
+    overflow: auto;
+    text-decoration: none;
+    line-height: 33px;
+    padding: 10px; }
+    #rounds ul li.round .panel {
+      margin-bottom: 0px; }
+    #rounds ul li.round input {
+      float: right; }
+#rounds a.active {
+  color: orange; }
+#rounds .th {
+  font-size: 16px;
+  font-weight: bold; }
+
+#settings {
+  /* Styles go here */ }
+  #settings .nav.nav-tabs {
+    margin-bottom: 20px; }
+  #settings .ranking ul {
+    padding: 0px;
+    min-height: 400px;
+    min-width: 40%; }
+    #settings .ranking ulactive, #settings .ranking ulfocus {
+      border: none; }
+  #settings .ranking .app {
+    width: 100%;
+    min-height: 42px;
+    margin-bottom: 3px;
+    border: 1px solid #000;
+    list-style: none;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px; }
+    #settings .ranking .app:hover {
+      cursor: move; }
+    #settings .ranking .app div {
+      padding: 10px; }
+  #settings .ranking .as-sortable-placeholder {
+    border: 1px dotted #0000ff !important; }
+  #settings .ranking #sortable-container {
+    display: inline-block; }
+  #settings .ranking .column {
+    border: 1px solid #000000; }
+
+body {
+  overflow-y: scroll; }
+  body td {
+    font-size: 10pt; }
+
+#navBar {
+  width: 100%;
+  position: fixed;
+  padding: 10px;
+  border-bottom: 3px solid #020731;
+  z-index: 100;
+  background-color: inherit; }
+  #navBar #brand {
+    font-size: 32px;
+    color: #020731; }
+
+#content {
+  padding-top: 60px; }
+
+.form-control, .btn {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px; }
+
+.btn:hover {
+  -webkit-box-shadow: 0px 1px 4px 0 rgba(0, 0, 0, 0.37);
+  -moz-box-shadow: 0px 1px 4px 0 rgba(0, 0, 0, 0.37);
+  box-shadow: 0px 2px 1px 0 rgba(0, 0, 0, 0.37); }
+
+.addBar {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background-color: #020731; }
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,59 @@
+<div class="row" ng-show="roundSelect.id">
+    <div class="col-sm-12">
+        <h2>Byes</h2>
+        <button ng-click="addNonPlayingByes(byes, byeTypes, participants)">Massa</button>
+        <div class="row addBar" id="addBye" ng-init="newBye = bla">
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ui-select ng-model="$parent.newBye.player" theme="bootstrap">
+                            <ui-select-match placeholder="Speler">{{$select.selected.voornaam}}
+                                {{$select.selected.tussenvoegsel}} {{$select.selected.achternaam}}
+                            </ui-select-match>
+                            <ui-select-choices
+                                    repeat="participant in participants | filter: $select.search | orderBy: 'voornaam'">
+                                <span ng-bind-html="participant.voornaam + ' ' + participant.tussenvoegsel + ' ' + participant.achternaam | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-md-6">
+                        <ui-select ng-model="$parent.newBye.bye" theme="bootstrap">
+                            <ui-select-match placeholder="Reden">{{$select.selected.name}}
+                            </ui-select-match>
+                            <ui-select-choices
+                                    repeat="bye in byeTypes | filter: $select.search | orderBy: 'name'">
+                                <span ng-bind-html="bye.name | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" ng-click="createBye(newBye)">Toevoegen</button>
+            </div>
+        </div>
+        <table class="table" ng-init="getRoundByes(roundSelect.id)">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Speler</th>
+                <th>Bye</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="bye in byes">
+                <td>{{$index + 1}}</td>
+                <td ng-init="player = (participants | filter:{id : bye.user_id} : true)[0]">{{player.voornaam}}
+                    {{player.tussenvoegsel}} {{player.achternaam}}
+                </td>
+                <td ng-init="byeType = (byeTypes | filter:{id : bye.bye_id} : true)[0]">{{byeType.name}}
+                </td>
+                <td>
+                    <button class="btn btn-danger" ng-click="deleteBye(bye)"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

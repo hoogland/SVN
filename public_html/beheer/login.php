@@ -1,7 +1,7 @@
 <?php
     //WEBSITE STARTUP
     include_once('../../includes/class.init.php');
-    include_once('../../includes/class.competition.php');
+    include_once('../../includes/competition.php');
     include_once('../../includes/class.swiss.php');
     include_once('../../includes/class.player.php');
 
@@ -19,7 +19,7 @@
     <div class="row hidden-print">
         <div class="col-md-12">
             <h1 class="hidden-print">Inloggen</h1>
-            <form action="index.php" method="post" role="form" class="form-horizontal">
+            <form action="compExternal.php" method="post" role="form" class="form-horizontal">
                 <div class="form-group">
                     <label for="email" class="col-lg-2 control-label">Gebruikersnaam</label>
                     <div class="col-lg-10">

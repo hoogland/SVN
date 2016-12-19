@@ -1,0 +1,66 @@
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">{{config.vereniging}}</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span
+                    class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+                    class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse navbar-menubuilder">
+            <ul class="nav navbar-nav navbar-left">
+                <li ui-sref-active="active"><a ui-sref="management" class="material-icons">settings</a></li>
+                <li ui-sref-active="active"><a ui-sref="members">Ledenadministratie</a></li>
+                <li ui-sref-active="active"><a ui-sref="seasons">Seizoenen</a></li>
+                <li class="dropdown" ng-class="{open : internalCollapsed}"
+                    ng-click="internalCollapsed = !internalCollapsed"><a class="dropdown-toggle" data-toggle="dropdown">Intern
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li ui-sref-active="active">
+                            <a ui-sref="internal.overview"><span class="fa fa-list"></span> Overzicht</a>
+                        </li>
+                        <li class="disabled">
+                            <a href=""><i class="fa fa-plus"></i> Nieuw</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a ui-sref="internal.settings.general({competitionId : competitionSelect.id})"><span class="fa fa-cog"></span> Instellingen</a>
+                        </li>
+                        <li>
+                            <a ui-sref="internal.participants({competitionId : competitionSelect.id})"><span class="fa fa-user"></span> Deelnemers</a>
+                        </li>
+                        <li>
+                            <a ui-sref="internal.rounds({competitionId : competitionSelect.id})"><span class="fa fa-refresh"></span> Rondes</a>
+                        </li>
+                        <li>
+                            <a ui-sref="internal.grouping({competitionId : competitionSelect.id})"><span class="fa fa-compress"></span> Indeling</a>
+                        </li>
+                        <li>
+                            <a href="http://svnieuwerkerk.nl/archief/standen.php?seizoen=&competitie=" target="_blank"><span class="fa fa-list-ol"></span> Standen</a>
+                        </li>
+                        <li>
+                            <a href="compReport.php?seizoen=&competitie="><span class="fa fa-file-text-o"></span> Rating rapportage</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="compExternal.php?seizoen="><span class="fa fa-road"></span> Extern</a></li>
+                <li ui-sref-active="active"><a ui-sref="tools">Tools</a></li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <select class="form-control"
+                            ng-model="seasonSelect"
+                            ng-options="season.naam for season in seasons | orderBy: '-naam' track by season.id "
+                            ng-change="getCompetitions(season)">
+                        <option style="display:none" value="">Selecteer een seizoen</option>
+                    </select>
+                    <select class="form-control"
+                            ng-model="competitionSelect"
+                            ng-options="competition.naam for competition in competitions | orderBy: '-stand_tempo' track by competition.id ">
+                        <option style="display:none" value="">Selecteer een competitie</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
