@@ -115,6 +115,7 @@ class round
             // Delete games
             $data = $this->db->delete('svn_partijen', array("round_id" => $this->id));
             if ($data !== false) {
+                // Delete Byes
 
                 // Delete standing
 

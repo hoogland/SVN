@@ -1,11 +1,3 @@
-<div id="seasonView">
-    <h1>Seizoenen</h1>
+<div id="seasonView" ui-view>
 
-    <div class="col-md-2" ng-repeat="season in seasons | orderBy: 'naam'">
-        <div class="panel panel-default tile">
-            <div class="panel-body">
-                {{season.naam}}
-            </div>
-        </div>
-    </div>
 </div>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.1/select.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1"/>
+    <title>SVN Beheer</title>
+
+    <script src="http://cdn.jsdelivr.net/g/jquery@1,jquery.ui@1.10%28jquery.ui.core.min.js+jquery.ui.widget.min.js+jquery.ui.mouse.min.js+jquery.ui.sortable.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-resource.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-sanitize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+
+    <!-- Angular Material Dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
+
+    <!-- VENDORS -->
+    <script src="vendor/ui-bootstrap-tpls-0.13.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.1/select.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-sortable/0.13.4/sortable.js"></script>
+    <!-- Alertify -->
+    <script src="//cdn.jsdelivr.net/alertifyjs/1.5.0/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.5.0/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.5.0/css/themes/default.min.css"/>
+
+    <!-- APP -->
+    <script src="scripts/controllers/seasonsController.js"></script>
+    <script src="scripts/config.js"></script>
+
+    <script src="scripts/services/SeasonsService.js"></script>
+    <script src="scripts/components/seasonsComponents.js"></script>
+</head>
+<body layout="column">
+<div class="container-fluid" ng-app="app" ng-controller="seasonsCtrl as ctrl">
+    <hero-list seasons="ctrl.hero"></hero-list>
+</div>
+
+
+
+</body>
+</html>

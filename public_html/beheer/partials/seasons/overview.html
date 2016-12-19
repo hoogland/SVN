@@ -1,0 +1,11 @@
+<h1>Seizoenen</h1>
+
+<div class="col-md-2" ng-repeat="season in seasonsCtrl.DataFactory.seasons | orderBy: 'naam'" ui-sref="seasons.season({seasonId : season.id})">
+    <div class="panel panel-default tile">
+        <div class="panel-body">
+            {{season.naam}}
+        </div>
+    </div>
+</div>{{seasonsCtrl}}
+
+<season-list seasons="seasonsCtrl.seasons"></season-list>

@@ -1,5 +1,6 @@
 #seasonView .tile {
-  text-align: center; }
+  text-align: center;
+  cursor: pointer; }
 
 #content #round {
   width: 20%;
