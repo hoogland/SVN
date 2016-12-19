@@ -4,8 +4,7 @@ A management and archive site for tracking the competitions of a chess club.
 On http://svnieuwerkerk.nl/archief you can find a live version of the software in use for SV Nieuwerkerk
 
 ## Progress board
-https://waffle.io/hoogland/SVN is used to track progress on the issues
-We are making the transision to JIRA: http://svnieuwerkerk.atlassian.net
+http://svnieuwerkerk.atlassian.net is used to track progress on the issues
 
 ## Limitations
 The tool has several limitations at this moment:
