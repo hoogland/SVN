@@ -2,6 +2,11 @@
 .idea
 database.inc
 class.settings.php
+/public_html/wp
+/public_html/competitie/senioren
+/public_html/main
+/public_html/images
+
 
 #################
 ## Eclipse
