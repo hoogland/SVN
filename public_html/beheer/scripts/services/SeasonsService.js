@@ -6,19 +6,21 @@
 
 angular
     .module('app')
-    .factory('SeasonsService', function($resource, SETTINGS) {
+    .factory('SeasonsService', function ($resource, SETTINGS) {
 
         var API_PATH = SETTINGS.API_BASEURL + 'seasons';
 
         var Seasons = $resource(API_PATH);
 
+
         return {
-            querySeasons: function() {
-                return Seasons.query(function(successResult) {
+            querySeasons: function () {
+                return Seasons.query(function (successResult) {
+
                     return successResult;
-                }, function(errorResult) {
+                }, function (errorResult) {
                     console.log(errorResult);
-                });
+                })
             }
         }
     });

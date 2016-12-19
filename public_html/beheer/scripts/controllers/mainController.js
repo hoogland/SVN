@@ -7,9 +7,9 @@
     angular.module('app')
         .controller('mainController', mainController);
 
-    mainController.$inject = ['$scope', '$stateParams', '$state', '$rootScope', 'SeasonsService', 'CompetitionService', 'genericDataService'];
+    mainController.$inject = ['$scope', '$stateParams', '$state', '$rootScope', 'SeasonsService', 'CompetitionService', 'genericDataService', 'DataFactory'];
 
-    function mainController($scope, $stateParams, $state, $rootScope, SeasonsService, CompetitionService, genericDataService) {
+    function mainController($scope, $stateParams, $state, $rootScope, SeasonsService, CompetitionService, genericDataService, DataFactory) {
 
         var getConfig = function(){
             $scope.config = genericDataService.queryConfig();
@@ -17,6 +17,7 @@
 
         $scope.getSeasons = function(){
             $scope.seasons = SeasonsService.querySeasons();
+            DataFactory.seasons = $scope.seasons;
         };
 
         $scope.queryMembers = function(){

@@ -4,9 +4,9 @@
 
 angular
     .module('app')
-    .controller('CompetitionsCtrl', function ($scope, $state, $modal, CompetitionService, RoundService, genericDataService) {
+    .controller('CompetitionsCtrl', function ($scope, $state, $modal, CompetitionService, RoundService, genericDataService, DataFactory) {
         $scope.roundSelect = {};
-
+        console.log(DataFactory);
         $scope.getRounds = function (competitionId) {
             $scope.rounds = RoundService.queryRounds(competitionId);
         };

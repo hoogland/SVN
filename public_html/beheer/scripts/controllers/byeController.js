@@ -18,8 +18,10 @@ angular
                 CompetitionService.saveStanding($scope.competitionSelect.id, $scope.roundSelect.round).$promise.then(function(){
                 });
                 //Clear the selected players
-                $scope.newBye.player = undefined;
-                $scope.newBye.bye = undefined
+                if($scope.newBye !== undefined) {
+                    $scope.newBye.player = undefined;
+                    $scope.newBye.bye = undefined;
+                }
             });
         };
 
@@ -52,14 +54,16 @@ angular
             for(var i = 0; i < participants.length; i++){
                 var player = participants[i];
                 var addBye = true;
-                MatchService.matches.forEach(function(game){
+                for(var j = 0; j < MatchService.matches.length; j++){
+                    var game = MatchService.matches[j];
                     if(game.speler_wit == player.id || game.speler_zwart == player.id)
                         addBye = false;
-                });
-                byes.forEach(function(bye){
+                };
+                for(var j = 0; j < byes.length; j++){
+                    bye = byes[j];
                     if(bye.user_id == player.id)
                         addBye = false;
-                });
+                };
                 if(addBye){
                     newBye.player = player;
                     $scope.createBye(newBye);

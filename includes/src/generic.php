@@ -60,6 +60,16 @@ class generic
         return $this->db->select('svn_leden', array("id", "voorletters", "voornaam", "tussenvoegsel", "achternaam", "knsb"), array("ORDER" => array("achternaam ASC")));
     }
 
+    public function updateMember($memberId, $member){
+        $data = $this->db->update("svn_leden", $member, array("id" => $memberId));
+        return $data;
+    }
+
+    public function createMember($member){
+        $data = $this->db->insert("svn_leden", $member);
+        return $data;
+    }
+
     /**
      * @return array|bool
      * Get all available seasons

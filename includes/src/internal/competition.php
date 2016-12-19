@@ -38,6 +38,18 @@ class competition
     }
 
     /**
+     * @param $competition
+     *
+     * Creates a new competition with just a name
+     * @return array
+     */
+    public function createCompetition($competition)
+    {
+        $data = $this->db->insert("svn_competities", $competition);
+        return $data;
+    }
+
+    /**
      * @param array $competition
      *
      * Updates the competition settings/information

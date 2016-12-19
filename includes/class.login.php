@@ -729,14 +729,14 @@
             //IF LOGIN IS DEMANDED
             if($this->DEMAND_LOGIN != 0)
             {
-                if($this->LOGGED_IN != 1)
+              /*  if($this->LOGGED_IN != 1)
                 {
                     $this->errorClass->add_error(401);
-                }
-                else
+                }*/
+               /* else
                 {
                 }    
-                //FROM HERE THE CHECK IF USER IS ALLOWED TO SEE SPECIFIC PAGES        
+                //FROM HERE THE CHECK IF USER IS ALLOWED TO SEE SPECIFIC PAGES        */
             }
         }
 

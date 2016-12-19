@@ -4,11 +4,19 @@
 
 angular
     .module('app')
-    .controller('seasonsCtrl', function($scope, SeasonsService){
-       $scope.getSeasons = function(){
-           $scope.seasons = SeasonsService.querySeasons();
-       };
-
-        //$scope.getSeasons();
-
+    .controller('seasonsCtrl', function seasonsCtrl(SeasonsService) {
+        this.getSeasons = function () {
+            this.seasons = SeasonsService.querySeasons();
+        };
+        this.getSeasons();
+        console.log(this.seasons);
     });
+
+
+function seasonsCtrl(SeasonsService) {
+    this.getSeasons = function () {
+        this.seasons = SeasonsService.querySeasons();
+    };
+    this.getSeasons();
+    console.log(this.seasons);
+};

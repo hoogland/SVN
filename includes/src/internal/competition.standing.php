@@ -181,7 +181,7 @@ class standing extends competition
         foreach ($this->standing as $key => $player) {
             $this->standing[$key]["WP"] = array_sum($WPtmp[$player["player_id"]]);
             $this->standing[$key]["SB"] = array_sum($SBtmp["win"][$player["player_id"]]) + 0.5 * array_sum($SBtmp["draw"][$player["player_id"]]);
-            $this->standing[$key]["TPR"] = $rating->calculateTPR("offsetTPR", $this->competitionOptions["tprDemping"]["value"], null, $this->standing[$key]["RtOTotal"], $this->standing[$key]["Score"], $this->standing[$key]["Games"]);
+            $this->standing[$key]["TPR"] = $rating->calculateTPR($this->competitionOptions["tprMethod"]["value"], $this->competitionOptions["tprDemping"]["value"], null, $this->standing[$key]["RtOTotal"], $this->standing[$key]["Score"], $this->standing[$key]["Games"]);
         }
 
         //Update keizerling score

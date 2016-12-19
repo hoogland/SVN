@@ -21,7 +21,6 @@
         .config(function ($urlRouterProvider, $stateProvider, $httpProvider) {
             //Load config data
 
-
             $stateProvider
                 //Internal competition
                 .state('internal', {
@@ -93,6 +92,14 @@
                     url: '/seasons',
                     templateUrl: 'views/seasons.html',
                     controller: 'seasonsCtrl'
+                })
+                .state('seasons.overview', {
+                    url: '/overview',
+                    templateUrl: 'partials/seasons/overview.html'
+                })
+                .state('seasons.season', {
+                    url: '/:seasonId',
+                    templateUrl: 'partials/seasons/season.html',
                 })
 
                 //Management

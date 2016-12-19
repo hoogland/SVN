@@ -36,8 +36,8 @@ $api->group('/data/byeTypes', function() use ($api){
 });
 
 //Bye Types
-$api->group('/data/columns/:columnType', function($columnType) use ($api){
-    $api->get('', function($columnType){
+$api->group('/data/columns', function() use ($api){
+    $api->get('/:columnType', function($columnType){
         require_once '../../../includes/src/generic.php';
         $data = new \svn\generic();
         echo  json_encode($data->getCompFields($columnType), JSON_NUMERIC_CHECK);
@@ -46,12 +46,24 @@ $api->group('/data/columns/:columnType', function($columnType) use ($api){
 
 //MEMBERS
 $api->group('/members', function() use ($api){
+    require_once '../../../includes/src/generic.php';
     $api->get('', function(){
-        require_once '../../../includes/src/generic.php';
         //get all seasons
         $data = new \svn\generic();
-
         echo  json_encode($data->getMembers(), JSON_NUMERIC_CHECK);
+    });
+    //Update a member
+    $api->put('/:memberId', function ($memberId) use ($api) {
+        $generic = new \svn\generic();
+        $data = json_decode($api->request->getBody());
+        if($memberId && $data)
+            echo json_encode($generic->updateMember($memberId, $data), JSON_NUMERIC_CHECK);
+    });
+    //Create option
+    $api->post('', function() use ($api){
+        $generic = new \svn\generic();
+        $data = json_decode($api->request->getBody(), true);
+        echo json_encode($generic->createMember($data), JSON_NUMERIC_CHECK);
     });
 });
 
@@ -64,6 +76,12 @@ $api->group('/seasons', function() use ($api){
         $season = new \svn\generic();
         echo  json_encode($season->getSeasons(), JSON_NUMERIC_CHECK);
 
+    });
+
+    $api->put('', function() use ($api){
+        $season = new \svn\competition\season();
+        $data = json_decode($api->request->getBody());
+        echo json_encode($season->createSeason($data->season));
     });
 
     $api->get('/:seasonId', function($seasonId){
