@@ -76,7 +76,7 @@ class generic
      */
     public function getSeasons()
     {
-        return $this->db->select('svn_seizoen', '*');
+        return $this->db->select('svn_seizoen', '*', array('ORDER' => 'naam DESC'));
     }
 
     /**
