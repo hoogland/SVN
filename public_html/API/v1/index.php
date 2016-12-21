@@ -308,13 +308,23 @@ $api->group('/byes/:byeId', function ($byeId) use ($api){
     });
 });
 
-//External Teams
-$api->group('/teams', function() use ($api){
-    $api->get('', function(){
+
+//External
+$api->group('/external', function() use ($api){
+    //Teams
+    $api->get('/teams', function(){
         require_once '../../../includes/src/external/teams.php';
         //get all teams
         $teams = new \svn\teams();
         echo  json_encode($teams->getTeams(), JSON_NUMERIC_CHECK);
+    });
+
+    $api->group('/seasons/:seasonId/teams/:teamId', function($seasonId, $teamId) use ($api) {
+        $api->get('/matches', function ($seasonId, $teamId) {
+            require_once '../../../includes/src/external/matches.php';
+            $teams = new \svn\matches();
+            echo json_encode($teams->getTeamMatches($seasonId, $teamId), JSON_NUMERIC_CHECK);
+        });
     });
 });
 
