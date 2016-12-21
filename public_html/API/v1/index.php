@@ -308,4 +308,14 @@ $api->group('/byes/:byeId', function ($byeId) use ($api){
     });
 });
 
+//External Teams
+$api->group('/teams', function() use ($api){
+    $api->get('', function(){
+        require_once '../../../includes/src/external/teams.php';
+        //get all teams
+        $teams = new \svn\teams();
+        echo  json_encode($teams->getTeams(), JSON_NUMERIC_CHECK);
+    });
+});
+
 $api->run();
