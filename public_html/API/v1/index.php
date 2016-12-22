@@ -44,6 +44,16 @@ $api->group('/data/columns', function() use ($api){
     });
 });
 
+//Generic data
+$api->group('/data', function() use ($api){
+    //External classes
+    $api->get('/externalClasses', function(){
+        require_once '../../../includes/src/generic.php';
+        $data = new \svn\generic();
+        echo  json_encode($data->getExternalClasses(), JSON_NUMERIC_CHECK);
+    });
+});
+
 //MEMBERS
 $api->group('/members', function() use ($api){
     require_once '../../../includes/src/generic.php';
@@ -320,10 +330,15 @@ $api->group('/external', function() use ($api){
     });
 
     $api->group('/seasons/:seasonId/teams/:teamId', function($seasonId, $teamId) use ($api) {
-        $api->get('/matches', function ($seasonId, $teamId) {
-            require_once '../../../includes/src/external/matches.php';
-            $teams = new \svn\matches();
-            echo json_encode($teams->getTeamMatches($seasonId, $teamId), JSON_NUMERIC_CHECK);
+        require_once '../../../includes/src/external/matches.php';
+        $api->get('/matches', function ($seasonId, $teamId){
+            $teams = new \svn\matches($seasonId, $teamId);
+            echo json_encode($teams->getTeamMatches(), JSON_NUMERIC_CHECK);
+        });
+        $api->post('/matches', function ($seasonId, $teamId) use ($api) {
+            $teams = new \svn\matches($seasonId, $teamId);
+            $data = json_decode($api->request->getBody(), true);
+            echo json_encode($teams->createTeamMatch($data), JSON_NUMERIC_CHECK);
         });
     });
 });

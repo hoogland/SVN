@@ -110,4 +110,14 @@ class generic
         return $this->db->select("svn_columns", "*", array(strtolower($competitionType) => 1));
 
     }
+
+    /**
+     * @return array|bool
+     *
+     * Retreives all the external groups/classes that are available
+     */
+    public function getExternalClasses()
+    {
+        return $this->db->select("svn_extern_groepen", "*", array("ORDER" => array("knsb", "klasse", "groep")));
+    }
 }

@@ -11,10 +11,16 @@ namespace svn;
 class matches
 {
     var $db;
+    var $seasonId;
+    var $teamId;
+    var $matchId;
 
 
-    public function __construct()
+    public function __construct($seasonId, $teamId, $matchId = null)
     {
+        $this->seasonId = $seasonId;
+        $this->teamId = $teamId;
+
         require_once __DIR__ . '../../../vendor/medoo.min.php';
         require_once __DIR__ . '../../../src/settings.php';
 
@@ -33,8 +39,13 @@ class matches
      * @return array|bool
      * Get all members of club
      */
-    public function getTeamMatches($seasonId, $teamId)
+    public function getTeamMatches()
     {
-        return $this->db->select('svn_extern_wedstrijden_team', array('id','datum','tegenstander','uitwedstrijd','score','scoreTegenstander',), array("AND" => array("team" => $teamId, "seizoen" => $seasonId), "ORDER" => array("datum ASC")));
+        return $this->db->select('svn_extern_wedstrijden_team', array('id','datum','tegenstander','uitwedstrijd','score','scoreTegenstander',), array("AND" => array("team" => $this->teamId, "seizoen" => $this->seasonId), "ORDER" => array("datum ASC")));
+    }
+
+    public function createTeamMatch($data)
+    {
+        return $this->db->insert('svn_extern_wedstrijden_team', $data);
     }
 }
