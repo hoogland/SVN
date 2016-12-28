@@ -340,6 +340,11 @@ $api->group('/external', function() use ($api){
             $data = json_decode($api->request->getBody(), true);
             echo json_encode($teams->createTeamMatch($data), JSON_NUMERIC_CHECK);
         });
+        $api->put('/matches/:matchId', function ($seasonId, $teamId, $matchId) use ($api) {
+            $teams = new \svn\matches($seasonId, $teamId, $matchId);
+            $data = json_decode($api->request->getBody(), true);
+            echo json_encode($teams->saveTeamMatch($data), JSON_NUMERIC_CHECK);
+        });
     });
 });
 
