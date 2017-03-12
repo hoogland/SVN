@@ -54,4 +54,9 @@ class matches
     {
         return $this->db->update('svn_extern_wedstrijden_team', $data, array("id" => $this->matchId));
     }
+
+    public function getTeamMatchGames()
+    {
+        return $this->db->select('svn_extern_partijen' , "*", array("teamwedstrijdId" => $this->matchId));
+    }
 }

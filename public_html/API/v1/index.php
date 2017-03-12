@@ -340,10 +340,17 @@ $api->group('/external', function() use ($api){
             $data = json_decode($api->request->getBody(), true);
             echo json_encode($teams->createTeamMatch($data), JSON_NUMERIC_CHECK);
         });
-        $api->put('/matches/:matchId', function ($seasonId, $teamId, $matchId) use ($api) {
-            $teams = new \svn\matches($seasonId, $teamId, $matchId);
-            $data = json_decode($api->request->getBody(), true);
-            echo json_encode($teams->saveTeamMatch($data), JSON_NUMERIC_CHECK);
+        $api->group('/matches/:matchId', function($seasonId, $teamId, $matchId) use ($api) {
+            $api->put('', function ($seasonId, $teamId, $matchId) use ($api) {
+                $teams = new \svn\matches($seasonId, $teamId, $matchId);
+                $data = json_decode($api->request->getBody(), true);
+                echo json_encode($teams->saveTeamMatch($data), JSON_NUMERIC_CHECK);
+            });
+            $api->get('/games', function ($seasonId, $teamId, $matchId){
+                $external = new \svn\matches($seasonId, $teamId, $matchId);
+                echo json_encode($external->getTeamMatchGames(), JSON_NUMERIC_CHECK);
+            });
+
         });
     });
 });
