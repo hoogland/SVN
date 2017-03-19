@@ -331,25 +331,41 @@ $api->group('/external', function() use ($api){
 
     $api->group('/seasons/:seasonId/teams/:teamId', function($seasonId, $teamId) use ($api) {
         require_once '../../../includes/src/external/matches.php';
+        //Get all matches in a season
         $api->get('/matches', function ($seasonId, $teamId){
             $teams = new \svn\matches($seasonId, $teamId);
             echo json_encode($teams->getTeamMatches(), JSON_NUMERIC_CHECK);
         });
+        //Create a new match
         $api->post('/matches', function ($seasonId, $teamId) use ($api) {
             $teams = new \svn\matches($seasonId, $teamId);
             $data = json_decode($api->request->getBody(), true);
             echo json_encode($teams->createTeamMatch($data), JSON_NUMERIC_CHECK);
         });
         $api->group('/matches/:matchId', function($seasonId, $teamId, $matchId) use ($api) {
+            //Update a match
             $api->put('', function ($seasonId, $teamId, $matchId) use ($api) {
                 $teams = new \svn\matches($seasonId, $teamId, $matchId);
                 $data = json_decode($api->request->getBody(), true);
                 echo json_encode($teams->saveTeamMatch($data), JSON_NUMERIC_CHECK);
             });
+            //Delete a match
+            $api->delete('', function($seasonId, $teamId, $matchId) use ($api) {
+                $teams = new \svn\matches($seasonId, $teamId, $matchId);
+                echo json_encode($teams->deleteTeamMatch(), JSON_NUMERIC_CHECK);
+            });
+            //Get all games of a match
             $api->get('/games', function ($seasonId, $teamId, $matchId){
                 $external = new \svn\matches($seasonId, $teamId, $matchId);
                 echo json_encode($external->getTeamMatchGames(), JSON_NUMERIC_CHECK);
             });
+            //Update a game of a match
+            $api->put('/games', function ($seasonId, $teamId, $matchId) use ($api) {
+                $teams = new \svn\matches($seasonId, $teamId, $matchId);
+                $data = json_decode($api->request->getBody(), true);
+                echo json_encode($teams->saveTeamMatchGames($data), JSON_NUMERIC_CHECK);
+            });
+
 
         });
     });
