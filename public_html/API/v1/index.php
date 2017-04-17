@@ -5,6 +5,7 @@
  * Date: 27-9-2015
  * Time: 14:58
  */
+ini_set('display_errors','off');
 
 require '../../../includes/vendor/Slim/Slim.php';
 
