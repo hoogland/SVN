@@ -46,6 +46,9 @@ class competition
     public function createCompetition($competition)
     {
         $data = $this->db->insert("svn_competities", $competition);
+        $comp_id =  $this->db->id();
+        $this->createOption(array("comp_id" => $comp_id, "option" => "DisplayFields", "value" => "Ranking,Name,Score,Win,Draw,Loss,Games,SB,TPR"));
+        $this->createOption(array("comp_id" => $comp_id, "option" => "RankOrder", "value" => "Score,TPR"));
         return $data;
     }
 

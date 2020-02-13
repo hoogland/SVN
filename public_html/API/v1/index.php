@@ -97,6 +97,12 @@ $api->group('/seasons', function() use ($api){
 });
 
 //COMPETITION
+//Create competition
+$api->put('/competitions', function() use ($api){
+    require_once '../../../includes/src/internal/competition.php';
+    $competition = new \svn\competition\competition();
+});
+
 $api->group('/competitions/:competitionId', function($competitionId) use ($api) {
     $api->group('/options', function ($competitionId) use ($api) {
         require_once '../../../includes/src/internal/competition.php';

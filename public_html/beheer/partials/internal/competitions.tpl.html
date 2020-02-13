@@ -1,5 +1,17 @@
 <h1>Competities</h1>
+<div class="row addBar">
+    <div class="col-md-8 col-md-push-2">
+        <div class="row">
+            <div class="col-md-10">
+                <input type="text" ng-model="competitionNaam" class="form-control">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" ng-click="createCompetition(competitionNaam)">Toevoegen</button>
+            </div>
+        </div>
+    </div>
 
+</div>
 <table class="table">
     <thead>
         <tr><th>Naam</th><th>Tempo</th></tr>

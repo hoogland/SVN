@@ -11,6 +11,10 @@ angular
             $scope.rounds = RoundService.queryRounds(competitionId);
         };
 
+        $scope.createCompetition = function(competitionName){
+            var compAdded = CompetitionService.createCompetition(competitionName);
+        }
+
         $scope.createRound = function (competitionSelect, date) {
             var newRound = {
                 comp_id: competitionSelect.id,

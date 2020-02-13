@@ -15,6 +15,10 @@ angular
                 url: SETTINGS.API_BASEURL + 'seasons/:season/competitions',
                 isArray: true
             },
+            createCompetition: {
+                url: SETTINGS.API_BASEURL + 'competitions',
+                method: 'POST'
+            },
             participants: {
                 url: SETTINGS.API_BASEURL + 'competitions/:competition/participants',
                 isArray: true
@@ -63,6 +67,13 @@ angular
             },
             queryParticipants: function(competition) {
                 return Competition.participants({competition : competition}, function(successResult) {
+                    return successResult;
+                }, function(errorResult) {
+                    console.log(errorResult);
+                });
+            },
+            createCompetition: function(competitionNaam){
+                return Competition.createCompetition({competitionNaam : competitionNaam}, function(successResult) {
                     return successResult;
                 }, function(errorResult) {
                     console.log(errorResult);
