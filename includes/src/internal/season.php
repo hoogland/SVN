@@ -44,6 +44,9 @@ class season{
      */
     public function createSeason($season){
         $data = $this->db->insert("svn_seizoen", array("naam" => $season->name));
+        $comp_id = $this->db->id();
+        $data = $this->db->insert("svn_competitie_opties", array("comp_id" => $comp_id, "option" => "RankOrder", "value" => "TPR,Games"));
+        $data = $this->db->insert("svn_competitie_opties", array("comp_id" => $comp_id, "option" => "DisplayFields", "value" => "Ranking,Name,TPR,Win,Draw,Loss,Rating"));
         return $data;
     }
 
